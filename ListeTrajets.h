@@ -1,14 +1,14 @@
 /*************************************************************************
-                           Xxx  -  description
+                           ListeTrajets  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
+    début                : novembre 2021
+    copyright            : (C) 2021 par Male Mahjoub et Aurélie Abraham
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <ListeTrajets> (fichier ListeTrajets.h) ----------------
+#if ! defined ( LISTETRAJETS_H )
+#define LISTETRAJETS_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,46 +17,32 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
+// Rôle de la classe <ListeTrajets>
 //
 //
 //------------------------------------------------------------------------
 
-class Xxx : public Ancetre
+class ListeTrajets
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    int getTaille();
+    bool ajouter(Trajet *);
+    void afficher();
+    Trajet * getElement(int);
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    Xxx ( );
+    ListeTrajets ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~ListeTrajets ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,10 +54,12 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+  Trajet * trajet;
+  unsigned int taille;
+  ListeTrajets * trajetSuivant;
 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
-#endif // XXX_H
-
+#endif // ListeTrajets_H
