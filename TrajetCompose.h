@@ -8,7 +8,7 @@
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
 #if ! defined ( XXX_H )
-#define XXX_H
+#define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -28,35 +28,25 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    void ajouterTrajet(Trajet* unTrajet){
+        liste->ajouter(unTrajet);
+    }
 
+    void afficherTrajet() const;
 
+    
 //------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Xxx ( );
+  
+    TrajetCompose ( const char* depart, const char* arrivee );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -66,6 +56,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
+ListeTrajets* liste;
 
 //----------------------------------------------------- Attributs protégés
 

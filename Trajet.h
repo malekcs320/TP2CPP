@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------
 
-class Trajet :
+class Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -33,19 +33,19 @@ public:
     //
     // Contrat :
     //
+    virtual void afficherTrajet() const
+    {
+        cout<< "de "<<depart<<"à "<<arrivee;
+    }
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    Trajet ( );
+    Trajet ( const char* depart, const char* arrivee );
     // Mode d'emploi :
     //
     // Contrat :

@@ -21,7 +21,6 @@
 //
 //
 //------------------------------------------------------------------------
-
 class TrajetSimple : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
@@ -33,30 +32,23 @@ public:
     //
     // Contrat :
     //
-
+    void TrajetSimple::afficherTrajet() const;
+    char * getTransport();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+     
 
-    Xxx ( );
+    TrajetSimple ( const char* depart, const char* arivee, const char* transport );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~TrajetSimple ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,6 +60,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    char* transport;
 
 };
 
