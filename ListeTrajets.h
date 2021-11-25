@@ -31,7 +31,11 @@ public:
     int getTaille();
     bool ajouter(Trajet *);
     void afficher();
-    Trajet * getElement(int);
+    Trajet * getElement(int index);
+    // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
+    //
+    // Contrat : index doit être positif
+    //
 
 
 //-------------------------------------------- Constructeurs - destructeur

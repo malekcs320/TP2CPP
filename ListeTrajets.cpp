@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -36,13 +37,14 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
 {
   // vérifier qu'il n'y a pas de doublon
   for(int i=0; i<this->taille; i++) {
-    if((trajet+i)->trajet->estEgal(unTrajet)) {
+    if((trajetSuivant+i)->trajet->estEgal(unTrajet)) {
       return false;
     }
   }
   // pas de doublon, on ajoute
   this->taille++;
-  ListeTrajets * dernier = trajet+taille-1;
+  ListeTrajets * dernier = this;
+  for(int i=0; i<taille; i++) dernier = dernier->trajetSuivant;
   dernier->trajetSuivant = new ListeTrajets();
   dernier->trajetSuivant->trajet = unTrajet;
   dernier->trajetSuivant->trajetSuivant = NULL;
@@ -51,15 +53,16 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
 } // fin ajouter
 void ListeTrajets::afficher()
 {
-  for(int i=0; i<this->taille; i++) {
-    (trajet+i)->trajet->estEgal->afficherTrajet();
-  }
+  this->trajet->afficherTrajet();
+  this->trajetSuivant->afficher();
 } // fin afficher
 
-Trajet * getElement(int i)
+Trajet * ListeTrajets::getElement(int index)
 {
-  if(i<taille) {
-    return (trajet+i)->trajet;
+  if(index<taille) {
+    ListeTrajets * t = this;
+    for(int i=0; i<index; i++) t = t->trajetSuivant;
+    return t->trajet;
   }
   return NULL;
 }
