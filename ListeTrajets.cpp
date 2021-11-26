@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           ListeTrajets  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <ListeTrajets> (fichier ListeTrajets.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -23,11 +23,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 
 int ListeTrajets::getTaille()
 {
@@ -88,7 +84,7 @@ ListeTrajets::~ListeTrajets ( )
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
-} //----- Fin de ~Xxx
+} //----- Fin de ~ListeTrajets
 
 
 //------------------------------------------------------------------ PRIVE

@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Catalogue  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -22,50 +22,51 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
+void Catalogue::ajouterTrajet(Trajet * t) {
+    this->liste->ajouter(t);
+}
+void Catalogue::afficher() {
+    cout << "----------------" << endl;
+    cout << "Le catalogue contient " << this->liste->getTaille() << " trajets : " << endl;
+    for(int i=0; i<this->liste->getTaille(); i++) {
+        cout << "Trajet " << i+1 << " : " << liste->getElement(i) << endl;
+    }
+    cout << "----------------" << endl;
+}
+ListeTrajets * Catalogue::rechercheSimple(char*, char*) {
 
-//------------------------------------------------- Surcharge d'opérateurs
-Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+}
+ListeTrajets * Catalogue::rechercheAvancee(char*, char*) {
 
+}
+int Catalogue::getTaille() {
+    return this->liste->getTaille();
+}
 
 //-------------------------------------------- Constructeurs - destructeur
-Xxx::Xxx ( const Xxx & unXxx )
+
+
+Catalogue::Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+    cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de Xxx (constructeur de copie)
+liste = new ListeTrajets();
+} //----- Fin de Catalogue
 
 
-Xxx::Xxx ( )
+Catalogue::~Catalogue ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de Xxx
-
-
-Xxx::~Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de ~Xxx
+delete liste;
+} //----- Fin de ~Catalogue
 
 
 //------------------------------------------------------------------ PRIVE

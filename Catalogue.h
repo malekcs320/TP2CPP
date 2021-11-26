@@ -1,17 +1,18 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Catalogue  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
+    début                : novembre 2021
+    copyright            : (C) 2021 par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <Xxx> (fichier Catalogue.h) ----------------
+#if ! defined ( CATALOGUE_H )
+#define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "ListeTrajets.h"
+#include "Trajet.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,56 +23,47 @@
 //
 //------------------------------------------------------------------------
 
-class Xxx : public Ancetre
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    Xxx ( );
+    Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    void ajouterTrajet(Trajet *);
+    void afficher();
+    ListeTrajets * rechercheSimple(char*, char*);
+    ListeTrajets * rechercheAvancee(char*, char*);
+    int getTaille();
 
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protégés  
+    ListeTrajets * liste;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <Catalogue>
 
-#endif // XXX_H
+#endif // CATALOGUE_H
 
