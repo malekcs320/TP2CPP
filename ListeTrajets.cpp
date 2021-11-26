@@ -36,11 +36,11 @@ int ListeTrajets::getTaille()
 bool ListeTrajets::ajouter(Trajet * unTrajet)
 {
   // vérifier qu'il n'y a pas de doublon
-  for(int i=0; i<this->taille; i++) {
+  /*for(int i=0; i<this->taille; i++) {
     if((trajetSuivant+i)->trajet->estEgal(unTrajet)) {
       return false;
     }
-  }
+  }*/
   // pas de doublon, on ajoute
   this->taille++;
   ListeTrajets * dernier = this;

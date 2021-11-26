@@ -33,10 +33,11 @@ public:
     //
     // Contrat :
     //
-    virtual void afficherTrajet() const
-    {
-        cout<< "de "<<depart<<"à "<<arrivee;
-    }
+    virtual void afficherTrajet() const;
+
+    bool estEgal(const Trajet & t);
+    char * getDepart();
+    char * getArrivee();
 
 
 
