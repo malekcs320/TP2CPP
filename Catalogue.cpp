@@ -30,7 +30,8 @@ void Catalogue::afficher() {
     cout << "----------------" << endl;
     cout << "Le catalogue contient " << this->liste->getTaille() << " trajets : " << endl;
     for(int i=0; i<this->liste->getTaille(); i++) {
-        cout << "Trajet " << i+1 << " : " << liste->getElement(i) << endl;
+        cout << "Trajet " << i+1 << " : " /*<< liste->getElement(i)->toString() << endl*/;
+        liste->getElement(i)->afficherTrajet();
     }
     cout << "----------------" << endl;
 }

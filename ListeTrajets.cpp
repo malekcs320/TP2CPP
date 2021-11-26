@@ -30,27 +30,41 @@ int ListeTrajets::getTaille()
   return this->taille;
 } // fin getTaille
 bool ListeTrajets::ajouter(Trajet * unTrajet)
-{
+{ 
+  bool reussite = false;
   // vérifier qu'il n'y a pas de doublon
-  /*for(int i=0; i<this->taille; i++) {
-    if((trajetSuivant+i)->trajet->estEgal(unTrajet)) {
-      return false;
-    }
-  }*/
+  /*if(this->trajet->estEgal(unTrajet)) {
+    return false;
+  }
+  */
   // pas de doublon, on ajoute
-  this->taille++;
-  ListeTrajets * dernier = this;
-  for(int i=0; i<taille; i++) dernier = dernier->trajetSuivant;
-  dernier->trajetSuivant = new ListeTrajets();
-  dernier->trajetSuivant->trajet = unTrajet;
-  dernier->trajetSuivant->trajetSuivant = NULL;
+  if(taille == 0) {
+    this->trajet=unTrajet;
+    this->taille++;
+  }
+  else {
+    if(this->trajetSuivant == NULL) {
+      this->trajetSuivant = new ListeTrajets();
+      this->trajetSuivant->trajet = unTrajet;
+      this->trajetSuivant->trajetSuivant = NULL;
+      this->taille++;
+    }
+    else {
+      reussite = this->trajetSuivant->ajouter(unTrajet);
+      if(reussite) {
+        this->taille++;
+      }
+    }
+  }
 
   return true;
 } // fin ajouter
 void ListeTrajets::afficher()
 {
-  this->trajet->afficherTrajet();
-  this->trajetSuivant->afficher();
+  if(this->trajet != NULL) {
+    this->trajet->afficherTrajet();
+    if(this->trajetSuivant !=NULL) this->trajetSuivant->afficher();
+  }
 } // fin afficher
 
 Trajet * ListeTrajets::getElement(int index)
