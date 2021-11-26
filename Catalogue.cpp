@@ -50,37 +50,39 @@ ListeTrajets *Catalogue::rechercheSimple(const char *depart, const char *arrivee
 
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
 {
-    {
+    
         if (strcmp(depart, arrivee) == 0)
         {
             if (dejaVisite->getTaille() == 0)
-                cout << "parcours non trouvé" << endl;
-            if (dejaVisite->getTaille() > 0)
+                cout << "Catalogue vide" << endl;
+            else
             {
-                dejaVisite->afficher();
-                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1); // A->B, B->C ==> A->B pour voir autres possibilités à partir de B
-                return;
+                dejaVisite->afficher(); // on affiche le parcours (choix d'affichage maintenant pour pouvoir utiliser le void et permettre la récursivité)
+                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1); //suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
+                
             }
+            return ;
+        }
             for (int i = 0; i < liste->getTaille(); i++)
             {
                 Trajet *trajet = liste->getElement(i);
-                if (strcmp(trajet->getDepart(), depart) == 0)
+                if (strcmp(trajet->getDepart(), depart) == 0) //on ne considère que les trajets ayant pour point de départs "depart"
                 {
-                    bool existe = false;
+                    bool existe = false; //existence dans dejaVisite
                     for (int j = 0; j < dejaVisite->getTaille(); j++)
                     {
-                        if (trajet->estEgal(dejaVisite->getElement(j)))
+                        if (trajet->estEgal(dejaVisite->getElement(j))) //trajet déjà utilisé
                             existe = true;
                     }
-                    if (!existe)
+                    if (!existe) //nouveau trajet
                     {
-                        dejaVisite->ajouter(trajet);
-                        rechercheAvancee(trajet->getDepart(), arrivee, dejaVisite);
+                        dejaVisite->ajouter(trajet); //on l'ajoute à la pile
+                        rechercheAvancee(trajet->getArrivee(), arrivee, dejaVisite); //on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
                     }
                 }
-            }
+            
         }
-    }
+    
 }
 int Catalogue::getTaille()
 {
