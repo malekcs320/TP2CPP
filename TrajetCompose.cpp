@@ -52,7 +52,7 @@ void TrajetCompose::ajouterTrajets( Trajet * unTrajet )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee, ListeTrajets* liste$ ):Trajet(depart, arrivee), liste(liste$)
+TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee):Trajet(depart, arrivee)
 // Algorithme :
 //
 {

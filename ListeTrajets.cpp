@@ -75,6 +75,8 @@ ListeTrajets::ListeTrajets ( )
 #ifdef MAP
     cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
+  trajet = NULL;
+  trajetSuivant = NULL;
   this->taille=0;
 } //----- Fin de ListeTrajets
 
