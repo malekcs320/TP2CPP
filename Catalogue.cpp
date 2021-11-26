@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 
@@ -47,7 +47,7 @@ ListeTrajets * Catalogue::rechercheSimple(const char* depart, const char* arrive
 
 ListeTrajets * rechercheAvancee(const char* depart, const char* arrivee)
 {
-    
+
 
 }
 int Catalogue::getTaille() {
