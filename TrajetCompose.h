@@ -34,13 +34,15 @@ public:
 
     void afficherTrajet() const;
 
-    
+    void ajouterTrajets( Trajet * unTrajet );
+
+    // bool estEgal ( const Trajet &t );
 //------------------------------------------------- Surcharge d'opérateurs
     
 
 //-------------------------------------------- Constructeurs - destructeur
   
-    TrajetCompose ( const char* depart, const char* arrivee );
+    TrajetCompose ( const char* depart, const char* arrivee,ListeTrajets* liste$  );
     // Mode d'emploi :
     //
     // Contrat :

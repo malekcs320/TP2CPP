@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 #include "Trajet.h"
@@ -29,15 +29,24 @@ void TrajetCompose::afficherTrajet() const
         Trajet::afficherTrajet();
         cout <<" : "<<endl;
         
-        for(int i=0;i<liste.getTaille();i++)
+        for(int i=0;i<liste->getTaille();i++)
         {
         cout<<"  ";
-        liste.getElement(i)->afficherTrajet();
+        liste->getElement(i)->afficherTrajet();
         }
         
 
     }
 
+void TrajetCompose::ajouterTrajets( Trajet * unTrajet )
+{   
+    liste->ajouter(unTrajet);
+}
+// bool estEgal ( const Trajet &t )
+// {
+
+
+// }
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -48,29 +57,19 @@ TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee, ListeTra
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+    cout << "Appel au constructeur" << endl;
 #endif
-} //----- Fin de Xxx (constructeur de copie)
+} 
 
 
-Xxx::Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx
-
-
-Xxx::~Xxx ( )
+TrajetCompose::~TrajetCompose ( )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
-} //----- Fin de ~Xxx
+} 
 
 
 //------------------------------------------------------------------ PRIVE
