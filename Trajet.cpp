@@ -28,9 +28,9 @@ void Trajet::afficherTrajet() const
         cout<< "de "<<depart<<" à "<<arrivee<<endl;
     }
 
-bool Trajet::estEgal(const Trajet & t) {
-    return (strcmp(this->depart, t.depart) == 0 
-        && strcmp(this->arrivee, t.arrivee) == 0);
+bool Trajet::estEgal( Trajet * t) {
+    return (strcmp(this->depart, t->depart) == 0 
+        && strcmp(this->arrivee, t->arrivee) == 0);
 }
 
 char * Trajet::getDepart() {

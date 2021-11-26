@@ -35,7 +35,7 @@ public:
     //
     virtual void afficherTrajet() const;
 
-    bool estEgal(const Trajet & t);
+    bool estEgal(Trajet * t);
     char * getDepart();
     char * getArrivee();
 

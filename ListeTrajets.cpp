@@ -77,6 +77,19 @@ Trajet * ListeTrajets::getElement(int index)
   return NULL;
 }
 
+void ListeTrajets::supprimerTrajet(int index)
+// Algorithme
+
+{
+		ListeTrajets * t = this;
+    for(int i=0; i<index-1; i++) t = t->trajetSuivant;
+    ListeTrajets * tmp = t->trajetSuivant;
+    t->trajetSuivant = t->trajetSuivant->trajetSuivant;
+    delete []tmp;
+    taille--;
+
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajets::ListeTrajets ( )
 // Algorithme :
@@ -87,7 +100,7 @@ ListeTrajets::ListeTrajets ( )
 #endif
   trajet = NULL;
   trajetSuivant = NULL;
-  this->taille=0;
+  taille=0;
 } //----- Fin de ListeTrajets
 
 

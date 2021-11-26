@@ -32,6 +32,7 @@ public:
     bool ajouter(Trajet *);
     void afficher();
     Trajet * getElement(int index);
+    void supprimerTrajet(int index);
     // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
     //
     // Contrat : index doit être positif
