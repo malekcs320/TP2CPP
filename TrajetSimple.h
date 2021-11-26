@@ -32,7 +32,7 @@ public:
     //
     // Contrat :
     //
-    void TrajetSimple::afficherTrajet() const;
+    void afficherTrajet() const;
     char * getTransport();
     // bool estEgal ( const Trajet &t );
 

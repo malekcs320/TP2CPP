@@ -44,7 +44,9 @@ ListeTrajets * Catalogue::rechercheSimple(const char* depart, const char* arrive
 
 }
 
-ListeTrajets * Catalogue::rechercheAvancee(char*, char*) {
+ListeTrajets * rechercheAvancee(const char* depart, const char* arrivee)
+{
+    
 
 }
 int Catalogue::getTaille() {
