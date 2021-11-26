@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
+#if ! defined ( TRAJETCOMPOSE_H )
 #define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées

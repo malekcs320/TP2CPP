@@ -1,18 +1,27 @@
 #include <iostream>
 #include "Trajet.h"
 #include <typeinfo>
+#include "Catalogue.h"
 
 using namespace std;
 
+#define MAP 1
+
 int main() {
-    Trajet t1("Paris", "Lyon");
-    Trajet t2("Paris", "Lyon");
+    Trajet * t1 = new Trajet("Paris", "Lyon");
+    Trajet * t2 = new Trajet("Paris", "Lyon");
 
-    cout << typeid(t1).name() << endl;
+    ListeTrajets * liste = new ListeTrajets();
+    liste->ajouter(t1);
 
-    t1.afficherTrajet();
+    //Catalogue * c = new Catalogue();
 
-    cout << t1.estEgal(t2) << endl;
+    //c->ajouterTrajet(t1);
+    //c->ajouterTrajet(t2);
+    //c->afficher();
+
+    //delete c;
+
 
     return 0;
 }
