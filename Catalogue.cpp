@@ -35,10 +35,19 @@ void Catalogue::afficher() {
     }
     cout << "----------------" << endl;
 }
-ListeTrajets * Catalogue::rechercheSimple(char*, char*) {
+ListeTrajets * Catalogue::rechercheSimple(const char* depart, const char* arrivee) {
+
+    ListeTrajets* l= new ListeTrajets();
+    for (int i = 0;i<l->getTaille();i++)
+        if (strcmp(liste->getElement(i)->getDepart(),depart) && strcmp(liste->getElement(i)->getArrivee(),arrivee))
+            l->ajouter(liste->getElement(i));
+    return l;
 
 }
-ListeTrajets * Catalogue::rechercheAvancee(char*, char*) {
+
+ListeTrajets * rechercheAvancee(const char* depart, const char* arrivee)
+{
+    
 
 }
 int Catalogue::getTaille() {
