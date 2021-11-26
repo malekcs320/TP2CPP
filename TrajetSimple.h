@@ -34,6 +34,7 @@ public:
     //
     void TrajetSimple::afficherTrajet() const;
     char * getTransport();
+    // bool estEgal ( const Trajet &t );
 
 //------------------------------------------------- Surcharge d'opérateurs
 

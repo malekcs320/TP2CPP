@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
 #include "Trajet.h"
@@ -31,6 +31,10 @@ char * TrajetSimple::getTransport()
     {
         return transport;
     };
+/*bool TrajetSimple::estEgal( TrajetSimple *t ){
+    return strcmp(t->getDepart(), arrivee)&&strcmp(t->getArrivee(), arrivee)&&strcmp(t->getTransport(), transport);
+    
+}*/
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -38,7 +42,7 @@ char * TrajetSimple::getTransport()
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const char* transport$ ):Trajet(depart$, arrivee$), transport(transport$)
+TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const char* transport$ ):Trajet(depart$, arrivee$)
 // Algorithme :
 //
 {
@@ -46,17 +50,20 @@ TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const cha
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
+transport = new char[strlen(depart$)];
+strcpy(transport, transport$);
+
 } //----- Fin de Xxx
 
 
-Trajet::~Trajet ( )
+TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
-
+delete []transport;
 } //----- Fin de ~Xxx
 
 
