@@ -7,8 +7,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
-#define XXX_H
+#if ! defined ( TrajetSimple_H )
+#define TrajetSimple_H
 
 //--------------------------------------------------- Interfaces utilisées
 
