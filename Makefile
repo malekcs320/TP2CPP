@@ -1,5 +1,5 @@
-test: test.o Trajet.o Catalogue.o ListeTrajets.o
-	g++ -o test test.o Trajet.o Catalogue.o ListeTrajets.o
+test: test.o Trajet.o Catalogue.o ListeTrajets.o TrajetSimple.o
+	g++ -o test test.o Trajet.o Catalogue.o ListeTrajets.o TrajetSimple.o
 
 test.o: test.cpp
 	g++ -c test.cpp 
@@ -13,3 +13,8 @@ Catalogue.o: Catalogue.cpp
 ListeTrajets.o: ListeTrajets.cpp
 	g++ -c ListeTrajets.cpp
 
+TrajetSimple.o: TrajetSimple.cpp 
+	g++ -c TrajetSimple.cpp
+
+TrajetCompose.o: TrajetCompose.cpp 
+	g++ -c TrajetCompose.cpp
