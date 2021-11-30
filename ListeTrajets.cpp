@@ -25,7 +25,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-int ListeTrajets::getTaille()
+unsigned int ListeTrajets::getTaille()
 {
   return this->taille;
 } // fin getTaille
@@ -108,9 +108,11 @@ ListeTrajets::~ListeTrajets ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <ListeTrajets>" << endl;
-#endif
+  #ifdef MAP
+      cout << "Appel au destructeur de <ListeTrajets>" << endl;
+  #endif
+  delete this->trajet;
+  if(this->trajetSuivant != NULL) delete this->trajetSuivant; // suppression en chaîne
 } //----- Fin de ~ListeTrajets
 
 

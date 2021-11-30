@@ -55,8 +55,8 @@ Trajet::Trajet (const char* depart$, const char* arrivee$ )
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-depart = new char[strlen(depart$)];
-arrivee = new char[strlen(arrivee$)];
+depart = new char[strlen(depart$)+1];
+arrivee = new char[strlen(arrivee$)+1];
 strcpy(depart, depart$);
 strcpy(arrivee, arrivee$);
 

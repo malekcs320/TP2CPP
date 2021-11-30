@@ -28,7 +28,7 @@ class ListeTrajets
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int getTaille();
+    unsigned int getTaille();
     bool ajouter(Trajet *);
     void afficher();
     Trajet * getElement(int index);

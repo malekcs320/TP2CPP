@@ -29,7 +29,7 @@ using namespace std;
             cout <<"1 : Ajouter un trajet au catalogue"<<endl;
             cout <<"2 : Rechercher un trajet dans le catalogue"<<endl;
             cout <<"3 : Afficher le catalogue"<<endl;
-            cout <<"Veuillez entrer votre choix (q pour quitter) : "<<endl;
+            cout <<"Veuillez entrer votre choix (q pour quitter) : ";
             cin >> choix;
             while(strcmp(choix,"1") != 0 && strcmp(choix,"2") != 0 && strcmp(choix,"3") != 0 && strcmp(choix, "q") != 0) {
                 cout << "Choix incorrect. Choix possibles : 1, 2, 3, q. Choix : ";
@@ -50,6 +50,10 @@ using namespace std;
     }
     TrajetSimple * Menu::saisirTS() {
         char *depart, *arrivee, *moyenTransport;
+        const unsigned int taille_max = 30;
+        depart = new char[taille_max];
+        arrivee = new char[taille_max];
+        moyenTransport = new char[taille_max];
         cout<<"SAISIE D'UN TRAJET SIMPLE"<<endl;
         cout<<"Ville de départ : " ;
         cin >> depart;
@@ -95,7 +99,7 @@ using namespace std;
             cout << "Choix incorrect. Choix possibles : s, c. Choix : ";
             cin >> choix;
         }
-        if(strcmp(choix, "s")) {
+        if(strcmp(choix, "s") == 0) {
             c->ajouterTrajet(saisirTS());
         }
         else {

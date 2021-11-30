@@ -50,7 +50,7 @@ TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const cha
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-transport = new char[strlen(depart$)];
+transport = new char[strlen(depart$)+1];
 strcpy(transport, transport$);
 
 } //----- Fin de Xxx

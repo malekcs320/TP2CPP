@@ -11,6 +11,8 @@
 #define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
+#include "ListeTrajets.h"
 
 //------------------------------------------------------------- Constantes
 
