@@ -36,9 +36,9 @@ void testTrajetCompose() {
     Trajet * test = new Trajet("Paris", "Nantes");
     TrajetSimple * test2 = new TrajetSimple("Nantes", "Lyon", "Train");
     TrajetSimple * test3 = new TrajetSimple("Nantes", "Toulouse", "Train");
-    t->ajouterTrajets(test);
-    t->ajouterTrajets(test2);
-    t->ajouterTrajets(test3);
+    t->ajouterTrajet(test);
+    t->ajouterTrajet(test2);
+    t->ajouterTrajet(test3);
     t->afficherTrajet();
     delete t;
 }
@@ -57,6 +57,18 @@ void testListeTrajets() {
     //liste->getElement(0)->afficherTrajet();
     //erreur corrigée en commentant le code du destructeur de ListeTrajets( à voir )
     delete liste;
+}
+void testCatalogue() {
+    Catalogue * c = new Catalogue();
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    TrajetCompose * t = new TrajetCompose("Paris","Lyon");
+    t->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    t->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(t);
+    c->afficher();
+    c->getTaille();
+    delete c;
 }
 
 
@@ -96,7 +108,7 @@ int main() {
     c->ajouterTrajet(t4);
     c->ajouterTrajet(t5);
     c->afficher();
-    c->supprimerTrajet(0);
+    c->supprimerTrajet(1);
     c->afficher();
     //cout<<" recherche trajet Paris ---> Nantes"<<endl;
     //ListeTrajets* dejaVisite = new ListeTrajets;

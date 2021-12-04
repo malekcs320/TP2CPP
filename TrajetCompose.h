@@ -30,13 +30,9 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void ajouterTrajet(Trajet* unTrajet){
-        liste->ajouter(unTrajet);
-    }
-
     void afficherTrajet() const;
 
-    void ajouterTrajets( Trajet * unTrajet );
+    void ajouterTrajet( Trajet * unTrajet );
 
     // bool estEgal ( const Trajet &t );
 //------------------------------------------------- Surcharge d'opérateurs

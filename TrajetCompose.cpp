@@ -37,7 +37,7 @@ void TrajetCompose::afficherTrajet() const
 
     }
 
-void TrajetCompose::ajouterTrajets( Trajet * unTrajet )
+void TrajetCompose::ajouterTrajet( Trajet * unTrajet )
 {   
     liste->ajouter(unTrajet);
 }
@@ -71,6 +71,7 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
+delete liste;
 } 
 
 
