@@ -25,7 +25,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void TrajetCompose::afficherTrajet() const
     {
-        cout<<"chemain composé";
+        cout<<"trajet composé ";
         Trajet::afficherTrajet();
         cout <<" : "<<endl;
         
@@ -38,7 +38,7 @@ void TrajetCompose::afficherTrajet() const
 
     }
 
-void TrajetCompose::ajouterTrajets( Trajet * unTrajet )
+void TrajetCompose::ajouterTrajet( Trajet * unTrajet )
 {   
     liste->ajouter(unTrajet);
 }
@@ -59,6 +59,7 @@ TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee):Trajet(d
 #ifdef MAP
     cout << "Appel au constructeur" << endl;
 #endif
+this->liste = new ListeTrajets();
 } 
 
 
@@ -69,6 +70,7 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
+delete liste;
 } 
 
 

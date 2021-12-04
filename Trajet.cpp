@@ -61,7 +61,7 @@ strcpy(depart, depart$);
 strcpy(arrivee, arrivee$);
 
 
-} //----- Fin de Xxx
+} //----- Fin de Trajet
 
 
 Trajet::~Trajet ( )
@@ -69,11 +69,11 @@ Trajet::~Trajet ( )
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 delete []depart;
 delete []arrivee;
-} //----- Fin de ~Xxx
+} //----- Fin de ~Trajet
 
 
 //------------------------------------------------------------------ PRIVE

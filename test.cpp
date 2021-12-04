@@ -44,6 +44,18 @@ void testListeTrajets() {
     liste->afficher();
     delete liste;
 }
+void testCatalogue() {
+    Catalogue * c = new Catalogue();
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    TrajetCompose * t = new TrajetCompose("Paris","Lyon");
+    t->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    t->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(t);
+    c->afficher();
+    c->getTaille();
+    delete c;
+}
 
 
 int main() {
@@ -52,7 +64,7 @@ int main() {
     testTrajet();
     testTrajetSimple();
     testTrajetCompose();
-
+    testCatalogue();
 
 
 
