@@ -69,12 +69,14 @@ void ListeTrajets::afficher()
 
 Trajet * ListeTrajets::getElement(int index)
 {
-  if(index<taille) {
+  if(index<=0) return this->trajet;
+  else return this->trajetSuivant->getElement(index-1);
+  /*if(index<taille) {
     ListeTrajets * t = this;
     for(int i=0; i<index; i++) t = t->trajetSuivant;
     return t->trajet;
-  }
-  return NULL;
+  }*/
+  //return NULL;
 }
 
 void ListeTrajets::supprimerTrajet(int index)
