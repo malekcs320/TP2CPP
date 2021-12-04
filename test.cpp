@@ -33,6 +33,14 @@ void testTrajetCompose() {
     t->afficherTrajet();
     t->getArrivee();
     t->getDepart();
+    Trajet * test = new Trajet("Paris", "Lyon");
+    TrajetSimple * test2 = new TrajetSimple("Paris", "Lyon", "Train");
+    //TrajetCompose * test3 = new TrajetCompose("Paris","Nantes");
+    t->ajouterTrajet(test);
+    t->ajouterTrajet(test2);
+    //t->ajouterTrajet(test3);
+    t->afficherTrajet();
+    //delete test3;
     delete t;
 }
 void testListeTrajets() {
