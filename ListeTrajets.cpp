@@ -39,20 +39,24 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
   */
   // pas de doublon, on ajoute
   if(taille == 0) {
-    this->trajet=unTrajet;
-    this->taille++;
+    taille++;
+    this->trajet = unTrajet;
+    
   }
   else {
     if(this->trajetSuivant == NULL) {
-      this->trajetSuivant = new ListeTrajets();
+      this->trajetSuivant = new ListeTrajets(this->taille);
       this->trajetSuivant->trajet = unTrajet;
       this->trajetSuivant->trajetSuivant = NULL;
+      this->trajetSuivant->taille++;
       this->taille++;
+      
     }
     else {
       reussite = this->trajetSuivant->ajouter(unTrajet);
       if(reussite) {
         this->taille++;
+        
       }
     }
   }
@@ -61,10 +65,13 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
 } // fin ajouter
 void ListeTrajets::afficher()
 {
-  if(this->trajet != NULL) {
-    this->trajet->afficherTrajet();
-    if(this->trajetSuivant !=NULL) this->trajetSuivant->afficher();
-  }
+  //cout<<"il y a "<<this->getTaille()<<" trajet dans votre liste"<<endl;
+  if(this == NULL) return;
+  if(this->trajet != NULL)this->trajet->afficherTrajet();
+  this->trajetSuivant->afficher();
+    
+    
+  
 } // fin afficher
 
 Trajet * ListeTrajets::getElement(int index)
@@ -79,19 +86,42 @@ Trajet * ListeTrajets::getElement(int index)
 
 void ListeTrajets::supprimerTrajet(int index)
 // Algorithme
-
 {
-		ListeTrajets * t = this;
-    for(int i=0; i<index-1; i++) t = t->trajetSuivant;
-    ListeTrajets * tmp = t->trajetSuivant;
-    t->trajetSuivant = t->trajetSuivant->trajetSuivant;
-    delete []tmp;
-    taille--;
 
+  ListeTrajets* head = this;
+	ListeTrajets* temp = head;
+	ListeTrajets* prev = NULL;
+	
+
+	if (head!=NULL && index == 0)
+	{
+        head = head->trajetSuivant; 
+	}
+	else
+	{
+	while (temp != NULL && index--)
+	{
+		prev = temp;
+		temp = temp->trajetSuivant;
+    
+	}
+
+	if (temp == NULL)
+		return;
+
+	prev->trajetSuivant = temp->trajetSuivant;
+  
+	}
+ 
+  while(head!=NULL)
+    {head->taille --; 
+    head = head->trajetSuivant;
+    }
 }
 
+
 //-------------------------------------------- Constructeurs - destructeur
-ListeTrajets::ListeTrajets ( )
+ListeTrajets::ListeTrajets ( unsigned int len )
 // Algorithme :
 //
 {
@@ -100,7 +130,7 @@ ListeTrajets::ListeTrajets ( )
 #endif
   trajet = NULL;
   trajetSuivant = NULL;
-  taille=0;
+  taille = len;
 } //----- Fin de ListeTrajets
 
 
@@ -111,9 +141,19 @@ ListeTrajets::~ListeTrajets ( )
   #ifdef MAP
       cout << "Appel au destructeur de <ListeTrajets>" << endl;
   #endif
-  delete this->trajet;
+
+   if(this->trajet != NULL)delete this->trajet;
   if(this->trajetSuivant != NULL) delete this->trajetSuivant; // suppression en chaîne
-} //----- Fin de ~ListeTrajets
+  
+}
+
+// this ->trajet = NULL;
+
+
+    
+   
+   
+//----- Fin de ~ListeTrajets
 
 
 //------------------------------------------------------------------ PRIVE

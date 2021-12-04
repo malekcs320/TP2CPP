@@ -50,7 +50,8 @@ public:
     void ajouterTrajet(Trajet *);
     void afficher();
     ListeTrajets * rechercheSimple(const char* depart, const char* arrivee);
-    void rechercheAvancee(const char* depart, const char* arrivee, ListeTrajets * dejaVisite);
+    void rechercheAvancee(const char* depart, const char* arrivee,ListeTrajets* dejaVisite);
+    void supprimerTrajet(int index);
     int getTaille();
 
 //------------------------------------------------------------------ PRIVE

@@ -25,7 +25,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Trajet::afficherTrajet() const
     {
-        cout<< "de "<<depart<<" à "<<arrivee<<endl;
+        cout<< "De "<<depart<<" à "<<arrivee<<endl;
     }
 
 bool Trajet::estEgal( Trajet * t) {
@@ -33,10 +33,10 @@ bool Trajet::estEgal( Trajet * t) {
         && strcmp(this->arrivee, t->arrivee) == 0);
 }
 
-char * Trajet::getDepart() const {
+char const* Trajet::getDepart() const {
     return this->depart;
 }
-char * Trajet::getArrivee() const{
+char const* Trajet::getArrivee() const{
     return this->arrivee;
 }
 

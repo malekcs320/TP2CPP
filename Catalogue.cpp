@@ -38,45 +38,54 @@ void Catalogue::afficher()
     }
     cout << "----------------" << endl;
 }
-ListeTrajets *Catalogue::rechercheSimple(const char *depart, const char *arrivee)
+ListeTrajets * Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
 
-    ListeTrajets *l = new ListeTrajets();
-    for (int i = 0; i < l->getTaille(); i++)
+    ListeTrajets *l = new ListeTrajets;
+    for (int i = 0; i < liste->getTaille(); i++){
+        //liste->getElement(i)->afficherTrajet();
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
-            l->ajouter(liste->getElement(i));
+         l->ajouter(liste->getElement(i));
+    }
     return l;
 }
 
-void Catalogue::rechercheAvancee(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
+void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTrajets* dejaVisite)
 {
-    
+        
         if (strcmp(depart, arrivee) == 0)
         {
-            if (dejaVisite->getTaille() == 0)
-                cout << "Catalogue vide" << endl;
-            else
-            {
+                //cout<<"test "<<endl;
+                cout<<"trajet trouvé :"<<endl;
                 dejaVisite->afficher(); // on affiche le parcours (choix d'affichage maintenant pour pouvoir utiliser le void et permettre la récursivité)
                 dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1); //suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
-                
-            }
+                //cout<<"--------";
+                //dejaVisite->afficher();
             return ;
         }
+           bool existe; //existence dans dejaVisite
             for (int i = 0; i < liste->getTaille(); i++)
             {
                 Trajet *trajet = liste->getElement(i);
+                //cout<<"trajet : ";
+                //trajet->afficherTrajet();
+                existe =false;
+                //cout<<"test 2"<<endl;
                 if (strcmp(trajet->getDepart(), depart) == 0) //on ne considère que les trajets ayant pour point de départs "depart"
                 {
-                    bool existe = false; //existence dans dejaVisite
                     for (int j = 0; j < dejaVisite->getTaille(); j++)
                     {
                         if (trajet->estEgal(dejaVisite->getElement(j))) //trajet déjà utilisé
+                            {//cout<<"test -----------------";
                             existe = true;
+                            }
                     }
                     if (!existe) //nouveau trajet
                     {
+                        
                         dejaVisite->ajouter(trajet); //on l'ajoute à la pile
+                        //cout<<"ajout ";
+                        //trajet->afficherTrajet();
                         rechercheAvancee(trajet->getArrivee(), arrivee, dejaVisite); //on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
                     }
                 }
@@ -84,6 +93,12 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee, ListeT
         }
     
 }
+
+void Catalogue::supprimerTrajet(int index)
+{
+    liste->supprimerTrajet(index);
+}
+
 int Catalogue::getTaille()
 {
     return this->liste->getTaille();
@@ -98,7 +113,7 @@ Catalogue::Catalogue()
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-    liste = new ListeTrajets();
+    liste = new ListeTrajets;
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue()
@@ -109,6 +124,7 @@ Catalogue::~Catalogue()
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
     delete liste;
+    
 } //----- Fin de ~Catalogue
 
 //------------------------------------------------------------------ PRIVE

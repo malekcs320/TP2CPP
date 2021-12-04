@@ -25,13 +25,12 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void TrajetCompose::afficherTrajet() const
     {
-        cout<<"chemain composé";
+        cout<<"Trajet composé ";
         Trajet::afficherTrajet();
-        cout <<" : "<<endl;
         
         for(int i=0;i<liste->getTaille();i++)
         {
-        cout<<"  ";
+        cout <<"  - ";
         liste->getElement(i)->afficherTrajet();
         }
         
@@ -60,7 +59,7 @@ Trajet(depart, arrivee)
 #ifdef MAP
     cout << "Appel au constructeur" << endl;
 #endif
-liste = new ListeTrajets();
+liste = new ListeTrajets;
 
 } 
 
