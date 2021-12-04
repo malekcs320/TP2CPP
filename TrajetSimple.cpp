@@ -24,6 +24,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void TrajetSimple::afficherTrajet() const
     {
+        if(this != NULL)
         cout<< "de "<<depart<<" à "<<arrivee<<" en "<<transport<<endl;
     }
 
@@ -50,7 +51,7 @@ TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const cha
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-transport = new char[strlen(depart$)+1];
+transport = new char[strlen(transport$)+1];
 strcpy(transport, transport$);
 
 } //----- Fin de Xxx
