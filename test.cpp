@@ -108,15 +108,20 @@ int main() {
     c->ajouterTrajet(t4);
     c->ajouterTrajet(t5);
     c->afficher();
-    c->supprimerTrajet(1);
-    c->afficher();
+    //c->supprimerTrajet(1);
+    //c->afficher();
     //cout<<" recherche trajet Paris ---> Nantes"<<endl;
     //ListeTrajets* dejaVisite = new ListeTrajets;
-    //c->rechercheSimple("Paris","Nantes")->afficher();
+    c->rechercheSimple("Paris","Nantes")->afficher();
     //c->rechercheAvancee("Paris","Nantes",dejaVisite);
     
     //delete dejaVisite;
     delete c;
+    //delete t1;
+    //delete t2;
+    //delete t3;
+    //delete t4;
+    //delete t5;
 /*
     Menu * m = new Menu();
     m->afficherMenu();
