@@ -41,7 +41,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    ListeTrajets ( unsigned int len = 0);
+    ListeTrajets ( );
     // Mode d'emploi :
     //
     // Contrat :

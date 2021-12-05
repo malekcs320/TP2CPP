@@ -45,12 +45,11 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
   }
   else {
     if(this->trajetSuivant == NULL) {
-      this->trajetSuivant = new ListeTrajets(this->taille);
+
+      this->trajetSuivant = new ListeTrajets(); 
       this->trajetSuivant->trajet = unTrajet;
-      this->trajetSuivant->trajetSuivant = NULL;
       this->trajetSuivant->taille++;
       this->taille++;
-      
     }
     else {
       reussite = this->trajetSuivant->ajouter(unTrajet);
@@ -137,7 +136,7 @@ void ListeTrajets::supprimerTrajet(int index)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-ListeTrajets::ListeTrajets ( unsigned int len )
+ListeTrajets::ListeTrajets ( )
 // Algorithme :
 //
 {
@@ -146,7 +145,7 @@ ListeTrajets::ListeTrajets ( unsigned int len )
 #endif
   trajet = NULL;
   trajetSuivant = NULL;
-  taille = len;
+  taille = 0;
 } //----- Fin de ListeTrajets
 
 
@@ -158,12 +157,14 @@ ListeTrajets::~ListeTrajets ( )
       cout << "Appel au destructeur de <ListeTrajets>" << endl;
   #endif
 
-   if(this->trajet != NULL)delete this->trajet;
+  if(this != NULL )delete this->trajet;
   if(this->trajetSuivant != NULL) delete this->trajetSuivant; // suppression en chaîne
-  
+ 
+
+
 }
 
-// this ->trajet = NULL;
+
 
 
     

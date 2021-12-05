@@ -59,7 +59,7 @@ Trajet(depart, arrivee)
 #ifdef MAP
     cout << "Appel au constructeur" << endl;
 #endif
-liste = new ListeTrajets;
+liste = new ListeTrajets();
 
 } 
 

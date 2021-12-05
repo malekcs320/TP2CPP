@@ -41,7 +41,7 @@ void Catalogue::afficher()
 ListeTrajets * Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
 
-    ListeTrajets *l = new ListeTrajets;
+    ListeTrajets *l = new ListeTrajets();
     for (int i = 0; i < liste->getTaille(); i++){
         //liste->getElement(i)->afficherTrajet();
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
@@ -119,7 +119,7 @@ Catalogue::Catalogue()
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-    liste = new ListeTrajets;
+    liste = new ListeTrajets();
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue()
