@@ -24,30 +24,29 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Trajet::afficherTrajet() const
-    {
-        cout<< "De "<<depart<<" à "<<arrivee<<endl;
-    }
-
-bool Trajet::estEgal( Trajet * t) {
-    return (strcmp(this->depart, t->depart) == 0 
-        && strcmp(this->arrivee, t->arrivee) == 0);
+{
+    cout << "De " << depart << " à " << arrivee << endl;
 }
 
-char const* Trajet::getDepart() const {
+bool Trajet::estEgal(Trajet *t)
+{
+    return (strcmp(this->depart, t->depart) == 0 && strcmp(this->arrivee, t->arrivee) == 0);
+}
+
+char const *Trajet::getDepart() const
+{
     return this->depart;
 }
-char const* Trajet::getArrivee() const{
+char const *Trajet::getArrivee() const
+{
     return this->arrivee;
 }
 
-
 //------------------------------------------------- Surcharge d'opérateurs
-
-
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Trajet::Trajet (const char* depart$, const char* arrivee$ )
+Trajet::Trajet(const char *depart$, const char *arrivee$)
 // Algorithme :
 //
 {
@@ -55,28 +54,24 @@ Trajet::Trajet (const char* depart$, const char* arrivee$ )
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-depart = new char[strlen(depart$)+1];
-arrivee = new char[strlen(arrivee$)+1];
-strcpy(depart, depart$);
-strcpy(arrivee, arrivee$);
-
+    depart = new char[strlen(depart$) + 1];
+    arrivee = new char[strlen(arrivee$) + 1];
+    strcpy(depart, depart$);
+    strcpy(arrivee, arrivee$);
 
 } //----- Fin de Trajet
 
-
-Trajet::~Trajet ( )
+Trajet::~Trajet()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-delete []depart;
-delete []arrivee;
+    delete[] depart;
+    delete[] arrivee;
 } //----- Fin de ~Trajet
-
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

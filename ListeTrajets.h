@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <ListeTrajets> (fichier ListeTrajets.h) ----------------
-#if ! defined ( LISTETRAJETS_H )
+#if !defined(LISTETRAJETS_H)
 #define LISTETRAJETS_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -24,45 +24,43 @@
 
 class ListeTrajets
 {
-//----------------------------------------------------------------- PUBLIC
+  //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    unsigned int getTaille();
-    bool ajouter(Trajet *);
-    void afficher();
-    Trajet * getElement(int index);
-    void supprimerTrajet(int index);
-    // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
-    //
-    // Contrat : index doit être positif
-    //
+  //----------------------------------------------------- Méthodes publiques
+  unsigned int getTaille();
+  bool ajouter(Trajet *);
+  void afficher();
+  Trajet *getElement(int index);
+  void supprimerTrajet(int index);
+  // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
+  //
+  // Contrat : index doit être positif
+  //
 
+  //-------------------------------------------- Constructeurs - destructeur
 
-//-------------------------------------------- Constructeurs - destructeur
+  ListeTrajets();
+  // Mode d'emploi :
+  //
+  // Contrat :
+  //
 
-    ListeTrajets ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+  virtual ~ListeTrajets();
+  // Mode d'emploi :
+  //
+  // Contrat :
+  //
 
-    virtual ~ListeTrajets ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//------------------------------------------------------------------ PRIVE
+  //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+  //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-  Trajet * trajet;
+  //----------------------------------------------------- Attributs protégés
+  Trajet *trajet;
   unsigned int taille;
-  ListeTrajets * trajetSuivant;
-
+  ListeTrajets *trajetSuivant;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>

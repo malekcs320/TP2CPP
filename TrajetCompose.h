@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( TRAJETCOMPOSE_H )
+#if !defined(TRAJETCOMPOSE_H)
 #define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -26,43 +26,40 @@
 
 class TrajetCompose : public Trajet
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     void afficherTrajet() const;
 
-    void ajouterTrajet( Trajet * unTrajet );
+    void ajouterTrajet(Trajet *unTrajet);
 
     // bool estEgal ( const Trajet &t );
-//------------------------------------------------- Surcharge d'opérateurs
-    
+    //------------------------------------------------- Surcharge d'opérateurs
 
-//-------------------------------------------- Constructeurs - destructeur
-  
-    TrajetCompose (const char* depart, const char* arrivee);
+    //-------------------------------------------- Constructeurs - destructeur
+
+    TrajetCompose(const char *depart, const char *arrivee);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~TrajetCompose ( );
+    virtual ~TrajetCompose();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
-ListeTrajets* liste;
+    //----------------------------------------------------- Méthodes protégées
+    ListeTrajets *liste;
 
-//----------------------------------------------------- Attributs protégés
-
+    //----------------------------------------------------- Attributs protégés
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
 #endif // XXX_H
-

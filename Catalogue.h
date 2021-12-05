@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Catalogue.h) ----------------
-#if ! defined ( CATALOGUE_H )
+#if !defined(CATALOGUE_H)
 #define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -25,23 +25,20 @@
 
 class Catalogue
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    
+    //----------------------------------------------------- Méthodes publiques
 
+    //-------------------------------------------- Constructeurs - destructeur
 
-
-//-------------------------------------------- Constructeurs - destructeur
-
-    Catalogue ( );
+    Catalogue();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Catalogue ( );
+    virtual ~Catalogue();
     // Mode d'emploi :
     //
     // Contrat :
@@ -49,23 +46,21 @@ public:
 
     void ajouterTrajet(Trajet *);
     void afficher();
-    ListeTrajets * rechercheSimple(const char* depart, const char* arrivee);
-    int rechercheAux(const char* depart, const char* arrivee,ListeTrajets* dejaVisite);
-    void rechercheAvancee(const char* depart, const char* arrivee);
+    ListeTrajets *rechercheSimple(const char *depart, const char *arrivee);
+    int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
+    void rechercheAvancee(const char *depart, const char *arrivee);
     void supprimerTrajet(int index);
     int getTaille();
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés  
-    ListeTrajets * liste;
-
+    //----------------------------------------------------- Attributs protégés
+    ListeTrajets *liste;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
 
 #endif // CATALOGUE_H
-

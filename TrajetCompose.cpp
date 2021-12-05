@@ -24,58 +24,49 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void TrajetCompose::afficherTrajet() const
+{
+    cout << "Trajet composé ";
+    Trajet::afficherTrajet();
+
+    for (int i = 0; i < liste->getTaille(); i++)
     {
-        cout<<"Trajet composé ";
-        Trajet::afficherTrajet();
-        
-        for(int i=0;i<liste->getTaille();i++)
-        {
-        cout <<"  - ";
+        cout << "  - ";
         liste->getElement(i)->afficherTrajet();
-        }
-        
-
     }
+}
 
-void TrajetCompose::ajouterTrajet( Trajet * unTrajet )
-{   
+void TrajetCompose::ajouterTrajet(Trajet *unTrajet)
+{
     liste->ajouter(unTrajet);
 }
 // bool estEgal ( const Trajet &t )
 // {
 
-
 // }
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-
 //-------------------------------------------- Constructeurs - destructeur
-TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee):
-Trajet(depart, arrivee)
+TrajetCompose::TrajetCompose(const char *depart, const char *arrivee) : Trajet(depart, arrivee)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur" << endl;
 #endif
-liste = new ListeTrajets();
+    liste = new ListeTrajets();
+}
 
-} 
-
-
-TrajetCompose::~TrajetCompose ( )
+TrajetCompose::~TrajetCompose()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
-delete liste;
-} 
-
+    delete liste;
+}
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

@@ -23,28 +23,28 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void TrajetSimple::afficherTrajet() const
+{
+    if (this != NULL)
     {
-        if(this != NULL)
-        {cout<< "de "<<depart<<" à "<<arrivee<<" en "<<transport<<endl;
-        cout<<endl;}
+        cout << "de " << depart << " à " << arrivee << " en " << transport << endl;
+        cout << endl;
     }
+}
 
-char * TrajetSimple::getTransport()
-    {
-        return transport;
-    };
+char *TrajetSimple::getTransport()
+{
+    return transport;
+};
 /*bool TrajetSimple::estEgal( TrajetSimple *t ){
     return strcmp(t->getDepart(), arrivee)&&strcmp(t->getArrivee(), arrivee)&&strcmp(t->getTransport(), transport);
-    
+
 }*/
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-
-
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const char* transport$ ):Trajet(depart$, arrivee$)
+TrajetSimple::TrajetSimple(const char *depart$, const char *arrivee$, const char *transport$) : Trajet(depart$, arrivee$)
 // Algorithme :
 //
 {
@@ -52,24 +52,21 @@ TrajetSimple::TrajetSimple (const char* depart$, const char* arrivee$, const cha
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-transport = new char[strlen(transport$)+1];
-strcpy(transport, transport$);
+    transport = new char[strlen(transport$) + 1];
+    strcpy(transport, transport$);
 
 } //----- Fin de Xxx
 
-
-TrajetSimple::~TrajetSimple ( )
+TrajetSimple::~TrajetSimple()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
-delete []transport;
+    delete[] transport;
 } //----- Fin de ~Xxx
-
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

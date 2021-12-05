@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if ! defined ( TRAJET_H )
+#if !defined(TRAJET_H)
 #define TRAJET_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -24,53 +24,46 @@
 
 class Trajet
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
     virtual void afficherTrajet() const;
+    bool estEgal(Trajet *t);
+    char const *getDepart() const;
+    char const *getArrivee() const;
 
-    bool estEgal(Trajet * t);
-    char const* getDepart() const;
-    char const* getArrivee() const;
+    //------------------------------------------------- Surcharge d'opérateurs
 
+    //-------------------------------------------- Constructeurs - destructeur
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-//-------------------------------------------- Constructeurs - destructeur
-
-    Trajet ( const char* depart, const char* arrivee );
+    Trajet(const char *depart, const char *arrivee);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Trajet ( );
+    virtual ~Trajet();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-char* depart;
-char* arrivee;
-
-
+    //----------------------------------------------------- Attributs protégés
+    char *depart;
+    char *arrivee;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H
-

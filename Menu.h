@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Menu> (fichier Menu.h) ----------------
-#if ! defined ( MENU_H )
+#if !defined(MENU_H)
 #define MENU_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -26,45 +26,40 @@
 
 class Menu
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     void afficherMenu();
-    TrajetSimple * saisirTS();
-    TrajetCompose * saisirTC();
+    TrajetSimple *saisirTS();
+    TrajetCompose *saisirTC();
     void rechercher();
     void afficherCatalogue();
     void ajouterTrajet();
 
+    //-------------------------------------------- Constructeurs - destructeur
 
-
-//-------------------------------------------- Constructeurs - destructeur
-
-    Menu ( );
+    Menu();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Menu ( );
+    virtual ~Menu();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés  
-    Catalogue * c;
-
+    //----------------------------------------------------- Attributs protégés
+    Catalogue *c;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
 
 #endif // MENU_H
-

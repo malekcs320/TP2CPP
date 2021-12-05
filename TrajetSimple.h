@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( TrajetSimple_H )
+#if !defined(TrajetSimple_H)
 #define TrajetSimple_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -23,49 +23,44 @@
 //------------------------------------------------------------------------
 class TrajetSimple : public Trajet
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
     void afficherTrajet() const;
-    char * getTransport();
+    char *getTransport();
     // bool estEgal ( const Trajet &t );
 
-//------------------------------------------------- Surcharge d'opérateurs
+    //------------------------------------------------- Surcharge d'opérateurs
 
+    //-------------------------------------------- Constructeurs - destructeur
 
-
-//-------------------------------------------- Constructeurs - destructeur
-     
-
-    TrajetSimple ( const char* depart, const char* arivee, const char* transport );
+    TrajetSimple(const char *depart, const char *arivee, const char *transport);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~TrajetSimple ( );
+    virtual ~TrajetSimple();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-    char* transport;
-
+    //----------------------------------------------------- Attributs protégés
+    char *transport;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
 #endif // XXX_H
-
