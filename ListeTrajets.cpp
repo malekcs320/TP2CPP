@@ -112,26 +112,23 @@ void ListeTrajets::supprimerTrajet(int index)
         temp ->trajet = NULL;
         temp ->trajetSuivant = NULL;
 	}
-	else
-	{
-	while (temp != NULL && index--)
-	{
-		prev = temp;
-		temp = temp->trajetSuivant;
-    
-	}
+	else {
+    while (temp != NULL && index--) {
+      prev = temp;
+      temp = temp->trajetSuivant;
+    }
 
-	if (temp == NULL)
-		return;
+    if (temp == NULL)
+      return;
 
-	prev->trajetSuivant = temp->trajetSuivant;
+    prev->trajetSuivant = temp->trajetSuivant;
   
 	}
  
-  while(head!=NULL)
-    {head->taille --; 
+  while(head!=NULL){
+    head->taille --; 
     head = head->trajetSuivant;
-    }
+  }
 }
 
 

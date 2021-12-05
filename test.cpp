@@ -126,6 +126,11 @@ int main() {
     // dejaVis->afficher();
     delete dejaVisite;
     delete c;
+    //delete t1;
+    //delete t2;
+    //delete t3;
+    //delete t4;
+    //delete t5;
 /*
     Menu * m = new Menu();
     m->afficherMenu();
