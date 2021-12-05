@@ -58,26 +58,28 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTr
                 //cout<<"test "<<endl;
                 cout<<"trajet trouvé :"<<endl;
                 dejaVisite->afficher(); // on affiche le parcours (choix d'affichage maintenant pour pouvoir utiliser le void et permettre la récursivité)
-                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1); //suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
+                
                 //cout<<"--------";
                 //dejaVisite->afficher();
             return ;
         }
-           bool existe; //existence dans dejaVisite
+           bool existe =false; //existence dans dejaVisite
             for (int i = 0; i < liste->getTaille(); i++)
             {
                 Trajet *trajet = liste->getElement(i);
                 //cout<<"trajet : ";
                 //trajet->afficherTrajet();
-                existe =false;
+                
                 //cout<<"test 2"<<endl;
                 if (strcmp(trajet->getDepart(), depart) == 0) //on ne considère que les trajets ayant pour point de départs "depart"
                 {
+                     existe =false;
                     for (int j = 0; j < dejaVisite->getTaille(); j++)
                     {
                         if (trajet->estEgal(dejaVisite->getElement(j))) //trajet déjà utilisé
                             {//cout<<"test -----------------";
                             existe = true;
+                            break;
                             }
                     }
                     if (!existe) //nouveau trajet
@@ -87,11 +89,15 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTr
                         //cout<<"ajout ";
                         //trajet->afficherTrajet();
                         rechercheAvancee(trajet->getArrivee(), arrivee, dejaVisite); //on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
+                        dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1);//suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
+                        //cout<<"--------";
+                        //dejaVisite->afficher();
                     }
+                    
                 }
             
         }
-    
+    return;
 }
 
 void Catalogue::supprimerTrajet(int index)

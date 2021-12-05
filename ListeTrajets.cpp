@@ -65,10 +65,14 @@ bool ListeTrajets::ajouter(Trajet * unTrajet)
 } // fin ajouter
 void ListeTrajets::afficher()
 {
-  //cout<<"il y a "<<this->getTaille()<<" trajet dans votre liste"<<endl;
+    if(taille ==0) 
+    {cout<<"La liste est vide"<<endl;
+    return;
+    }
   if(this == NULL) return;
   if(this->trajet != NULL)this->trajet->afficherTrajet();
-  this->trajetSuivant->afficher();
+  if(this->trajetSuivant != NULL)this->trajetSuivant->afficher();
+  return;
     
     
   
@@ -95,9 +99,19 @@ void ListeTrajets::supprimerTrajet(int index)
 	ListeTrajets* prev = NULL;
 	
 
-	if (head!=NULL && index == 0)
+	
+  if (head!=NULL && index == 0)
 	{
-        head = head->trajetSuivant; 
+        if(head->trajetSuivant == NULL)
+        {head->trajet =NULL;
+        taille --;
+        return;}
+
+        temp = head->trajetSuivant;
+        head->trajet = temp->trajet; 
+        head->trajetSuivant = temp->trajetSuivant;
+        temp ->trajet = NULL;
+        temp ->trajetSuivant = NULL;
 	}
 	else
 	{

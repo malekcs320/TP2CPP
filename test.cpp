@@ -74,10 +74,10 @@ void testCatalogue() {
 
 int main() {
     /* test unitaires */
-     //testListeTrajets();
-    // testTrajet();
-    // testTrajetSimple();
-    //testTrajetCompose();
+      testListeTrajets();
+      testTrajet();
+      testTrajetSimple();
+      testTrajetCompose();
 
 
 
@@ -107,15 +107,24 @@ int main() {
     c->ajouterTrajet(t3);
     c->ajouterTrajet(t4);
     c->ajouterTrajet(t5);
-    c->afficher();
-    c->supprimerTrajet(1);
-    c->afficher();
+    //c->supprimerTrajet(0);
+    //c->afficher();
+    //c->supprimerTrajet(0);
+    //c->afficher();
+
     //cout<<" recherche trajet Paris ---> Nantes"<<endl;
-    //ListeTrajets* dejaVisite = new ListeTrajets;
-    //c->rechercheSimple("Paris","Nantes")->afficher();
-    //c->rechercheAvancee("Paris","Nantes",dejaVisite);
     
-    //delete dejaVisite;
+    //c->rechercheSimple("Paris","Nantes")->afficher();
+    ListeTrajets* dejaVisite = new ListeTrajets;
+    c->rechercheAvancee("Paris","Nantes",dejaVisite);
+    
+    // ListeTrajets* dejaVis = new ListeTrajets;
+    // dejaVis->ajouter(t1);
+    // dejaVis->afficher();
+    // dejaVis->supprimerTrajet(0);
+    // cout<<endl;
+    // dejaVis->afficher();
+    delete dejaVisite;
     delete c;
 /*
     Menu * m = new Menu();
