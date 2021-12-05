@@ -74,10 +74,10 @@ void testCatalogue() {
 
 int main() {
     /* test unitaires */
-      testListeTrajets();
-      testTrajet();
-      testTrajetSimple();
-      testTrajetCompose();
+    //   testListeTrajets();
+    //   testTrajet();
+    //   testTrajetSimple();
+    //   testTrajetCompose();
 
 
 
@@ -114,9 +114,9 @@ int main() {
 
     //cout<<" recherche trajet Paris ---> Nantes"<<endl;
     
-    //c->rechercheSimple("Paris","Nantes")->afficher();
-    ListeTrajets* dejaVisite = new ListeTrajets;
-    c->rechercheAvancee("Paris","Nantes",dejaVisite);
+    c->rechercheSimple("Paris","Nantes")->afficher();
+    c->rechercheAvancee("Paris","Nantes");
+    
     
     // ListeTrajets* dejaVis = new ListeTrajets;
     // dejaVis->ajouter(t1);
@@ -124,7 +124,6 @@ int main() {
     // dejaVis->supprimerTrajet(0);
     // cout<<endl;
     // dejaVis->afficher();
-    delete dejaVisite;
     delete c;
     //delete t1;
     //delete t2;

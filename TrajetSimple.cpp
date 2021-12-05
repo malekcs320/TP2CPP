@@ -25,7 +25,8 @@ using namespace std;
 void TrajetSimple::afficherTrajet() const
     {
         if(this != NULL)
-        cout<< "de "<<depart<<" à "<<arrivee<<" en "<<transport<<endl;
+        {cout<< "de "<<depart<<" à "<<arrivee<<" en "<<transport<<endl;
+        cout<<endl;}
     }
 
 char * TrajetSimple::getTransport()

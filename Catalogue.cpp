@@ -40,7 +40,7 @@ void Catalogue::afficher()
 }
 ListeTrajets * Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
-
+    cout <<"Recherhce simple de trajets de "<< depart<< " vers "<<arrivee<<"..."<<endl;
     ListeTrajets *l = new ListeTrajets();
     for (int i = 0; i < liste->getTaille(); i++){
         //liste->getElement(i)->afficherTrajet();
@@ -49,19 +49,24 @@ ListeTrajets * Catalogue::rechercheSimple(const char *depart, const char *arrive
     }
     return l;
 }
-
-void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTrajets* dejaVisite)
+void Catalogue::rechercheAvancee(const char *depart, const char *arrivee){
+    cout <<"Recherhce Avancee de trajets de "<< depart<< " vers "<<arrivee<<"..."<<endl; 
+    ListeTrajets* dejaVisite = new ListeTrajets;
+    int nb = rechercheAux("Paris","Nantes",dejaVisite);
+    cout<<nb<<" trajets trouvés dans le catalogue de "<<depart<<" vers "<<arrivee<<endl;
+}
+int Catalogue::rechercheAux(const char *depart, const char *arrivee,ListeTrajets* dejaVisite)
 {
-        
+        int nbTrajets = 0;
         if (strcmp(depart, arrivee) == 0)
         {
                 //cout<<"test "<<endl;
-                cout<<"trajet trouvé :"<<endl;
+                cout<<"-----------------------"<<endl;
                 dejaVisite->afficher(); // on affiche le parcours (choix d'affichage maintenant pour pouvoir utiliser le void et permettre la récursivité)
-                
+                return 1;
                 //cout<<"--------";
                 //dejaVisite->afficher();
-            return ;
+            
         }
            bool existe =false; //existence dans dejaVisite
             for (int i = 0; i < liste->getTaille(); i++)
@@ -88,7 +93,7 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTr
                         dejaVisite->ajouter(trajet); //on l'ajoute à la pile
                         //cout<<"ajout ";
                         //trajet->afficherTrajet();
-                        rechercheAvancee(trajet->getArrivee(), arrivee, dejaVisite); //on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
+                        nbTrajets+=rechercheAux(trajet->getArrivee(), arrivee, dejaVisite); //on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
                         dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1);//suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
                         //cout<<"--------";
                         //dejaVisite->afficher();
@@ -97,7 +102,7 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee,ListeTr
                 }
             
         }
-    return;
+    return nbTrajets;
 }
 
 void Catalogue::supprimerTrajet(int index)
