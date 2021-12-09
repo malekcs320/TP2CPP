@@ -31,7 +31,7 @@ void Catalogue::afficher()
 {
     cout << "----------------" << endl;
     cout << "Le catalogue contient " << liste->getTaille() << " trajets : " << endl;
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         cout << "Trajet " << i + 1 << " : " /*<< liste->getElement(i)->toString() << endl*/;
         liste->getElement(i)->afficherTrajet();
@@ -43,7 +43,7 @@ void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
     cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
     // ListeTrajets* l = new ListeTrajets();
     int nb = 0;
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
         {
@@ -80,14 +80,14 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
         return 1;
     }
     bool existe = false;
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         Trajet *trajet = liste->getElement(i);
 
         if (strcmp(trajet->getDepart(), depart) == 0) //
         {
             existe = false;
-            for (int j = 0; j < dejaVisite->getTaille(); j++)
+            for (uint j = 0; j < dejaVisite->getTaille(); j++)
             {
                 if (trajet->estEgal(dejaVisite->getElement(j)))
                 {
