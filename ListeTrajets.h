@@ -33,10 +33,15 @@ public:
   virtual void afficher();
   Trajet *getElement(int index);
   virtual void supprimerTrajet(int index);
-  // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
-  //
-  // Contrat : index doit être positif
-  //
+  
+  /*
+  Cette méthode permet de ne plus faire pointer les ListeTrajets sur des Trajets.
+  Cette méthode est en fait utilisée dans le cas de Catalogue::rechercherAvancée, 
+  qui utilise une ListeTrajets temporaire que l'on souhaite delete à la fin de 
+  l'algorithme, sans supprimer nos Trajet dans le tas.
+  */
+  void vider();
+  
 
   //-------------------------------------------- Constructeurs - destructeur
 

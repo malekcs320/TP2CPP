@@ -140,6 +140,16 @@ void ListeTrajets::supprimerTrajet(int index)
   }
 }
 
+void ListeTrajets::vider() {
+  // on souhaite casser les pointeurs sans delete les trajets...
+  if(trajet != nullptr) {
+    trajet = nullptr;
+  }
+  if(trajetSuivant != nullptr) {
+    trajetSuivant->vider();
+  }
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajets::ListeTrajets()
 // Algorithme :
