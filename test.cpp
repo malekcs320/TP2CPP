@@ -80,50 +80,38 @@ void testCatalogue()
 int main()
 {
     /* test unitaires */
-    //   testListeTrajets();
-    //  testTrajet();
-    //   testTrajetSimple();
-    //   testTrajetCompose();
-    testCatalogue();
-    // Trajet * t1 = new Trajet("Paris", "Lyon");
-    /*t1->afficherTrajet();
-    t1->getArrivee();
-    t1->getDepart();
-    delete t1;*/
-    // TrajetSimple * t2 = new TrajetSimple("Paris", "Marseille", "Bus");
-
-    /*ListeTrajets * liste = new ListeTrajets();
-    liste->ajouter(t1);
-    liste->ajouter(t2);
-    liste->afficher();*/
+       testListeTrajets();
+       testTrajetSimple();
+       testTrajetCompose();
+       testCatalogue();
     
-    Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
-    TrajetCompose *t2 = new TrajetCompose("Paris", "Nantes");
-    t2->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
-    t2->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Nantes", "Bus"));
-    Trajet *t3 = new TrajetSimple("Marseille", "Nantes", "vélo");
-    Trajet *t4 = new TrajetSimple("Paris", "Nantes", "vélo");
-    Trajet *t5 = new TrajetSimple("Lyon", "Marseille", "vélo");
+    // Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
+    // TrajetCompose *t2 = new TrajetCompose("Paris", "Nantes");
+    // t2->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    // t2->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Nantes", "Bus"));
+    // Trajet *t3 = new TrajetSimple("Marseille", "Nantes", "vélo");
+    // Trajet *t4 = new TrajetSimple("Paris", "Nantes", "vélo");
+    // Trajet *t5 = new TrajetSimple("Lyon", "Marseille", "vélo");
 
     
-    Catalogue *c = new Catalogue;
-     c->ajouterTrajet(t1);
-     c->ajouterTrajet(t2);
-     c->ajouterTrajet(t3);
-     c->ajouterTrajet(t4);
-     c->ajouterTrajet(t5);
+    // Catalogue *c = new Catalogue;
+    //  c->ajouterTrajet(t1);
+    //  c->ajouterTrajet(t2);
+    //  c->ajouterTrajet(t3);
+    //  c->ajouterTrajet(t4);
+    //  c->ajouterTrajet(t5);
 
-     c->rechercheSimple("Paris", "Nantes");
-     c->rechercheAvancee("Paris", "Nantes");
+    //  c->rechercheSimple("Paris", "Nantes");
+    //  c->rechercheAvancee("Paris", "Nantes");
 
-     delete c;
+     //delete c;
         
         
-    //Menu * m = new Menu();
-    //m->afficherMenu();
+    Menu * m = new Menu();
+    m->afficherMenu();
+    delete m;
+    
 
-
-    //Menu *m= new Menu();
     
     return 0;
 }

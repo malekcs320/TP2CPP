@@ -83,7 +83,7 @@ TrajetCompose::~TrajetCompose()
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
     delete liste;
-    liste = nullptr;
+    //liste = nullptr;
 }
 
 //------------------------------------------------------------------ PRIVE

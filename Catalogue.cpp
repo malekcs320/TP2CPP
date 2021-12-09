@@ -40,7 +40,7 @@ void Catalogue::afficher()
 }
 void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
-    cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
+    cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
     // ListeTrajets* l = new ListeTrajets();
     int nb = 0;
     for (int i = 0; i < liste->getTaille(); i++)
