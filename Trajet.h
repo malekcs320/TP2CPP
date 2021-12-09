@@ -18,8 +18,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
-//
+//  Cette classe modélise un trajet de façon abstraite (elle ne peut pas être instanciée).
+//  Un trajet possède une ville d'arrivée et une ville de départ.
 //------------------------------------------------------------------------
 
 class Trajet
@@ -28,17 +28,45 @@ class Trajet
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
     virtual void afficherTrajet() const;
+    // Mode d'emploi :
+    //  Affiche les informations du trajet (ville départ, ville arrivée).
+    // Contrat :
+    //  Aucun.
+
     virtual bool estTrajetCompose() const=0;
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //  Aucun.
+
     virtual bool estEgal(Trajet *t);
+    // Mode d'emploi :
+    //  Permet de tester si deux trajets sont égaux, à partir des informations telles que
+    //  les villes d'arrivée et de départ, ainsi que toutes les étapes intermédiaires.
+    //  Deux trajets sont égaux s'ils comportent strictement toutes les mêmes étapes et les mêmes
+    //  moyens de transport.
+    // Contrat :
+    //  Le paramètre `t` ne doit pas pointer le même trajet que `this`.
+
     char const *getDepart() const;
+    // Mode d'emploi :
+    //  Donne la ville de départ du trajet.
+    // Contrat :
+    //  Aucun.
+
     char const *getArrivee() const;
+    // Mode d'emploi :
+    //  Donne la ville d'arrivée du trajet.
+    // Contrat :
+    //  Aucun.
+
     virtual char *getTransport() = 0;
+    // Mode d'emploi :
+    //  
+    // Contrat :
+    //  Aucun.
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -46,15 +74,15 @@ public:
 
     Trajet(const char *depart, const char *arrivee);
     // Mode d'emploi :
-    //
+    //  Crée un trajet à partir des paramètre : depart (ville de départ), arrivee (ville d'arrivée).
     // Contrat :
-    //
+    //  La ville de départ et d'arrivée ne devraient pas être les mêmes.
 
     virtual ~Trajet();
     // Mode d'emploi :
-    //
+    //  Détruit l'objet et ses chaines de caractères.
     // Contrat :
-    //
+    //  Aucun.
 
     //------------------------------------------------------------------ PRIVE
 

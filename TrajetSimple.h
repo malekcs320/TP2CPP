@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
+//---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
 #if !defined(TrajetSimple_H)
 #define TrajetSimple_H
 
@@ -17,8 +17,8 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
-//
+// Rôle de la classe <TrajetSimple>
+//  Cette classe modélise une sorte de Trajet. Elle possède en plus un moyen de transport.
 //
 //------------------------------------------------------------------------
 class TrajetSimple : public Trajet
@@ -27,15 +27,30 @@ class TrajetSimple : public Trajet
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+
+    void afficherTrajet() const;
+    // Mode d'emploi :
+    //  Affiche le trajet et son moyen de transport.
+    // Contrat :
+    //  Aucun.
+
+    char *getTransport();
+    // Mode d'emploi :
+    //  Donne le moyen de transport du trajet.
+    // Contrat :
+    //  Aucun.
+
+    bool estTrajetCompose() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    void afficherTrajet() const;
-    char *getTransport();
-    bool estTrajetCompose() const;
+
     bool estEgal ( Trajet *t );
+    // Mode d'emploi :
+    //  Teste si le trajet passé en paramètre est exactement le même que celui-ci. 
+    // Contrat :
+    //  `t` ne devrait pas pointer le même Trajet que this.
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -43,15 +58,15 @@ public:
 
     TrajetSimple(const char *depart, const char *arivee, const char *transport);
     // Mode d'emploi :
-    //
+    //  Crée un trajet à partir des paramètres : ville départ, ville arrivée, moyen de transport.
     // Contrat :
-    //
+    //  Les villes de départ et d'arrivée ne devraient pas être les mêmes.
 
     virtual ~TrajetSimple();
     // Mode d'emploi :
-    //
+    //  Détuit le trajet.
     // Contrat :
-    //
+    //  Aucun.
 
     //------------------------------------------------------------------ PRIVE
 
@@ -62,6 +77,6 @@ protected:
     char *transport;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
 
-#endif // XXX_H
+#endif // TrajetSimple_H

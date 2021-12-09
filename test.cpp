@@ -76,14 +76,20 @@ void testCatalogue()
     c->rechercheAvancee("Paris", "Lyon");
     delete c;
 }
+void testMenu() {
+    Menu * m = new Menu();
+    m->afficherMenu();
+    delete m;
+}
 
 int main()
 {
     /* test unitaires */
-       testListeTrajets();
-       testTrajetSimple();
-       testTrajetCompose();
-       testCatalogue();
+    //   testListeTrajets();
+    //   testTrajetSimple();
+    //   testTrajetCompose();
+    //   testCatalogue();
+    testMenu();
     
     // Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
     // TrajetCompose *t2 = new TrajetCompose("Paris", "Nantes");
@@ -107,9 +113,7 @@ int main()
      //delete c;
         
         
-    Menu * m = new Menu();
-    m->afficherMenu();
-    delete m;
+    
     
 
     

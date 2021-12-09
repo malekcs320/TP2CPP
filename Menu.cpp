@@ -180,7 +180,7 @@ Menu::Menu()
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Catalogue>" << endl;
+    cout << "Appel au constructeur de <Menu>" << endl;
 #endif
     c = new Catalogue();
 } //----- Fin de Menu
@@ -190,7 +190,7 @@ Menu::~Menu()
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Catalogue>" << endl;
+    cout << "Appel au destructeur de <Menu>" << endl;
 #endif
     delete c;
 } //----- Fin de ~Menu

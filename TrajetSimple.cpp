@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -24,10 +24,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void TrajetSimple::afficherTrajet() const
 {
-    if (this != NULL)
-    {
-        cout << "de " << depart << " à " << arrivee << " en " << transport << endl;
-    }
+    cout << "de " << depart << " à " << arrivee << " en " << transport << endl;
 }
 
 char *TrajetSimple::getTransport()
@@ -54,23 +51,23 @@ TrajetSimple::TrajetSimple(const char *depart$, const char *arrivee$, const char
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
+    cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
     transport = new char[strlen(transport$) + 1];
     strcpy(transport, transport$);
 
-} //----- Fin de Xxx
+} //----- Fin de TrajetSimple
 
 TrajetSimple::~TrajetSimple()
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
     delete[] transport;
-} //----- Fin de ~Xxx
+} //----- Fin de ~TrajetSimple
 
 //------------------------------------------------------------------ PRIVE
 

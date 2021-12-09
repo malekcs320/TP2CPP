@@ -76,8 +76,6 @@ void ListeTrajets::afficher()
     cout << "La liste est vide" << endl;
     return;
   }
-  if (this == nullptr)
-    return;
   if (trajet != nullptr)
     trajet->afficherTrajet();
   if (trajetSuivant != nullptr)

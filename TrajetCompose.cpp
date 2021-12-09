@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -28,7 +28,7 @@ void TrajetCompose::afficherTrajet() const
     cout << "Trajet composé ";
     Trajet::afficherTrajet();
 
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         cout << "  - ";
         liste->getElement(i)->afficherTrajet();
@@ -51,7 +51,7 @@ bool TrajetCompose::estTrajetCompose() const
 bool TrajetCompose::estEgal( Trajet* t ){
     if (!(t->estTrajetCompose())) return false;
     bool test = true;
-    for(int i=0;i<liste->getTaille();i++){
+    for(uint i=0;i<liste->getTaille();i++){
     test = (liste->getElement(i))->estEgal(t);
     if (!test) return false;
     }
@@ -70,7 +70,7 @@ TrajetCompose::TrajetCompose(const char *depart, const char *arrivee) : Trajet(d
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur" << endl;
+    cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
     liste = new ListeTrajets;
 }
@@ -80,7 +80,7 @@ TrajetCompose::~TrajetCompose()
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
     delete liste;
     //liste = nullptr;
