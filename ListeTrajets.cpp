@@ -32,11 +32,11 @@ bool ListeTrajets::ajouter(Trajet *unTrajet)
 {
   bool reussite = false;
   // // vérifier qu'il n'y a pas de doublon
-   if(trajet->estEgal(unTrajet))
+   /*if(trajet->estEgal(unTrajet))
     {cout<<"chemin existe déjà";
      
      return false;
-   }
+   }*/
   // pas de doublon, on ajoute
   if (taille == 0)
   {
