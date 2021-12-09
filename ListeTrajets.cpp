@@ -171,9 +171,9 @@ ListeTrajets::~ListeTrajets()
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
 
-   if (this != NULL)
+   if (this != nullptr)
     delete this->trajet;
-  if (this->trajetSuivant != NULL)
+  if (this->trajetSuivant != nullptr)
     delete this->trajetSuivant;
 }
 

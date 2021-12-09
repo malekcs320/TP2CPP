@@ -40,7 +40,7 @@ void Catalogue::afficher()
 }
 void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
-    cout << "Recherhce simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
+    cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
     //ListeTrajets* l = new ListeTrajets();
     for (int i = 0; i < liste->getTaille(); i++)
     {
@@ -52,12 +52,11 @@ void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 }
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
-    cout << "Recherhce Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
-    ListeTrajets *dejaVisite = new ListeTrajets;
-    int nb = rechercheAux("Paris", "Nantes", dejaVisite);
+    cout << "Recherche Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
+    ListeTrajets *dejaVisite = new ListeTrajets();
+    int nb = rechercheAux(depart, arrivee, dejaVisite);
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
-    // for (int i=0;i<dejaVisite->getTaille();i++)
-    //     delete dejaVisite->getElement(i);
+    dejaVisite->vider();
     delete dejaVisite;    
 }
 int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
@@ -137,7 +136,7 @@ Catalogue::~Catalogue()
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
     delete liste;
-    liste = nullptr;
+    //liste = nullptr;
 
 } //----- Fin de ~Catalogue
 

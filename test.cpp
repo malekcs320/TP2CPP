@@ -84,7 +84,7 @@ int main()
     //  testTrajet();
     //   testTrajetSimple();
     //   testTrajetCompose();
-    //testCatalogue();
+    testCatalogue();
     // Trajet * t1 = new Trajet("Paris", "Lyon");
     /*t1->afficherTrajet();
     t1->getArrivee();
@@ -96,50 +96,32 @@ int main()
     liste->ajouter(t1);
     liste->ajouter(t2);
     liste->afficher();*/
+    
     Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
-    Trajet *t2 = new TrajetSimple("Marseille", "Nantes", "vélo");
-    TrajetCompose *t3 = new TrajetCompose("Paris", "Nantes");
+    TrajetCompose *t2 = new TrajetCompose("Paris", "Nantes");
+    t2->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    t2->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Nantes", "Bus"));
+    Trajet *t3 = new TrajetSimple("Marseille", "Nantes", "vélo");
     Trajet *t4 = new TrajetSimple("Paris", "Nantes", "vélo");
     Trajet *t5 = new TrajetSimple("Lyon", "Marseille", "vélo");
 
     
-    Catalogue *c = new Catalogue();
-     //t3->ajouterTrajet(t1); //pour que ça marche il faut déclarer t3 comme TrajetCompose *
-    // t3->ajouterTrajet(t2);
+    Catalogue *c = new Catalogue;
      c->ajouterTrajet(t1);
      c->ajouterTrajet(t2);
      c->ajouterTrajet(t3);
      c->ajouterTrajet(t4);
      c->ajouterTrajet(t5);
-     //c->ajouterTrajet(t4);
-    // // c->ajouterTrajet(t3);
-    // // c->supprimerTrajet(0);
-    // // c->afficher();
-    // // c->supprimerTrajet(0);
-    // //  c->afficher();
 
-    // // cout<<" recherche trajet Paris ---> Nantes"<<endl;
-    // //c->rechercheSimple("Paris", "Nantes");
-    //c->rechercheAvancee("Paris", "Nantes");
-    // //delete rechercheSimple;
+     c->rechercheSimple("Paris", "Nantes");
+     c->rechercheAvancee("Paris", "Nantes");
+
      delete c;
-    
-    // ListeTrajets* dejaVis = new ListeTrajets;
-    // dejaVis->ajouter(t1);
-    // dejaVis->afficher();
-    // dejaVis->supprimerTrajet(0);
-    // cout<<endl;
-    // dejaVis->afficher();
-    
-    // delete t1;
-    // delete t2;
-    // delete t3;
-    // delete t4;
-    // delete t5;
-    /*
-        Menu * m = new Menu();
-        m->afficherMenu();
-        */
+        
+        
+    //Menu * m = new Menu();
+    //m->afficherMenu();
+
 
     //Menu *m= new Menu();
     
