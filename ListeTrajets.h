@@ -20,6 +20,11 @@
 // Rôle de la classe <ListeTrajets>
 //  Classe permettant de définir une structure de données de type liste chaînée.
 //  Cette classe stocke des éléments de type Trajet.
+/* Fonctionnement général :
+  Cette classe est aussi un noeud de la liste chaînée. Chaque objet de type ListeTrajets
+  contient un pointeur vers un Trajet et un pointeur vers une ListeTrajets, qui est le prochain
+  noeud après celui-ci. De ce fait, nous avons utilisé la récursivité pour traiter quelques méthodes.
+*/
 //------------------------------------------------------------------------
 
 class ListeTrajets
