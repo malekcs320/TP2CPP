@@ -24,7 +24,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Menu::afficherMenu()
 {
-    char *choix;
+    char *choix = new char[2];
     do
     {
         cout << "-------------- MENU --------------" << endl;
@@ -52,6 +52,7 @@ void Menu::afficherMenu()
         }
 
     } while (strcmp(choix, "q") != 0);
+    delete choix;
 }
 TrajetSimple *Menu::saisirTS()
 {
@@ -71,7 +72,7 @@ TrajetSimple *Menu::saisirTS()
 }
 TrajetCompose *Menu::saisirTC()
 {
-    char *depart, *arrivee, *moyenTransport, *choix;
+    char *depart, *arrivee, *moyenTransport, *choix = new char[2];
     TrajetCompose *trajet;
     TrajetSimple *ts;
     int nbTrajets = 1;
@@ -80,7 +81,7 @@ TrajetCompose *Menu::saisirTC()
     cin >> depart;
     cout << "Ville d'arrivée : ";
     cin >> arrivee;
-    trajet = new TrajetCompose(arrivee, depart);
+    trajet = new TrajetCompose(depart, arrivee);
     do
     {
         cout << "Veuillez saisir les informations du sous-trajet " << nbTrajets << endl;
@@ -100,7 +101,7 @@ void Menu::afficherCatalogue()
 }
 void Menu::ajouterTrajet()
 {
-    char *choix;
+    char *choix = new char[2];
     cout << "Souhaitez-vous ajouter un trajet simple (s) ou composé (c) ? (s/c) Choix : ";
     cin >> choix;
     while (strcmp(choix, "s") != 0 && strcmp(choix, "c") != 0)
@@ -127,6 +128,7 @@ Menu::Menu()
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+c = new Catalogue();
 } //----- Fin de Menu
 
 Menu::~Menu()
@@ -136,6 +138,7 @@ Menu::~Menu()
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+delete c;
 } //----- Fin de ~Menu
 
 //------------------------------------------------------------------ PRIVE
