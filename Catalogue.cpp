@@ -42,12 +42,16 @@ void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
     cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
     //ListeTrajets* l = new ListeTrajets();
+    int nb = 0;
     for (int i = 0; i < liste->getTaille(); i++)
     {
         // liste->getElement(i)->afficherTrajet();
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
-            liste->getElement(i)->afficherTrajet();
+            {liste->getElement(i)->afficherTrajet();
+            nb++;
+            }
     }
+    cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
     
 }
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
