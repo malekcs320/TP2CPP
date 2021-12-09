@@ -27,16 +27,20 @@ using namespace std;
 unsigned int ListeTrajets::getTaille()
 {
   return taille;
-} // fin getTaille
+}
 bool ListeTrajets::ajouter(Trajet *unTrajet)
 {
+  // algorithme
+  // ajout récursif à la fin de la liste
+
   bool reussite = false;
   // // vérifier qu'il n'y a pas de doublon
-   /*if(trajet->estEgal(unTrajet))
-    {cout<<"chemin existe déjà";
-     
-     return false;
-   }*/
+  if (trajet->estEgal(unTrajet))
+  {
+    cout << "chemin existe déjà";
+
+    return false;
+  }
   // pas de doublon, on ajoute
   if (taille == 0)
   {
@@ -83,21 +87,18 @@ void ListeTrajets::afficher()
 } // fin afficher
 
 Trajet *ListeTrajets::getElement(int index)
+// Pour le premier trajet, index = 0
 {
   if (index <= 0)
     return trajet;
   else
     return trajetSuivant->getElement(index - 1);
-  /*if(index<taille) {
-    ListeTrajets * t = this;
-    for(int i=0; i<index; i++) t = t->trajetSuivant;
-    return t->trajet;
-  }*/
-  // return nullptr;
 }
 
 void ListeTrajets::supprimerTrajet(int index)
 // Algorithme
+// supprimer le trajet d'indice index
+// Pour le premier trajet, index = 0
 {
 
   ListeTrajets *head = this;
@@ -140,12 +141,15 @@ void ListeTrajets::supprimerTrajet(int index)
   }
 }
 
-void ListeTrajets::vider() {
-  // on souhaite casser les pointeurs sans delete les trajets...
-  if(trajet != nullptr) {
+void ListeTrajets::vider()
+{
+  // on souhaite casser les pointeurs sans supprimer les trajets...
+  if (trajet != nullptr)
+  {
     trajet = nullptr;
   }
-  if(trajetSuivant != nullptr) {
+  if (trajetSuivant != nullptr)
+  {
     trajetSuivant->vider();
   }
 }
@@ -165,16 +169,16 @@ ListeTrajets::ListeTrajets()
 
 ListeTrajets::~ListeTrajets()
 // Algorithme :
-//
+// delete en chaîne des maillons
 {
 #ifdef MAP
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
 
-   if (this != nullptr)
-    delete this->trajet;
-  if (this->trajetSuivant != nullptr)
-    delete this->trajetSuivant;
+  // if (this != nullptr)
+  delete this->trajet;
+  // if (this->trajetSuivant != nullptr)
+  delete this->trajetSuivant;
 }
 
 //----- Fin de ~ListeTrajets

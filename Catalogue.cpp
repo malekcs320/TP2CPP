@@ -41,18 +41,17 @@ void Catalogue::afficher()
 void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
     cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
-    //ListeTrajets* l = new ListeTrajets();
+    // ListeTrajets* l = new ListeTrajets();
     int nb = 0;
     for (int i = 0; i < liste->getTaille(); i++)
     {
-        // liste->getElement(i)->afficherTrajet();
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
-            {liste->getElement(i)->afficherTrajet();
+        {
+            liste->getElement(i)->afficherTrajet();
             nb++;
-            }
+        }
     }
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
-    
 }
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
@@ -61,49 +60,50 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
     int nb = rechercheAux(depart, arrivee, dejaVisite);
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
     dejaVisite->vider();
-    delete dejaVisite;    
+    delete dejaVisite;
 }
 int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
 {
+    // Algorithme
+    // Exploration récursive en profondeur du graphe des trajets.
+    // Chaque trajet visité est mis dans la liste dejaVisite et on visite tous ses voisins.
+    // Aprés avoir visité tous les voisins du trajet, on le dépile.
+    // A chaque recherche, on ne considère que les trajets ayant pour point de départs "depart",
+    // cela nous évite de construire tout le graphe d'adjacence formé par nos trajets.
+    //  Choix d'affichage au fur et à mesure de la recherche nous facilite la manipulation de la fonction récursivie
+
     int nbTrajets = 0;
     if (strcmp(depart, arrivee) == 0)
     {
-        // cout<<"test "<<endl;
         cout << "-----------------------" << endl;
-        dejaVisite->afficher(); // on affiche le parcours (choix d'affichage maintenant pour pouvoir utiliser le void et permettre la récursivité)
+        dejaVisite->afficher();
         return 1;
-        // cout<<"--------";
-        // dejaVisite->afficher();
     }
-    bool existe = false; // existence dans dejaVisite
+    bool existe = false;
     for (int i = 0; i < liste->getTaille(); i++)
     {
         Trajet *trajet = liste->getElement(i);
-        // cout<<"trajet : ";
-        // trajet->afficherTrajet();
 
-        // cout<<"test 2"<<endl;
-        if (strcmp(trajet->getDepart(), depart) == 0) // on ne considère que les trajets ayant pour point de départs "depart"
+        if (strcmp(trajet->getDepart(), depart) == 0) //
         {
             existe = false;
             for (int j = 0; j < dejaVisite->getTaille(); j++)
             {
-                if (trajet->estEgal(dejaVisite->getElement(j))) // trajet déjà utilisé
-                {                                               // cout<<"test -----------------";
+                if (trajet->estEgal(dejaVisite->getElement(j)))
+                {
                     existe = true;
                     break;
                 }
             }
-            if (!existe) // nouveau trajet
+            // nouveau trajet considéré
+            if (!existe)
             {
 
-                dejaVisite->ajouter(trajet); // on l'ajoute à la pile
-                // cout<<"ajout ";
-                // trajet->afficherTrajet();
-                nbTrajets += rechercheAux(trajet->getArrivee(), arrivee, dejaVisite); // on recherche l'arrivée récursivement à partir de l'arrivée du trajet courant
-                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1);             // suppression dernier elem ex A->B, B->C ==> A->B pour voir d'autres possibilités à partir de B
-                // cout<<"--------";
-                // dejaVisite->afficher();
+                dejaVisite->ajouter(trajet);
+
+                nbTrajets += rechercheAux(trajet->getArrivee(), arrivee, dejaVisite);
+                // suppression dernier elem (ex A->B, B->C ==> A->B) pour chercher d'autres possibilités à partir de B
+                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1);
             }
         }
     }
@@ -140,7 +140,6 @@ Catalogue::~Catalogue()
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
     delete liste;
-    //liste = nullptr;
 
 } //----- Fin de ~Catalogue
 

@@ -2,7 +2,7 @@
                            ListeTrajets  -  description
                              -------------------
     début                : novembre 2021
-    copyright            : (C) 2021 par Male Mahjoub et Aurélie Abraham
+    copyright            : (C) 2021 par Malek Mahjoub et Aurélie Abraham
     e-mail               : $EMAIL$
 *************************************************************************/
 
@@ -33,15 +33,14 @@ public:
   virtual void afficher();
   Trajet *getElement(int index);
   virtual void supprimerTrajet(int index);
-  
+
   /*
   Cette méthode permet de ne plus faire pointer les ListeTrajets sur des Trajets.
-  Cette méthode est en fait utilisée dans le cas de Catalogue::rechercherAvancée, 
-  qui utilise une ListeTrajets temporaire que l'on souhaite delete à la fin de 
+  Cette méthode est en fait utilisée dans le cas de Catalogue::rechercherAvancée,
+  qui utilise une ListeTrajets temporaire que l'on souhaite delete à la fin de
   l'algorithme, sans supprimer nos Trajet dans le tas.
   */
   void vider();
-  
 
   //-------------------------------------------- Constructeurs - destructeur
 

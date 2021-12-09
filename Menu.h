@@ -31,7 +31,7 @@ class Menu
 public:
     //----------------------------------------------------- Méthodes publiques
     void afficherMenu();
-    TrajetSimple *saisirTS(const char * ville_depart = nullptr);
+    TrajetSimple *saisirTS(const char *ville_depart = nullptr);
     TrajetCompose *saisirTC();
     void rechercher();
     void afficherCatalogue();
