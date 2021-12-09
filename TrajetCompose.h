@@ -34,7 +34,10 @@ public:
 
     void ajouterTrajet(Trajet *unTrajet);
 
-    // bool estEgal ( const Trajet &t );
+    char *getTransport();
+
+    bool estTrajetCompose() const;
+    bool estEgal ( Trajet *t );
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur

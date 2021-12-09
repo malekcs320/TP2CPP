@@ -29,10 +29,10 @@ class ListeTrajets
 public:
   //----------------------------------------------------- Méthodes publiques
   unsigned int getTaille();
-  bool ajouter(Trajet *);
-  void afficher();
+  virtual bool ajouter(Trajet *);
+  virtual void afficher();
   Trajet *getElement(int index);
-  void supprimerTrajet(int index);
+  virtual void supprimerTrajet(int index);
   // Mode d'emploi : renvoie le (index+1)ième élément de la liste chaînée
   //
   // Contrat : index doit être positif

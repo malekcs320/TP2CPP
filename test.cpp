@@ -12,9 +12,9 @@
 
 using namespace std;
 
-void testTrajet()
+void testTrajet() // par définition, on ne peut pas construire un trajet pur : il faut préciser sa nature (trjaet classe abstraite)
 {
-    Trajet *t1 = new Trajet("Paris", "Lyon");
+    Trajet *t1 = new TrajetCompose("Paris", "Lyon");
     t1->afficherTrajet();
     t1->getArrivee();
     t1->getDepart();
@@ -35,7 +35,7 @@ void testTrajetCompose()
     t->afficherTrajet();
     t->getArrivee();
     t->getDepart();
-    Trajet *test = new Trajet("Paris", "Nantes");
+    Trajet *test = new TrajetCompose("Paris", "Nantes");
     TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
     TrajetSimple *test3 = new TrajetSimple("Nantes", "Toulouse", "Train");
     t->ajouterTrajet(test);
@@ -47,16 +47,16 @@ void testTrajetCompose()
 void testListeTrajets()
 {
     Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
-    Trajet *t2 = new Trajet("Paris", "Marseille");
+    Trajet *t2 = new TrajetCompose("Paris", "Marseille");
     Trajet *t3 = new TrajetCompose("Paris", "Nantes");
     ListeTrajets *liste = new ListeTrajets;
 
     liste->ajouter(t1);
     liste->ajouter(t2);
+    //liste->ajouter(t3);
     liste->ajouter(t3);
-
     // iste->supprimerTrajet(2);//marche pas pour index 0
-    liste->afficher();
+    //liste->afficher();
     // liste->getElement(0)->afficherTrajet();
     // erreur corrigée en commentant le code du destructeur de ListeTrajets( à voir )
     delete liste;
@@ -72,6 +72,8 @@ void testCatalogue()
     c->ajouterTrajet(t);
     c->afficher();
     c->getTaille();
+    c->rechercheSimple("Paris", "Lyon");
+    c->rechercheAvancee("Paris", "Lyon");
     delete c;
 }
 
@@ -79,10 +81,10 @@ int main()
 {
     /* test unitaires */
     //   testListeTrajets();
-    //   testTrajet();
+    //  testTrajet();
     //   testTrajetSimple();
     //   testTrajetCompose();
-
+    //testCatalogue();
     // Trajet * t1 = new Trajet("Paris", "Lyon");
     /*t1->afficherTrajet();
     t1->getArrivee();
@@ -100,31 +102,35 @@ int main()
     Trajet *t4 = new TrajetSimple("Paris", "Nantes", "vélo");
     Trajet *t5 = new TrajetSimple("Lyon", "Marseille", "vélo");
 
+    
     Catalogue *c = new Catalogue();
-    // t3->ajouterTrajets(t1); //pour que ça marche il faut déclarer t3 comme TrajetCompose *
-    // t3->ajouterTrajets(t2);
-    c->ajouterTrajet(t1);
-    c->ajouterTrajet(t2);
-    c->ajouterTrajet(t3);
-    c->ajouterTrajet(t4);
-    c->ajouterTrajet(t5);
-    // c->supprimerTrajet(0);
-    // c->afficher();
-    // c->supprimerTrajet(0);
-    // c->afficher();
+     //t3->ajouterTrajet(t1); //pour que ça marche il faut déclarer t3 comme TrajetCompose *
+    // t3->ajouterTrajet(t2);
+     c->ajouterTrajet(t1);
+     c->ajouterTrajet(t2);
+     c->ajouterTrajet(t3);
+     c->ajouterTrajet(t4);
+     c->ajouterTrajet(t5);
+     //c->ajouterTrajet(t4);
+    // // c->ajouterTrajet(t3);
+    // // c->supprimerTrajet(0);
+    // // c->afficher();
+    // // c->supprimerTrajet(0);
+    // //  c->afficher();
 
-    // cout<<" recherche trajet Paris ---> Nantes"<<endl;
-
-    c->rechercheSimple("Paris", "Nantes")->afficher();
-    c->rechercheAvancee("Paris", "Nantes");
-
+    // // cout<<" recherche trajet Paris ---> Nantes"<<endl;
+    // //c->rechercheSimple("Paris", "Nantes");
+    //c->rechercheAvancee("Paris", "Nantes");
+    // //delete rechercheSimple;
+     delete c;
+    
     // ListeTrajets* dejaVis = new ListeTrajets;
     // dejaVis->ajouter(t1);
     // dejaVis->afficher();
     // dejaVis->supprimerTrajet(0);
     // cout<<endl;
     // dejaVis->afficher();
-    delete c;
+    
     // delete t1;
     // delete t2;
     // delete t3;
@@ -135,5 +141,7 @@ int main()
         m->afficherMenu();
         */
 
+    //Menu *m= new Menu();
+    
     return 0;
 }

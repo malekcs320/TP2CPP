@@ -34,7 +34,8 @@ public:
     //
     void afficherTrajet() const;
     char *getTransport();
-    // bool estEgal ( const Trajet &t );
+    bool estTrajetCompose() const;
+    bool estEgal ( Trajet *t );
 
     //------------------------------------------------- Surcharge d'opérateurs
 

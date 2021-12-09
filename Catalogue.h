@@ -23,7 +23,7 @@
 //
 //------------------------------------------------------------------------
 
-class Catalogue
+class Catalogue : public ListeTrajets
 {
     //----------------------------------------------------------------- PUBLIC
 
@@ -46,7 +46,7 @@ public:
 
     void ajouterTrajet(Trajet *);
     void afficher();
-    ListeTrajets *rechercheSimple(const char *depart, const char *arrivee);
+    void rechercheSimple(const char *depart, const char *arrivee);
     int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
     void rechercheAvancee(const char *depart, const char *arrivee);
     void supprimerTrajet(int index);

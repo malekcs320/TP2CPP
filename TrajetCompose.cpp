@@ -43,7 +43,25 @@ void TrajetCompose::ajouterTrajet(Trajet *unTrajet)
 // {
 
 // }
+bool TrajetCompose::estTrajetCompose() const
+{
+    return true;
+}
 
+bool TrajetCompose::estEgal( Trajet* t ){
+    if (!(t->estTrajetCompose())) return false;
+    bool test = true;
+    for(int i=0;i<liste->getTaille();i++){
+    test = (liste->getElement(i))->estEgal(t);
+    if (!test) return false;
+    }
+    return true;
+}
+char *TrajetCompose::getTransport()
+{
+    cout<<"Veuillez voir le mode de transport de chaque trajet simple qui compose ce trajet"<<endl;
+    return 0;
+}
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -54,7 +72,7 @@ TrajetCompose::TrajetCompose(const char *depart, const char *arrivee) : Trajet(d
 #ifdef MAP
     cout << "Appel au constructeur" << endl;
 #endif
-    liste = new ListeTrajets();
+    liste = new ListeTrajets;
 }
 
 TrajetCompose::~TrajetCompose()
@@ -65,6 +83,7 @@ TrajetCompose::~TrajetCompose()
     cout << "Appel au destructeur de <Xxx>" << endl;
 #endif
     delete liste;
+    liste = nullptr;
 }
 
 //------------------------------------------------------------------ PRIVE

@@ -30,17 +30,19 @@ void Trajet::afficherTrajet() const
 
 bool Trajet::estEgal(Trajet *t)
 {
-    return (strcmp(this->depart, t->depart) == 0 && strcmp(this->arrivee, t->arrivee) == 0);
+    return (strcmp(depart, t->depart) == 0 && strcmp(arrivee, t->arrivee) == 0); 
 }
 
 char const *Trajet::getDepart() const
 {
-    return this->depart;
+    return depart;
 }
 char const *Trajet::getArrivee() const
 {
-    return this->arrivee;
+    return arrivee;
 }
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 

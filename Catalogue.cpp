@@ -25,30 +25,30 @@ using namespace std;
 
 void Catalogue::ajouterTrajet(Trajet *t)
 {
-    this->liste->ajouter(t);
+    liste->ajouter(t);
 }
 void Catalogue::afficher()
 {
     cout << "----------------" << endl;
-    cout << "Le catalogue contient " << this->liste->getTaille() << " trajets : " << endl;
-    for (int i = 0; i < this->liste->getTaille(); i++)
+    cout << "Le catalogue contient " << liste->getTaille() << " trajets : " << endl;
+    for (int i = 0; i < liste->getTaille(); i++)
     {
         cout << "Trajet " << i + 1 << " : " /*<< liste->getElement(i)->toString() << endl*/;
         liste->getElement(i)->afficherTrajet();
     }
     cout << "----------------" << endl;
 }
-ListeTrajets *Catalogue::rechercheSimple(const char *depart, const char *arrivee)
+void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
     cout << "Recherhce simple de trajets de " << depart << " vers " << arrivee << "..." << endl;
-    ListeTrajets *l = new ListeTrajets();
+    //ListeTrajets* l = new ListeTrajets();
     for (int i = 0; i < liste->getTaille(); i++)
     {
         // liste->getElement(i)->afficherTrajet();
         if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
-            l->ajouter(liste->getElement(i));
+            liste->getElement(i)->afficherTrajet();
     }
-    return l;
+    
 }
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
@@ -56,6 +56,9 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
     ListeTrajets *dejaVisite = new ListeTrajets;
     int nb = rechercheAux("Paris", "Nantes", dejaVisite);
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
+    // for (int i=0;i<dejaVisite->getTaille();i++)
+    //     delete dejaVisite->getElement(i);
+    delete dejaVisite;    
 }
 int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
 {
@@ -111,7 +114,7 @@ void Catalogue::supprimerTrajet(int index)
 
 int Catalogue::getTaille()
 {
-    return this->liste->getTaille();
+    return liste->getTaille();
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -134,6 +137,7 @@ Catalogue::~Catalogue()
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
     delete liste;
+    liste = nullptr;
 
 } //----- Fin de ~Catalogue
 

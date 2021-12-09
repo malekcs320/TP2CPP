@@ -34,9 +34,11 @@ public:
     // Contrat :
     //
     virtual void afficherTrajet() const;
-    bool estEgal(Trajet *t);
+    virtual bool estTrajetCompose() const=0;
+    virtual bool estEgal(Trajet *t);
     char const *getDepart() const;
     char const *getArrivee() const;
+    virtual char *getTransport() = 0;
 
     //------------------------------------------------- Surcharge d'opérateurs
 

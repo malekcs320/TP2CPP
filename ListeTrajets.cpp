@@ -26,38 +26,39 @@ using namespace std;
 
 unsigned int ListeTrajets::getTaille()
 {
-  return this->taille;
+  return taille;
 } // fin getTaille
 bool ListeTrajets::ajouter(Trajet *unTrajet)
 {
   bool reussite = false;
-  // vérifier qu'il n'y a pas de doublon
-  /*if(this->trajet->estEgal(unTrajet)) {
-    return false;
-  }
-  */
+  // // vérifier qu'il n'y a pas de doublon
+   if(trajet->estEgal(unTrajet))
+    {cout<<"chemin existe déjà";
+     
+     return false;
+   }
   // pas de doublon, on ajoute
   if (taille == 0)
   {
     taille++;
-    this->trajet = unTrajet;
+    trajet = unTrajet;
   }
   else
   {
-    if (this->trajetSuivant == NULL)
+    if (this->trajetSuivant == nullptr)
     {
 
-      this->trajetSuivant = new ListeTrajets();
-      this->trajetSuivant->trajet = unTrajet;
-      this->trajetSuivant->taille++;
-      this->taille++;
+      trajetSuivant = new ListeTrajets();
+      trajetSuivant->trajet = unTrajet;
+      trajetSuivant->taille++;
+      taille++;
     }
     else
     {
-      reussite = this->trajetSuivant->ajouter(unTrajet);
+      reussite = trajetSuivant->ajouter(unTrajet);
       if (reussite)
       {
-        this->taille++;
+        taille++;
       }
     }
   }
@@ -71,12 +72,12 @@ void ListeTrajets::afficher()
     cout << "La liste est vide" << endl;
     return;
   }
-  if (this == NULL)
+  if (this == nullptr)
     return;
-  if (this->trajet != NULL)
-    this->trajet->afficherTrajet();
-  if (this->trajetSuivant != NULL)
-    this->trajetSuivant->afficher();
+  if (trajet != nullptr)
+    trajet->afficherTrajet();
+  if (trajetSuivant != nullptr)
+    trajetSuivant->afficher();
   return;
 
 } // fin afficher
@@ -84,15 +85,15 @@ void ListeTrajets::afficher()
 Trajet *ListeTrajets::getElement(int index)
 {
   if (index <= 0)
-    return this->trajet;
+    return trajet;
   else
-    return this->trajetSuivant->getElement(index - 1);
+    return trajetSuivant->getElement(index - 1);
   /*if(index<taille) {
     ListeTrajets * t = this;
     for(int i=0; i<index; i++) t = t->trajetSuivant;
     return t->trajet;
   }*/
-  // return NULL;
+  // return nullptr;
 }
 
 void ListeTrajets::supprimerTrajet(int index)
@@ -101,13 +102,13 @@ void ListeTrajets::supprimerTrajet(int index)
 
   ListeTrajets *head = this;
   ListeTrajets *temp = head;
-  ListeTrajets *prev = NULL;
+  ListeTrajets *prev = nullptr;
 
-  if (head != NULL && index == 0)
+  if (head != nullptr && index == 0)
   {
-    if (head->trajetSuivant == NULL)
+    if (head->trajetSuivant == nullptr)
     {
-      head->trajet = NULL;
+      head->trajet = nullptr;
       taille--;
       return;
     }
@@ -115,24 +116,24 @@ void ListeTrajets::supprimerTrajet(int index)
     temp = head->trajetSuivant;
     head->trajet = temp->trajet;
     head->trajetSuivant = temp->trajetSuivant;
-    temp->trajet = NULL;
-    temp->trajetSuivant = NULL;
+    temp->trajet = nullptr;
+    temp->trajetSuivant = nullptr;
   }
   else
   {
-    while (temp != NULL && index--)
+    while (temp != nullptr && index--)
     {
       prev = temp;
       temp = temp->trajetSuivant;
     }
 
-    if (temp == NULL)
+    if (temp == nullptr)
       return;
 
     prev->trajetSuivant = temp->trajetSuivant;
   }
 
-  while (head != NULL)
+  while (head != nullptr)
   {
     head->taille--;
     head = head->trajetSuivant;
@@ -147,8 +148,8 @@ ListeTrajets::ListeTrajets()
 #ifdef MAP
   cout << "Appel au constructeur de <ListeTrajets>" << endl;
 #endif
-  trajet = NULL;
-  trajetSuivant = NULL;
+  trajet = nullptr;
+  trajetSuivant = nullptr;
   taille = 0;
 } //----- Fin de ListeTrajets
 
@@ -160,10 +161,10 @@ ListeTrajets::~ListeTrajets()
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
 
-  if (this != NULL)
+   if (this != NULL)
     delete this->trajet;
   if (this->trajetSuivant != NULL)
-    delete this->trajetSuivant; // suppression en chaîne
+    delete this->trajetSuivant;
 }
 
 //----- Fin de ~ListeTrajets

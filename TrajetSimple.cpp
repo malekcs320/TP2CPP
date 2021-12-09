@@ -34,11 +34,17 @@ void TrajetSimple::afficherTrajet() const
 char *TrajetSimple::getTransport()
 {
     return transport;
-};
-/*bool TrajetSimple::estEgal( TrajetSimple *t ){
-    return strcmp(t->getDepart(), arrivee)&&strcmp(t->getArrivee(), arrivee)&&strcmp(t->getTransport(), transport);
+}
 
-}*/
+bool TrajetSimple::estTrajetCompose() const
+{
+    return false;
+}
+
+bool TrajetSimple::estEgal( Trajet* t ){
+    return (!(t->estTrajetCompose()))&& (strcmp(depart, t->getDepart()) == 0 && strcmp(arrivee, t->getArrivee()) == 0) &&strcmp(t->getTransport(), transport);
+
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
