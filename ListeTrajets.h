@@ -63,6 +63,11 @@ public:
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
 
+  void supprimerTrajetRecherche(uint index);
+  // Mode d'emploi :
+  //  Supprime le trajet situé à la position `index` de la liste. Utilisée pour la recherche avancée.
+  // Contrat :
+  //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
   
   void vider();
   // Mode d'emploi :

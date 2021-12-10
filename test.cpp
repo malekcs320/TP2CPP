@@ -116,9 +116,9 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     /* test unitaires */
     /* testListeTrajets();
     testTrajetSimple();
-    testTrajetCompose();
-    testCatalogue();
-    testMenu(); */
+    testTrajetCompose();*/
+    //testCatalogue();
+    //testMenu(); 
     /*testSuppressionTeteTaille1();
     testSuppressionTeteTaille2();
     testSuppressionPasTeteTaille3(); */

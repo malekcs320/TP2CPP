@@ -103,7 +103,7 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
 
                 nbTrajets += rechercheAux(trajet->getArrivee(), arrivee, dejaVisite);
                 // suppression dernier elem (ex A->B, B->C ==> A->B) pour chercher d'autres possibilités à partir de B
-                dejaVisite->supprimerTrajet(dejaVisite->getTaille() - 1);
+                dejaVisite->supprimerTrajetRecherche(dejaVisite->getTaille() - 1);
             }
         }
     }

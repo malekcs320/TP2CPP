@@ -164,7 +164,48 @@ void ListeTrajets::supprimerTrajet(uint index)
   }
 
 
-  cout << "fin" << endl;
+  //cout << "fin" << endl;
+}
+
+void ListeTrajets::supprimerTrajetRecherche(uint index) 
+{
+  ListeTrajets *head = this;
+  ListeTrajets *temp = head;
+  ListeTrajets *prev = nullptr;
+  if (head != nullptr && index == 0)
+  {
+    if (head->trajetSuivant == nullptr)
+    {
+      head->trajet = nullptr;
+      taille--;
+      return;
+    }
+    temp = head->trajetSuivant;
+    head->trajet = temp->trajet;
+    head->trajetSuivant = temp->trajetSuivant;
+    temp->trajet = nullptr;
+    temp->trajetSuivant = nullptr;
+    delete temp;
+  }
+  else
+  {
+    while (temp != nullptr && index--)
+    {
+      prev = temp;
+      temp = temp->trajetSuivant;
+    }
+    if (temp == nullptr)
+      return;
+
+    prev->trajetSuivant = temp->trajetSuivant;
+    delete temp;
+  }
+
+  while (head != nullptr)
+  {
+    head->taille--;
+    head = head->trajetSuivant;
+  }
 }
 
 void ListeTrajets::vider()
@@ -204,7 +245,7 @@ ListeTrajets::~ListeTrajets()
   if (trajet != nullptr)
     delete this->trajet;
   if (this->trajetSuivant != nullptr) {
-    cout<<"appel au destructeur suivant"<<endl;
+   // cout<<"appel au destructeur suivant"<<endl;
     delete this->trajetSuivant;
   }
     
