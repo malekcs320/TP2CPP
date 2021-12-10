@@ -57,7 +57,7 @@ public:
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
 
-  virtual void supprimerTrajet(int index);
+  virtual void supprimerTrajet(uint index);
   // Mode d'emploi :
   //  Supprime le trajet situé à la position `index` de la liste.
   // Contrat :

@@ -71,6 +71,33 @@ void testCatalogue()
     c->afficher();
     delete c;
 }
+void testSuppressionTeteTaille1() {
+    // suppression de l'élément en tête pour une liste de taille 1
+    cout << "suppression de l'élément en tête pour une liste de taille 1"<< endl;
+    Catalogue *c = new Catalogue();
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    c->supprimerTrajet(1);
+    delete c;
+}
+void testSuppressionTeteTaille2() {
+    // suppression de l'élément en tête pour une liste de taille > 1
+    cout << "suppression de l'élément en tête pour une liste de taille > 1"<< endl;
+    Catalogue *c = new Catalogue();
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Bus"));
+    c->supprimerTrajet(1);
+    delete c;
+}
+void testSuppressionPasTeteTaille3() {
+    // suppression d'un élément pas en tête pour une liste de taille > 1
+    cout << "suppression d'un élément pas en tête pour une liste de taille > 1"<< endl;
+    Catalogue *c = new Catalogue();
+    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
+    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Bus"));
+    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Train"));
+    c->supprimerTrajet(2);
+    delete c;
+}
 void testMenu() {
     Menu * m = new Menu();
     m->afficherMenu();
@@ -92,8 +119,13 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     testTrajetCompose();
     testCatalogue();
     testMenu(); */
+    /*testSuppressionTeteTaille1();
+    testSuppressionTeteTaille2();
+    testSuppressionPasTeteTaille3(); */
 
     testMenu(); // exécution du programme
+
+    
     
     return 0;
 }

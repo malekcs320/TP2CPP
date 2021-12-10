@@ -184,19 +184,19 @@ void Menu::supprimerTrajet()
     afficherCatalogue();
     if (c->getTaille() == 0)
     {
-        cout << "il n'y a pas de trajet à supprimer" << endl;
+        cout << "Il n'y a pas de trajet à supprimer" << endl;
         return;
     }
     int i;
-    cout << "Entrez le numéro du trajet à supprimer : " << endl;
+    cout << "Entrez le numéro du trajet à supprimer : ";
     cin >> i;
     if (i >= 1 && i <= c->getTaille())
     {
         c->supprimerTrajet(i - 1);
-        cout << "Le trajet a été supprimer du catalogue" << endl;
+        cout << "Le trajet a été supprimé du catalogue" << endl;
     }
     else
-        cout << "l'indice entré ne correspond à aucun trajet dans le catalogue" << endl;
+        cout << "L'indice entré ne correspond à aucun trajet du catalogue" << endl;
 }
 //-------------------------------------------- Constructeurs - destructeur
 

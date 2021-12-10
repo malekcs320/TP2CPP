@@ -93,7 +93,7 @@ Trajet *ListeTrajets::getElement(int index)
     return trajetSuivant->getElement(index - 1);
 }
 
-void ListeTrajets::supprimerTrajet(int index)
+void ListeTrajets::supprimerTrajet(uint index)
 // Algorithme
 // supprimer le trajet d'indice index
 // Pour le premier trajet, index = 0
@@ -105,47 +105,66 @@ void ListeTrajets::supprimerTrajet(int index)
 //this devient égal au noeud suivant qu'on supprime.
 
 {
+  if (index >= taille) return;
 
   ListeTrajets *head = this;
   ListeTrajets *temp = head;
   ListeTrajets *prev = nullptr;
 
-  if (head != nullptr && index == 0)
+  if (index == 0) // suppression en tête 
   {
-    if (head->trajetSuivant == nullptr)
+    if (head->trajetSuivant == nullptr) // 1 seul élément dans la liste
     {
+      delete head->trajet;
       head->trajet = nullptr;
       taille--;
       return;
     }
-
-    temp = head->trajetSuivant;
-    head->trajet = temp->trajet;
-    head->trajetSuivant = temp->trajetSuivant;
-    temp->trajet = nullptr;
-    temp->trajetSuivant = nullptr;
-    delete temp;
+    else { 
+      // plus d'un élément dans la liste
+      if(taille == 2) { // exactement 2
+        delete head->trajet;
+        head->trajet = head->trajetSuivant->trajet;
+        head->trajetSuivant->trajet = nullptr;
+        delete head->trajetSuivant;
+        head->trajetSuivant = nullptr;
+        taille--;
+      }
+      else { // plus de 2
+        delete head->trajet;
+        head->trajet = head->trajetSuivant->trajet;
+        temp = head->trajetSuivant;
+        head->trajetSuivant = temp->trajetSuivant;
+        temp->trajetSuivant = nullptr;
+        temp->trajet = nullptr;
+        delete temp;
+        while (head != nullptr) // maj tailles de liste
+        {
+          head->taille--;
+          head = head->trajetSuivant;
+        }
+      }
+    }
+    
   }
-  else
+  else // suppression ailleurs
   {
     while (temp != nullptr && index--)
     {
       prev = temp;
       temp = temp->trajetSuivant;
+      prev->taille--;
     }
 
-    if (temp == nullptr)
-      return;
 
     prev->trajetSuivant = temp->trajetSuivant;
+    temp->trajetSuivant = nullptr; // contre la suppression en chaine 
     delete temp;
+    
   }
 
-  while (head != nullptr)
-  {
-    head->taille--;
-    head = head->trajetSuivant;
-  }
+
+  cout << "fin" << endl;
 }
 
 void ListeTrajets::vider()
@@ -181,11 +200,21 @@ ListeTrajets::~ListeTrajets()
 #ifdef MAP
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
-
-  // if (this != nullptr)
-  delete this->trajet;
-  // if (this->trajetSuivant != nullptr)
-  delete this->trajetSuivant;
+  cout << "destructeur de liste taille = " << taille<< endl;
+  cout << "trajet qui est supprimé : ";
+  if(trajet == nullptr) {
+    cout << "nullptr" << endl;
+  }
+  else {
+    trajet->afficherTrajet();
+  }
+  if (trajet != nullptr)
+    delete this->trajet;
+  if (this->trajetSuivant != nullptr) {
+    cout<<"appel au destructeur suivant"<<endl;
+    delete this->trajetSuivant;
+  }
+    
 }
 
 //----- Fin de ~ListeTrajets
