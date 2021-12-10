@@ -200,14 +200,7 @@ ListeTrajets::~ListeTrajets()
 #ifdef MAP
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
-  cout << "destructeur de liste taille = " << taille<< endl;
-  cout << "trajet qui est supprimé : ";
-  if(trajet == nullptr) {
-    cout << "nullptr" << endl;
-  }
-  else {
-    trajet->afficherTrajet();
-  }
+  
   if (trajet != nullptr)
     delete this->trajet;
   if (this->trajetSuivant != nullptr) {
