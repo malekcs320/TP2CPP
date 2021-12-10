@@ -12,14 +12,6 @@
 
 using namespace std;
 
-void testTrajet() // par définition, on ne peut pas construire un trajet pur : il faut préciser sa nature (trajet classe abstraite)
-{
-    Trajet *t1 = new TrajetCompose("Paris", "Lyon");
-    t1->afficherTrajet();
-    t1->getArrivee();
-    t1->getDepart();
-    delete t1;
-}
 void testTrajetSimple()
 {
     TrajetSimple *t1 = new TrajetSimple("Paris", "Lyon", "Train");
@@ -54,6 +46,9 @@ void testListeTrajets()
     liste->ajouter(t1);
     liste->ajouter(t2);
     liste->ajouter(t3);
+    liste->supprimerTrajet(2);
+    liste->afficher();
+    liste->getElement(0)->afficherTrajet();
     delete liste;
 }
 void testCatalogue()
@@ -65,10 +60,15 @@ void testCatalogue()
     t->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
     t->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
     c->ajouterTrajet(t);
+    Trajet *t1 = new TrajetSimple("Clermont-Ferrand", "Lyon", "Train");
+    c->ajouterTrajet(t1);
     c->afficher();
     c->getTaille();
     c->rechercheSimple("Paris", "Lyon");
     c->rechercheAvancee("Paris", "Lyon");
+    c->afficher();
+    c->supprimerTrajet(3);
+    c->afficher();
     delete c;
 }
 void testMenu() {

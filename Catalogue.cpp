@@ -30,10 +30,10 @@ void Catalogue::ajouterTrajet(Trajet *t)
 void Catalogue::afficher()
 {
     cout << "----------------" << endl;
-    cout << "Le catalogue contient " << liste->getTaille() << " trajets : " << endl;
+    cout << "Le catalogue contient " << liste->getTaille() << " trajets" << endl;
     for (uint i = 0; i < liste->getTaille(); i++)
     {
-        cout << "Trajet " << i + 1 << " : " /*<< liste->getElement(i)->toString() << endl*/;
+        cout << "Trajet " << i + 1 << " : ";
         liste->getElement(i)->afficherTrajet();
     }
     cout << "----------------" << endl;

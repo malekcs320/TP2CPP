@@ -97,6 +97,13 @@ void ListeTrajets::supprimerTrajet(int index)
 // Algorithme
 // supprimer le trajet d'indice index
 // Pour le premier trajet, index = 0
+//Pour supprimer un nœud de la liste chaînée, nous devons suivre les étapes suivantes.
+//1) Trouvez le nœud précédent du nœud à supprimer.
+//2) Changer "le prochain" du nœud précédent au suivant du noeud à supprimer.
+//3) liberer la mémoire
+//Pour le premier Noeud, comme on peut pas faire la suppression de l'objet pointé par this,
+//this devient égal au noeud suivant qu'on supprime.
+
 {
 
   ListeTrajets *head = this;
@@ -117,6 +124,7 @@ void ListeTrajets::supprimerTrajet(int index)
     head->trajetSuivant = temp->trajetSuivant;
     temp->trajet = nullptr;
     temp->trajetSuivant = nullptr;
+    delete temp;
   }
   else
   {
@@ -130,6 +138,7 @@ void ListeTrajets::supprimerTrajet(int index)
       return;
 
     prev->trajetSuivant = temp->trajetSuivant;
+    delete temp;
   }
 
   while (head != nullptr)
