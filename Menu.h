@@ -76,6 +76,13 @@ public:
     // Contrat :
     //  Aucun.
 
+    
+ void supprimerTrajet();
+    // Mode d'emploi :
+    //  Supprimer le ième trajet dans la liste des trajets. L'ordre est celui des entrées. 
+    // Contrat :
+    //  i est un entier supérieur ou égal à 1
+    
     //-------------------------------------------- Constructeurs - destructeur
 
     Menu();

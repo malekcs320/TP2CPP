@@ -32,24 +32,29 @@ void Menu::afficherMenu()
         cout << "1 : Ajouter un trajet au catalogue" << endl;
         cout << "2 : Rechercher un trajet dans le catalogue" << endl;
         cout << "3 : Afficher le catalogue" << endl;
+        cout << "4 : Supprimer un trajet" << endl;
         cout << "Veuillez entrer votre choix (q pour quitter) : ";
         cin >> choix;
-        while (strcmp(choix, "1") != 0 && strcmp(choix, "2") != 0 && strcmp(choix, "3") != 0 && strcmp(choix, "q") != 0)
+        while (strcmp(choix, "1") != 0 && strcmp(choix, "2") != 0 && strcmp(choix, "3") != 0 && strcmp(choix, "4") != 0 && strcmp(choix, "q") != 0)
         {
-            cout << "Choix incorrect. Choix possibles : 1, 2, 3, q. Choix : ";
+            cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, q. Choix : ";
             cin >> choix;
         }
         if (strcmp(choix, "1") == 0)
         {
-            this->ajouterTrajet();
+            ajouterTrajet();
         }
         else if (strcmp(choix, "2") == 0)
         {
-            this->rechercher();
+            rechercher();
         }
         else if (strcmp(choix, "3") == 0)
         {
-            this->afficherCatalogue();
+            afficherCatalogue();
+        }
+        else if (strcmp(choix, "4") == 0)
+        {
+            supprimerTrajet();
         }
 
     } while (strcmp(choix, "q") != 0);
@@ -173,6 +178,26 @@ void Menu::ajouterTrajet()
     delete[] choix;
 }
 
+void Menu::supprimerTrajet()
+{
+
+    afficherCatalogue();
+    if (c->getTaille() == 0)
+    {
+        cout << "il n'y a pas de trajet à supprimer" << endl;
+        return;
+    }
+    int i;
+    cout << "Entrez le numéro du trajet à supprimer : " << endl;
+    cin >> i;
+    if (i >= 1 && i <= c->getTaille())
+    {
+        c->supprimerTrajet(i - 1);
+        cout << "Le trajet a été supprimer du catalogue" << endl;
+    }
+    else
+        cout << "l'indice entré ne correspond à aucun trajet dans le catalogue" << endl;
+}
 //-------------------------------------------- Constructeurs - destructeur
 
 Menu::Menu()

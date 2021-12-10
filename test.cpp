@@ -12,14 +12,6 @@
 
 using namespace std;
 
-void testTrajet() // par définition, on ne peut pas construire un trajet pur : il faut préciser sa nature (trjaet classe abstraite)
-{
-    Trajet *t1 = new TrajetCompose("Paris", "Lyon");
-    t1->afficherTrajet();
-    t1->getArrivee();
-    t1->getDepart();
-    delete t1;
-}
 void testTrajetSimple()
 {
     TrajetSimple *t1 = new TrajetSimple("Paris", "Lyon", "Train");
@@ -53,12 +45,10 @@ void testListeTrajets()
 
     liste->ajouter(t1);
     liste->ajouter(t2);
-    //liste->ajouter(t3);
     liste->ajouter(t3);
-    // iste->supprimerTrajet(2);//marche pas pour index 0
-    //liste->afficher();
-    // liste->getElement(0)->afficherTrajet();
-    // erreur corrigée en commentant le code du destructeur de ListeTrajets( à voir )
+    liste->supprimerTrajet(2);
+    liste->afficher();
+    liste->getElement(0)->afficherTrajet();
     delete liste;
 }
 void testCatalogue()
@@ -70,10 +60,15 @@ void testCatalogue()
     t->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
     t->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
     c->ajouterTrajet(t);
+    Trajet *t1 = new TrajetSimple("Clermont-Ferrand", "Lyon", "Train");
+    c->ajouterTrajet(t1);
     c->afficher();
     c->getTaille();
     c->rechercheSimple("Paris", "Lyon");
     c->rechercheAvancee("Paris", "Lyon");
+    c->afficher();
+    c->supprimerTrajet(3);
+    c->afficher();
     delete c;
 }
 void testMenu() {
@@ -85,37 +80,10 @@ void testMenu() {
 int main()
 {
     /* test unitaires */
-    //   testListeTrajets();
-    //   testTrajetSimple();
-    //   testTrajetCompose();
-    //   testCatalogue();
+    testListeTrajets();
+    testTrajetSimple();
+    testTrajetCompose();
+    testCatalogue();
     testMenu();
-    
-    // Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
-    // TrajetCompose *t2 = new TrajetCompose("Paris", "Nantes");
-    // t2->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
-    // t2->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Nantes", "Bus"));
-    // Trajet *t3 = new TrajetSimple("Marseille", "Nantes", "vélo");
-    // Trajet *t4 = new TrajetSimple("Paris", "Nantes", "vélo");
-    // Trajet *t5 = new TrajetSimple("Lyon", "Marseille", "vélo");
-
-    
-    // Catalogue *c = new Catalogue;
-    //  c->ajouterTrajet(t1);
-    //  c->ajouterTrajet(t2);
-    //  c->ajouterTrajet(t3);
-    //  c->ajouterTrajet(t4);
-    //  c->ajouterTrajet(t5);
-
-    //  c->rechercheSimple("Paris", "Nantes");
-    //  c->rechercheAvancee("Paris", "Nantes");
-
-     //delete c;
-        
-        
-    
-    
-
-    
     return 0;
 }
