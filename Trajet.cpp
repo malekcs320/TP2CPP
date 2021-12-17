@@ -33,6 +33,10 @@ bool Trajet::estEgal(Trajet *t)
     return (strcmp(depart, t->depart) == 0 && strcmp(arrivee, t->arrivee) == 0); 
 }
 
+string Trajet::getType() {
+    return "Trajet";
+}
+
 char const *Trajet::getDepart() const
 {
     return depart;

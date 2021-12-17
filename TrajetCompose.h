@@ -44,17 +44,7 @@ public:
     //  La cohérence du trajet n'est pas vérifiée ici. Par exemple si le trajet va de A vers B, et que les 
     //  étapes donc A->C puis C->D, c'est incohérent et cela ne doit pas arriver.
 
-    char *getTransport();
-    // Mode d'emploi :
-    //  
-    // Contrat :
-    //  Aucun.
-
-    bool estTrajetCompose() const;
-    // Mode d'emploi :
-    //  
-    // Contrat :
-    //  Aucun.
+    string getType();
 
     bool estEgal ( Trajet *t );
     // Mode d'emploi :

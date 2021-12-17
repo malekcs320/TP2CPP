@@ -35,12 +35,6 @@ public:
     // Contrat :
     //  Aucun.
 
-    virtual bool estTrajetCompose() const=0;
-    // Mode d'emploi :
-    //  
-    // Contrat :
-    //  Aucun.
-
     virtual bool estEgal(Trajet *t);
     // Mode d'emploi :
     //  Permet de tester si deux trajets sont égaux, à partir des informations telles que
@@ -62,7 +56,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    virtual char *getTransport() = 0;
+    virtual string getType() ;
     // Mode d'emploi :
     //  
     // Contrat :

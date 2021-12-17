@@ -39,29 +39,27 @@ void TrajetCompose::ajouterTrajet(Trajet *unTrajet)
 {
     liste->ajouter(unTrajet);
 }
-// bool estEgal ( const Trajet &t )
-// {
 
-// }
-bool TrajetCompose::estTrajetCompose() const
-{
-    return true;
+string TrajetCompose::getType() {
+    return "TrajetCompose";
 }
 
 bool TrajetCompose::estEgal( Trajet* t ){
-    if (!(t->estTrajetCompose())) return false;
-    bool test = true;
-    for(uint i=0;i<liste->getTaille();i++){
-    test = (liste->getElement(i))->estEgal(t);
-    if (!test) return false;
+    if(t->getType() != "TrajetCompose") {
+        return false;
     }
-    return true;
+    else {
+        TrajetCompose * ts = dynamic_cast<TrajetCompose*>(t);
+        if (ts->getArrivee() != arrivee || ts->getDepart() != depart) {
+            return false;
+        }
+        for(uint i=0;i<liste->getTaille();i++) {
+            if(!liste->getElement(i)->estEgal(t)) return false;
+        }
+        return true;
+    }
 }
-char *TrajetCompose::getTransport()
-{
-    cout<<"Veuillez voir le mode de transport de chaque trajet simple qui compose ce trajet"<<endl;
-    return 0;
-}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur

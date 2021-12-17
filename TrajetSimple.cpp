@@ -32,14 +32,19 @@ char *TrajetSimple::getTransport()
     return transport;
 }
 
-bool TrajetSimple::estTrajetCompose() const
-{
-    return false;
+string TrajetSimple::getType() {
+    return "TrajetSimple";
 }
 
 bool TrajetSimple::estEgal( Trajet* t ){
-    return (!(t->estTrajetCompose()))&& (strcmp(depart, t->getDepart()) == 0 && strcmp(arrivee, t->getArrivee()) == 0) &&strcmp(t->getTransport(), transport);
-
+    if(t->getType() != "TrajetSimple") {
+        return false;
+    }
+    else {
+        TrajetSimple * ts = dynamic_cast<TrajetSimple*>(t);
+        return ts->getArrivee() == arrivee && ts->getDepart() == depart && ts->getTransport() == transport;
+        
+    }
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

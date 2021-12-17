@@ -40,11 +40,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    bool estTrajetCompose() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    string getType();
 
     bool estEgal ( Trajet *t );
     // Mode d'emploi :
