@@ -40,7 +40,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    string getType();
+    std::string getType();
 
     bool estEgal ( Trajet *t );
     // Mode d'emploi :

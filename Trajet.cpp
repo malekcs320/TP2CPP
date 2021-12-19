@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -33,7 +34,7 @@ bool Trajet::estEgal(Trajet *t)
     return (strcmp(depart, t->depart) == 0 && strcmp(arrivee, t->arrivee) == 0); 
 }
 
-string Trajet::getType() {
+std::string Trajet::getType() {
     return "Trajet";
 }
 

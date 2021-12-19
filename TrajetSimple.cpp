@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
 
@@ -32,7 +33,7 @@ char *TrajetSimple::getTransport()
     return transport;
 }
 
-string TrajetSimple::getType() {
+std::string TrajetSimple::getType() {
     return "TrajetSimple";
 }
 

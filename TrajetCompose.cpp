@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 #include "Trajet.h"
@@ -40,7 +41,7 @@ void TrajetCompose::ajouterTrajet(Trajet *unTrajet)
     liste->ajouter(unTrajet);
 }
 
-string TrajetCompose::getType() {
+std::string TrajetCompose::getType() {
     return "TrajetCompose";
 }
 

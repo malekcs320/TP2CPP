@@ -44,7 +44,7 @@ public:
     //  La cohérence du trajet n'est pas vérifiée ici. Par exemple si le trajet va de A vers B, et que les 
     //  étapes donc A->C puis C->D, c'est incohérent et cela ne doit pas arriver.
 
-    string getType();
+    std::string getType();
 
     bool estEgal ( Trajet *t );
     // Mode d'emploi :

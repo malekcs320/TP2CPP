@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
 //------------------------------------------------------ Include personnel
 #include "Menu.h"
 

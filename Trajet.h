@@ -56,7 +56,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    virtual string getType() ;
+    virtual std::string getType() ;
     // Mode d'emploi :
     //  
     // Contrat :
