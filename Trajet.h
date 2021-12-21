@@ -62,6 +62,8 @@ public:
     // Contrat :
     //  Aucun.
 
+    virtual const std::string writeFile() const;
+
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur

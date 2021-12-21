@@ -46,6 +46,9 @@ char const *Trajet::getArrivee() const
 {
     return arrivee;
 }
+const std::string Trajet::writeFile() const {
+    return std::string(depart) +","+std::string(arrivee);
+}
 
 
 
