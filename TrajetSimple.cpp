@@ -48,6 +48,10 @@ bool TrajetSimple::estEgal( Trajet* t ){
     }
 }
 
+const std::string TrajetSimple::writeFile() const {
+    return Trajet::writeFile() + "," + string(transport);
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -48,6 +48,8 @@ public:
     // Contrat :
     //  `t` ne devrait pas pointer le même Trajet que this.
 
+    const std::string writeFile() const;
+
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
