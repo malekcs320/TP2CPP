@@ -13,6 +13,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
 #include "Trajet.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -57,7 +58,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    void rechercheSimple(const char *depart, const char *arrivee);
+    void rechercheSimple(std::string depart, std::string arrivee);
     // Mode d'emploi :
     //  Effectue une recherche simple sur le catalogue, en fonction des paramètres.
     //  `depart` est le lieu de départ, `arrivee` est le lieu d'arrivée. On recherche les
@@ -65,30 +66,32 @@ public:
     // Contrat :
     //  Aucun.
 
-    int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
+    // int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
     // Mode d'emploi :
     //  
     // Contrat :
     //
 
-    void rechercheAvancee(const char *depart, const char *arrivee);
+    // void rechercheAvancee(const char *depart, const char *arrivee);
     // Mode d'emploi :
     //  Effectue une recherche avancée sur le catalogue. Cette fois on recherche en profondeur également, 
     //  parmi les sous-trajet des trajets composés. `depart` est le lieu de départ, `arrivee` est le lieu d'arrivée. 
     // Contrat :
     //  Aucun.
 
-    void supprimerTrajet(int index);
+    void supprimerTrajet(int i);
     // Mode d'emploi :
     //  Supprime le trajet situé à la position passée en paramètre.
     // Contrat :
     //  index doit être un entier positif ou nul.
 
-    int getTaille();
+    int getTaille() const;
     // Mode d'emploi :
     //  Donne le nombre de trajets qui composent le catalogue.
     // Contrat :
     //  Aucun.
+
+    ListeTrajets *getListe() const;
 
     //------------------------------------------------------------------ PRIVE
 
@@ -102,3 +105,4 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
 
 #endif // CATALOGUE_H
+

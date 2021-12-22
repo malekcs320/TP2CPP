@@ -13,8 +13,8 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 #include <string>
+
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 
@@ -28,32 +28,35 @@ void Catalogue::ajouterTrajet(Trajet *t)
 {
     liste->ajouter(t);
 }
+
 void Catalogue::afficher()
 {
     cout << "----------------" << endl;
     cout << "Le catalogue contient " << liste->getTaille() << " trajets" << endl;
-    for (uint i = 0; i < liste->getTaille(); i++)
+    for (int i = 0; i < liste->getTaille(); i++)
     {
         cout << "Trajet " << i + 1 << " : ";
         liste->getElement(i)->afficherTrajet();
     }
     cout << "----------------" << endl;
 }
-void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
+
+void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
 {
-    cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
-    // ListeTrajets* l = new ListeTrajets();
     int nb = 0;
-    for (uint i = 0; i < liste->getTaille(); i++)
+    for (int i = 0; i < liste->getTaille(); i++)
     {
-        if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
+        if (liste->getElement(i)->getDepart().compare(depart) == 0 && liste->getElement(i)->getArrivee().compare(arrivee) == 0)
         {
+            cout << "Trajet " << nb + 1 << " : ";
             liste->getElement(i)->afficherTrajet();
             nb++;
         }
     }
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
 }
+
+/*
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
     cout << "Recherche Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
@@ -63,6 +66,7 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
     dejaVisite->vider();
     delete dejaVisite;
 }
+
 int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
 {
     // Algorithme
@@ -109,16 +113,23 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
         }
     }
     return nbTrajets;
-}
+}*/
 
-void Catalogue::supprimerTrajet(int index)
+
+
+void Catalogue::supprimerTrajet(int i)
 {
-    liste->supprimerTrajet(index);
+    liste->supprimerTrajet(i);
 }
 
-int Catalogue::getTaille()
+int Catalogue::getTaille() const
 {
     return liste->getTaille();
+}
+
+ListeTrajets *Catalogue::getListe() const 
+{
+    return liste;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
