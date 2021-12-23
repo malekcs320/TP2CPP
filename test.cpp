@@ -113,13 +113,12 @@ Les tests unitaires permettent d'appeler toutes (ou presque) les méthodes, afin
 d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
 */
 
-
     /* test unitaires */
-    //  testListeTrajets();
+    // testListeTrajets();
     // testTrajetSimple();
     // testTrajetCompose();
     // testCatalogue();
-    // //testMenu(); 
+    // testMenu(); 
     // testSuppressionTeteTaille1();
     // testSuppressionTeteTaille2();
     // testSuppressionPasTeteTaille3(); 
@@ -160,8 +159,8 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     t->ajouterTrajet(test);
     t->ajouterTrajet(test2);
     t->ajouterTrajet(test3);
-    cout << t->writeFile() << endl;
-
+    cout << t->writeFile() << endl; 
+    delete t;
     
     return 0;
 }

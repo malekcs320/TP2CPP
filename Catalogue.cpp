@@ -115,8 +115,6 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
     return nbTrajets;
 }*/
 
-
-
 void Catalogue::supprimerTrajet(int i)
 {
     liste->supprimerTrajet(i);
