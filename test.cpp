@@ -1,6 +1,7 @@
 #define MAP 1
 
 #include <iostream>
+#include <fstream>
 #include <typeinfo>
 
 #include "Trajet.h"
@@ -114,18 +115,53 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
 
 
     /* test unitaires */
-    /* testListeTrajets();
-    testTrajetSimple();
-    testTrajetCompose();*/
-    //testCatalogue();
-    //testMenu(); 
-    /*testSuppressionTeteTaille1();
-    testSuppressionTeteTaille2();
-    testSuppressionPasTeteTaille3(); */
+    //  testListeTrajets();
+    // testTrajetSimple();
+    // testTrajetCompose();
+    // testCatalogue();
+    // //testMenu(); 
+    // testSuppressionTeteTaille1();
+    // testSuppressionTeteTaille2();
+    // testSuppressionPasTeteTaille3(); 
 
-    testMenu(); // exécution du programme
+    //testMenu(); // exécution du programme
 
-    
+    // ofstream fileW("fichier.txt");
+    // streambuf *oldCoutBuffer = cout.rdbuf ( fileW.rdbuf ( ) );
+    // cout << "écrire dans un fichier c'est cool" << endl;
+
+    // cout.rdbuf ( oldCoutBuffer );
+
+    // fileW.close();
+
+    // ifstream fileR("fichier.txt");
+    // // if(!fileR) {
+    // //     cout << "erreur ouverture du fichier" << endl;
+    // // }
+    // // char carLu;
+    // // while (fileR.get(carLu)) { // NE FONCTIONNE PAS 
+    // //     cout << carLu << endl;
+    // // }
+    // // fileR.close();
+
+    // string str;
+    // while(getline(fileR,str)) {
+    //     cout << str << endl;
+    // }
+
+    // fileR.close();
+
+    TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
+    t->getArrivee();
+    t->getDepart();
+    TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
+    TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
+    TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
+    t->ajouterTrajet(test);
+    t->ajouterTrajet(test2);
+    t->ajouterTrajet(test3);
+    cout << t->writeFile() << endl;
+
     
     return 0;
 }
