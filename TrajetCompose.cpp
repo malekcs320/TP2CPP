@@ -61,6 +61,16 @@ bool TrajetCompose::estEgal( Trajet* t ){
     }
 }
 
+const std::string TrajetCompose::writeFile() const {
+    std::string retour;
+    retour += Trajet::writeFile() +",";
+    for(uint i=0; i<liste->getTaille(); i++) {
+        retour += liste->getElement(i)->writeFile();
+        if(i < liste->getTaille()-1) retour += ",";
+    }
+    return retour;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur

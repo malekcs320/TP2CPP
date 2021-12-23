@@ -54,6 +54,10 @@ public:
     //  moyens de transport.
     // Contrat :
     //  Le paramètre `t` ne doit pas pointer le même trajet que `this`.
+
+    const std::string writeFile() const;
+
+
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
