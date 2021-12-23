@@ -34,7 +34,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    char *getTransport();
+    std::string getTransport();
     // Mode d'emploi :
     //  Donne le moyen de transport du trajet.
     // Contrat :
@@ -48,13 +48,21 @@ public:
     // Contrat :
     //  `t` ne devrait pas pointer le même Trajet que this.
 
+    
     const std::string writeFile() const;
+
 
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetSimple(const char *depart, const char *arivee, const char *transport);
+    TrajetSimple(const std::string depart, const std::string arrivee, const std::string transport);
+    // Mode d'emploi :
+    //  Crée un trajet à partir des paramètres : ville départ, ville arrivée, moyen de transport.
+    // Contrat :
+    //  Les villes de départ et d'arrivée ne devraient pas être les mêmes.
+
+    TrajetSimple(TrajetSimple &unTrajetSimple);
     // Mode d'emploi :
     //  Crée un trajet à partir des paramètres : ville départ, ville arrivée, moyen de transport.
     // Contrat :
@@ -72,7 +80,7 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    char *transport;
+    std::string transport;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>

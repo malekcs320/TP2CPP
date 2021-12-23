@@ -28,7 +28,7 @@ void TrajetSimple::afficherTrajet() const
     cout << "de " << depart << " à " << arrivee << " en " << transport << endl;
 }
 
-char *TrajetSimple::getTransport()
+std::string TrajetSimple::getTransport()
 {
     return transport;
 }
@@ -48,15 +48,17 @@ bool TrajetSimple::estEgal( Trajet* t ){
     }
 }
 
+
 const std::string TrajetSimple::writeFile() const {
-    return Trajet::writeFile() + "," + string(transport);
+    return Trajet::writeFile() + "," + transport;
 }
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple(const char *depart$, const char *arrivee$, const char *transport$) : Trajet(depart$, arrivee$)
+TrajetSimple::TrajetSimple(const std::string depart, const std::string arrivee, const std::string mTransport) : Trajet(depart,arrivee)
 // Algorithme :
 //
 {
@@ -64,10 +66,20 @@ TrajetSimple::TrajetSimple(const char *depart$, const char *arrivee$, const char
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-    transport = new char[strlen(transport$) + 1];
-    strcpy(transport, transport$);
+    transport = mTransport;
 
 } //----- Fin de TrajetSimple
+
+TrajetSimple::TrajetSimple(TrajetSimple &unTrajetSimple) : Trajet(unTrajetSimple)
+// Algorithme :
+//
+{
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    #endif
+
+    transport = unTrajetSimple.getTransport();
+}
 
 TrajetSimple::~TrajetSimple()
 // Algorithme :
@@ -76,7 +88,7 @@ TrajetSimple::~TrajetSimple()
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-    delete[] transport;
+
 } //----- Fin de ~TrajetSimple
 
 //------------------------------------------------------------------ PRIVE

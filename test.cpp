@@ -66,7 +66,7 @@ void testCatalogue()
     c->afficher();
     c->getTaille();
     c->rechercheSimple("Paris", "Lyon");
-    c->rechercheAvancee("Paris", "Lyon");
+  //  c->rechercheAvancee("Paris", "Lyon");
     c->afficher();
     c->supprimerTrajet(3);
     c->afficher();
