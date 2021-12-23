@@ -44,13 +44,13 @@ public:
   // Contrat :
   //  Aucun.
 
-  int getTaille() const;
+  uint getTaille() const;
   // Mode d'emploi :
   //  Donne la taille courante du tableau (nombre de trajets qu'il contient).
   // Contrat :
   //  Aucun.
 
-  int getTailleMax() const;
+  uint getTailleMax() const;
   // Mode d'emploi :
   //  Donne la taille maximum du tableau (nombre de trajets qu'elle PEUT contenir).
   // Contrat :
@@ -108,8 +108,8 @@ protected:
 
   //----------------------------------------------------- Attributs protégés
   
-  int tailleMax;
-  int taille;
+  uint tailleMax;
+  uint taille;
   Trajet **tab; // Tableau de pointeurs de Trajet
 };
 

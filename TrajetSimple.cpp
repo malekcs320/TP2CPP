@@ -38,13 +38,12 @@ std::string TrajetSimple::getType() {
 }
 
 bool TrajetSimple::estEgal( Trajet* t ){
-    if(t->getType() != "TrajetSimple") {
+    if(t->getType().compare("TrajetSimple") != 0) {
         return false;
     }
     else {
         TrajetSimple * ts = dynamic_cast<TrajetSimple*>(t);
         return ts->getArrivee() == arrivee && ts->getDepart() == depart && ts->getTransport() == transport;
-        
     }
 }
 

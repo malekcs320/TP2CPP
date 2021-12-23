@@ -32,9 +32,7 @@ void Trajet::afficherTrajet() const
 
 bool Trajet::estEgal(Trajet *t)
 {
-    if(this->getDepart() == t->getDepart())
-        return true;
-    return false;
+    return this->getDepart().compare(t->getDepart()) == 0 && this->getArrivee().compare(t->getArrivee()) == 0;
 }
 
 std::string Trajet::getType() {

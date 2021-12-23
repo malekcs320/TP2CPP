@@ -29,7 +29,7 @@ void TrajetCompose::afficherTrajet() const
     cout << "Trajet composé ";
     Trajet::afficherTrajet();
 
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         cout << "  - ";
         liste->getElement(i)->afficherTrajet();
@@ -54,7 +54,7 @@ bool TrajetCompose::estEgal(Trajet* t){
         if (ts->getArrivee().compare(arrivee) || ts->getDepart().compare(depart)) {
             return false;
         }
-        for(int i = 0; i < liste->getTaille(); i++) {
+        for(uint i = 0; i < liste->getTaille(); i++) {
             if(!liste->getElement(i)->estEgal(t)) return false;
         }
         return true;

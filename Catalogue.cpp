@@ -33,7 +33,7 @@ void Catalogue::afficher()
 {
     cout << "----------------" << endl;
     cout << "Le catalogue contient " << liste->getTaille() << " trajets" << endl;
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         cout << "Trajet " << i + 1 << " : ";
         liste->getElement(i)->afficherTrajet();
@@ -44,7 +44,7 @@ void Catalogue::afficher()
 void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
 {
     int nb = 0;
-    for (int i = 0; i < liste->getTaille(); i++)
+    for (uint i = 0; i < liste->getTaille(); i++)
     {
         if (liste->getElement(i)->getDepart().compare(depart) == 0 && liste->getElement(i)->getArrivee().compare(arrivee) == 0)
         {

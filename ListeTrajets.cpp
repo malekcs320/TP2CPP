@@ -31,12 +31,12 @@ void ListeTrajets::reallouer() {
   /* On fait pointer chaque case du tableau temp sur l'instance de Trajet
   pointée par tab au même indice */
 
-  for (int i = 0; i < this->getTaille(); i++) 
+  for (uint i = 0; i < this->getTaille(); i++) 
 			temp[i] = tab[i];
 
 		// Définition du reste des pointeurs à NULL
 
-		for (int i = this->getTaille(); i < tailleMax * 2; i++) {
+		for (uint i = this->getTaille(); i < tailleMax * 2; i++) {
 			temp[i] = NULL;
 		}
 
@@ -69,7 +69,7 @@ void ListeTrajets::afficher() {
       cout << "La liste est vide" << endl;
     }
 
-		for (int i = 0; i < taille; i++) {
+		for (uint i = 0; i < taille; i++) {
 			tab[i]->afficherTrajet();
 		}
 	} // fin afficher
@@ -82,7 +82,7 @@ void ListeTrajets::supprimerTrajet(int j)
 {
   delete tab[j];
 
-  for(int i = j; i < this->getTaille() - 1; i++) 
+  for(uint i = j; i < this->getTaille() - 1; i++) 
     tab[i] = tab[i + 1];
 
   tab[taille - 1] = NULL;
@@ -145,12 +145,12 @@ void ListeTrajets::vider()
 
 //------------------------------------------------------ Getters - setters
 
-int ListeTrajets::getTaille() const
+uint ListeTrajets::getTaille() const
 {
   return taille;
 }
 
-int ListeTrajets::getTailleMax() const
+uint ListeTrajets::getTailleMax() const
 {
   return tailleMax;
 }
@@ -174,7 +174,7 @@ ListeTrajets::ListeTrajets() : tailleMax(TAILLEMAX), taille(0)
 
 	// Initialisation des pointeurs à NULL 
 
-	for (int i = 0; i < tailleMax; i++) {
+	for (uint i = 0; i < tailleMax; i++) {
 		tab[i] = NULL;
 	}
 } //----- Fin de ListeTrajets
@@ -194,11 +194,11 @@ ListeTrajets::ListeTrajets(const ListeTrajets &uneListeTrajets)
 
   tab = new Trajet*[tailleMax];
 
-  for(int i = 0; i < taille; i++) {
+  for(uint i = 0; i < taille; i++) {
     tab[i] = new Trajet(*(uneListeTrajets.getElement(i)));
   }
 
-  for(int i = taille; i < tailleMax; i++) {
+  for(uint i = taille; i < tailleMax; i++) {
     tab[i] = NULL;
   }
 } //----- Fin du constructeur de copie de ListeTrajets
@@ -212,7 +212,7 @@ ListeTrajets::~ListeTrajets()
   cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
   
-  for (int i = 0; i < taille; i++) {
+  for (uint i = 0; i < taille; i++) {
 		delete tab[i];
 	}
 
