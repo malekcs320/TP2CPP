@@ -20,6 +20,7 @@ void testTrajetSimple()
     t1->getArrivee();
     t1->getDepart();
     t1->getTransport();
+    t1->estEgal(t1);
     delete t1;
 }
 void testTrajetCompose()
@@ -115,14 +116,14 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
 
 
     /* test unitaires */
-    //  testListeTrajets();
-    // testTrajetSimple();
-    // testTrajetCompose();
-    // testCatalogue();
-    // //testMenu(); 
-    // testSuppressionTeteTaille1();
-    // testSuppressionTeteTaille2();
-    // testSuppressionPasTeteTaille3(); 
+    // testListeTrajets();
+    //testTrajetSimple();
+    //testTrajetCompose();
+    //testCatalogue();
+    //testMenu(); 
+    //testSuppressionTeteTaille1();
+    //testSuppressionTeteTaille2();
+    //testSuppressionPasTeteTaille3(); 
 
     //testMenu(); // exécution du programme
 
@@ -151,17 +152,21 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
 
     // fileR.close();
 
-    TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
-    t->getArrivee();
-    t->getDepart();
-    TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
-    TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
-    TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
-    t->ajouterTrajet(test);
-    t->ajouterTrajet(test2);
-    t->ajouterTrajet(test3);
-    cout << t->writeFile() << endl;
+    // TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
+    // t->getArrivee();
+    // t->getDepart();
+    // TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
+    // TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
+    // TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
+    // t->ajouterTrajet(test);
+    // t->ajouterTrajet(test2);
+    // t->ajouterTrajet(test3);
+    // cout << t->writeFile() << endl;
 
+    Catalogue * c = new Catalogue();
+    c->readFile("fichier.txt");
+    c->afficher();
+    delete c;
     
     return 0;
 }
