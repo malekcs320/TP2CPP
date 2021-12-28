@@ -80,9 +80,9 @@ void ListeTrajets::supprimerTrajet(int j)
 // supprimer le premier trajet, ce sera le trajet à l'emplacement tab[0])
 // et on déplace les trajets de i à taille - 1 de une case vers la gauche
 {
-  delete tab[j];
+  delete tab[j - 1]; // tab[0]
 
-  for(uint i = j; i < this->getTaille() - 1; i++) 
+  for(uint i = j - 1; i < this->getTaille() - 1; i++) 
     tab[i] = tab[i + 1];
 
   tab[taille - 1] = NULL;

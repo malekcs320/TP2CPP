@@ -114,7 +114,6 @@ Les tests unitaires permettent d'appeler toutes (ou presque) les méthodes, afin
 d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
 */
 
-
     /* test unitaires */
     // testListeTrajets();
     //testTrajetSimple();
@@ -167,6 +166,17 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     c->readFile("fichier.txt");
     c->afficher();
     delete c;
+    TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
+    t->getArrivee();
+    t->getDepart();
+    TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
+    TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
+    TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
+    t->ajouterTrajet(test);
+    t->ajouterTrajet(test2);
+    t->ajouterTrajet(test3);
+    cout << t->writeFile() << endl; 
+    delete t;
     
     return 0;
 }
