@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <string>
 
 //------------------------------------------------------ Include personnel
@@ -130,6 +131,88 @@ int Catalogue::getTaille() const
 ListeTrajets *Catalogue::getListe() const 
 {
     return liste;
+}
+
+bool Catalogue::readFile(std::string fileName) 
+// Algorithme :
+/*
+    Lecture ligne à ligne du fichier dont le nom est passé en paramètre.
+    Si une erreur survient lors de l'ouverture du fichier, on retourne false.
+    Si on parvient à aller jusqu'à la fin du processus, on retourne true.
+    On analyse d'abord le premier caractère, qui doit être soit 'S' soit 'C' (dans tous les autres cas,
+    on affiche le numéro de la ligne, précisant qu'elle est de format invalide, dans la console). 
+    Ensuite, on lit exactement 3 mots pour 'S' séparés par des virgules. Pour 'C', on lit exactement 2 mots, 
+    puis on lit au moins 1 fois un ensemble de 3 mots (pour chaque sous-trajet) séparés par des virgules. 
+*/
+{
+    std::ifstream file(fileName);
+
+    if(!file) {
+        cout << "Une erreur est survenue lors de l'ouverture du fichier " << fileName << endl;
+        return false;
+    }
+    std::string ligne("");
+    char c;
+    uint pointeurChar=0, compteurLigne=0;
+    while(getline(file,ligne)) { // lecture ligne à ligne
+        compteurLigne++;
+        c = ligne.front();
+        if(c == 'S') {
+            std::string infos[3];
+            pointeurChar = 1;
+            for(int i=0; i<3; i++) {
+                pointeurChar++;
+                c = ligne.at(pointeurChar);
+                while(c != ',' && pointeurChar < ligne.size()) {
+                    //cout << i << " : " <<  c << " pointeurChar : " << pointeurChar << "<" << ligne.size() << endl;
+                    infos[i].append(1, c);
+                    pointeurChar++;
+                    if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+                }
+            }
+            ajouterTrajet(new TrajetSimple(infos[0], infos[1], infos[2]));
+        }
+        else if(c == 'C') {
+            std::string infosCompose[2], infosSimple[3];
+            pointeurChar = 1;
+
+            /* lecture des informations du trajet composé (départ, arrivée) */
+            for(int i=0; i<2; i++) {
+                pointeurChar++;
+                c = ligne.at(pointeurChar);
+                while(c != ',' && pointeurChar < ligne.size()) {
+                    infosCompose[i].append(1, c);
+                    pointeurChar++;
+                    if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+                }
+            }
+
+            TrajetCompose *t = new TrajetCompose(infosCompose[0], infosCompose[1]);
+
+            /* lecture des sous-trajets */
+            while(pointeurChar < ligne.size()) {
+                for(int i=0; i<3; i++) {
+                    pointeurChar++;
+                    c = ligne.at(pointeurChar);
+                    while(c != ',' && pointeurChar < ligne.size()) {
+                        infosSimple[i].append(1, c);
+                        pointeurChar++;
+                        if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+                    }
+                }
+                t->ajouterTrajet(new TrajetSimple(infosSimple[0], infosSimple[1], infosSimple[2]));
+                for(int i=0; i<3; i++) infosSimple[i] = "";
+
+            }
+            ajouterTrajet(t);
+        }
+        else {
+            cout << "Ligne " << compteurLigne << " : format invalide" << endl;
+        }
+    }
+
+    file.close();
+    return true;
 }
 
 //-------------------------------------------- Constructeurs - destructeur

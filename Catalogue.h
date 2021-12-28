@@ -13,6 +13,8 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -92,6 +94,16 @@ public:
     //  Aucun.
 
     ListeTrajets *getListe() const;
+
+    bool readFile(std::string fileName);
+    // Mode d'emploi :
+    //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
+    // Contrat :
+    //  Le fichier doit correspondre au format imposé par le logiciel, à savoir :
+    //  Les trajets simples sont décrits de cette façon : S,villeDepart,villeArrivee,moyenTransport 
+    //  Les trajets composés sont décrits de cette façon : C,villeDepartGlobale,villeArriveeGlobale,villeDepart1,villeArrivee1,moyen1,villeDepart2,villeArrivee2,moyen2 
+    //  Les trajets sont séparés par des retours à la ligne.
+    //  Les trajets composés contiennent au moins 1 sous-trajet simple.
 
     //------------------------------------------------------------------ PRIVE
 
