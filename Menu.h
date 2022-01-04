@@ -101,6 +101,8 @@ void sauvegarderCatalogue();
     // annulé. 
     // Contrat :
     // Aucun. 
+
+void chargerCatalogue();
     
     //-------------------------------------------- Constructeurs - destructeur
 

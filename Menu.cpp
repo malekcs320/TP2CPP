@@ -34,13 +34,14 @@ void Menu::afficherMenu()
         cout << "3 : Afficher le catalogue" << endl;
         cout << "4 : Supprimer un trajet" << endl;
         cout << "5 : Sauvegarder le catalogue" << endl;
+        cout << "6 : Charger le catalogue à partir d'un fichier" << endl;
         cout << "Veuillez entrer votre choix (q pour quitter) : ";
         cin >> choix;
         cout << endl;
         while (choix.compare("1") != 0 && choix.compare("2") != 0 && choix.compare("3") != 0
-             && choix.compare("4") != 0 && choix.compare("5") != 0 && choix.compare("q") != 0)
+             && choix.compare("4") != 0 && choix.compare("5") != 0 && choix.compare("6") != 0 && choix.compare("q") != 0)
         {
-            cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, 5, q. Choix : ";
+            cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, 5, 6, q. Choix : ";
             cin >> choix;
             cout << endl;
         }
@@ -67,6 +68,11 @@ void Menu::afficherMenu()
         else if(choix.compare("5") == 0)
         {
             sauvegarderCatalogue();
+            cout << endl;
+        }
+        else if(choix.compare("6") == 0)
+        {
+            chargerCatalogue();
             cout << endl;
         }
     } while (choix.compare("q") != 0);
@@ -199,15 +205,12 @@ bool Menu::fichierExiste(std::string nomFichier) {
     ifstream test;
 
     cout << endl;
-    cout << "Test de l'existence du fichier " << nomFichier << ".txt..." << endl;
 
     test.open(nomFichier + ".txt");
 
     if(test) {
-        cout << "Le fichier existe déjà." << endl;
         return true;
     }
-    cout << "Pas de conflit avec le nom du fichier. \n" << endl;
     return false;
 }
 
@@ -220,6 +223,7 @@ std::string Menu::gestionNomSauvegarde() {
     cin >> nomFichier;
 
     while(fichierExiste(nomFichier)) {
+        cout << "Le fichier existe déjà." << endl;
         cout << "Que souhaitez-vous faire ?" << endl;
         cout << "1 - Ecraser le fichier existant et sauvegarder sous ce nom." << endl;
         cout << "2 - Choisir un autre nom de fichier." << endl;
@@ -244,6 +248,7 @@ std::string Menu::gestionNomSauvegarde() {
             break;
         }
     }
+    cout << "Pas de conflit avec le nom du fichier. \n" << endl;
     return nomFichier + ".txt";
 }
 
@@ -296,6 +301,28 @@ void Menu::sauvegarderCatalogue() {
 
     cout << "Fin de l'opération de sauvegarde." << endl;
     cout << "<< RETOUR AU MENU PRINCIPAL" << endl;
+}
+
+void Menu::chargerCatalogue() {
+    string nomFichier;
+    cout << "Saisir le nom du fichier sans son extension : ";
+    cin >> nomFichier;
+    while(!fichierExiste(nomFichier)) {
+        cout << "Le fichier n'existe pas. Veuillez saisir un nom de fichier existant sans son extension ou quitter en tapant q : ";
+        cin >> nomFichier;
+        if(nomFichier.compare("q") == 0) {
+            cout << "Annulation. Retour au menu. " << endl;
+            return;
+        }
+    }
+    cout << "Chargement du fichier..." << endl;
+    int retour = c->readFile(nomFichier+".txt");
+    if(retour >= 0) {
+        cout << retour << " trajets ont été chargés";
+    }
+    else {
+        cout << "Fichier non chargé";
+    }
 }
 
 //-------------------------------------------- Constructeurs - destructeur

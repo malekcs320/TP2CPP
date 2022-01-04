@@ -95,9 +95,10 @@ public:
 
     ListeTrajets *getListe() const;
 
-    bool readFile(std::string fileName);
+    int readFile(std::string fileName);
     // Mode d'emploi :
     //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
+    //  En cas de succès, le nombre de trajets chargés est retourné ; en cas d'échec, on retourne -1.
     // Contrat :
     //  Le fichier doit correspondre au format imposé par le logiciel, à savoir :
     //  Les trajets simples sont décrits de cette façon : S,villeDepart,villeArrivee,moyenTransport 

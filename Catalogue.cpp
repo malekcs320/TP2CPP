@@ -131,7 +131,7 @@ ListeTrajets *Catalogue::getListe() const
     return liste;
 }
 
-bool Catalogue::readFile(std::string fileName) 
+int Catalogue::readFile(std::string fileName) 
 // Algorithme :
 /*
     Lecture ligne à ligne du fichier dont le nom est passé en paramètre.
@@ -147,15 +147,16 @@ bool Catalogue::readFile(std::string fileName)
 
     if(!file) {
         cout << "Une erreur est survenue lors de l'ouverture du fichier " << fileName << endl;
-        return false;
+        return -1;
     }
     std::string ligne("");
     char c;
-    uint pointeurChar=0, compteurLigne=0;
+    uint pointeurChar=0, compteurLigne=0, compteurTrajet=0;
     while(getline(file,ligne)) { // lecture ligne à ligne
         compteurLigne++;
         c = ligne.front();
         if(c == 'S') {
+            compteurTrajet++;
             std::string infos[3];
             pointeurChar = 1;
             for(int i=0; i<3; i++) {
@@ -171,6 +172,7 @@ bool Catalogue::readFile(std::string fileName)
             ajouterTrajet(new TrajetSimple(infos[0], infos[1], infos[2]));
         }
         else if(c == 'C') {
+            compteurTrajet++;
             std::string infosCompose[2], infosSimple[3];
             pointeurChar = 1;
 
@@ -210,7 +212,7 @@ bool Catalogue::readFile(std::string fileName)
     }
 
     file.close();
-    return true;
+    return compteurTrajet;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
