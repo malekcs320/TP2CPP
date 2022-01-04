@@ -26,18 +26,18 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void ListeTrajets::reallouer() {
-  Trajet** temp = new Trajet* [this->getTailleMax() * 2];
+  Trajet** temp = new Trajet* [tailleMax * 2];
 
   /* On fait pointer chaque case du tableau temp sur l'instance de Trajet
   pointée par tab au même indice */
 
-  for (uint i = 0; i < this->getTaille(); i++) 
+  for (uint i = 0; i < taille; i++) 
 			temp[i] = tab[i];
 
 		// Définition du reste des pointeurs à NULL
 
-		for (uint i = this->getTaille(); i < tailleMax * 2; i++) {
-			temp[i] = NULL;
+		for (uint i = taille; i < tailleMax * 2; i++) {
+			temp[i] = nullptr;
 		}
 
 		// On supprime le tableau tab, mais pas les instances de Trajet qu'il contient !
@@ -46,7 +46,7 @@ void ListeTrajets::reallouer() {
 
 		// On change la valeur max de l'instance de tableau de trajets courante
 
-		this->tailleMax = 2 * tailleMax;
+		tailleMax = 2 * tailleMax;
 
 		// On fait pointer l'attribut tab vers temp.
 
@@ -82,12 +82,26 @@ void ListeTrajets::supprimerTrajet(int j)
 {
   delete tab[j - 1]; // tab[0]
 
-  for(uint i = j - 1; i < this->getTaille() - 1; i++) 
+  for(uint i = j - 1; i < taille - 1; i++) 
     tab[i] = tab[i + 1];
 
-  tab[taille - 1] = NULL;
+  tab[taille - 1] = nullptr;
   taille--;
 } // fin supprimerTrajet
+
+void ListeTrajets::supprimerTrajetRecherche (uint j)
+// Algorithme
+{
+  if( j < 0 || j >= taille )
+	{
+		return;
+	}
+	for( uint i = j ; i < taille-1 ; i++ )
+	{
+		tab[ i ] = tab[ i+1 ];
+	}
+	taille--;
+}
 
 /*void ListeTrajets::supprimerTrajetRecherche(uint index) 
 {

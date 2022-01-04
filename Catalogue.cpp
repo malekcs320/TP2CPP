@@ -57,18 +57,16 @@ void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
 }
 
-/*
-void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
+void Catalogue::rechercheAvancee(const std::string depart, const std::string arrivee)
 {
     cout << "Recherche Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
     ListeTrajets *dejaVisite = new ListeTrajets();
     int nb = rechercheAux(depart, arrivee, dejaVisite);
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
-    dejaVisite->vider();
     delete dejaVisite;
 }
 
-int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
+int Catalogue::rechercheAux(const std::string depart, const std::string arrivee, ListeTrajets *dejaVisite)
 {
     // Algorithme
     // Exploration récursive en profondeur du graphe des trajets.
@@ -76,10 +74,10 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
     // Aprés avoir visité tous les voisins du trajet, on le dépile.
     // A chaque recherche, on ne considère que les trajets ayant pour point de départs "depart",
     // cela nous évite de construire tout le graphe d'adjacence formé par nos trajets.
-    //  Choix d'affichage au fur et à mesure de la recherche nous facilite la manipulation de la fonction récursivie
+    // Choix d'affichage au fur et à mesure de la recherche nous facilite la manipulation de la fonction récursivie
 
     int nbTrajets = 0;
-    if (strcmp(depart, arrivee) == 0)
+    if (depart == arrivee)
     {
         cout << "-----------------------" << endl;
         dejaVisite->afficher();
@@ -90,7 +88,7 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
     {
         Trajet *trajet = liste->getElement(i);
 
-        if (strcmp(trajet->getDepart(), depart) == 0) //
+        if (trajet->getDepart()==depart) //
         {
             existe = false;
             for (uint j = 0; j < dejaVisite->getTaille(); j++)
@@ -109,12 +107,12 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
 
                 nbTrajets += rechercheAux(trajet->getArrivee(), arrivee, dejaVisite);
                 // suppression dernier elem (ex A->B, B->C ==> A->B) pour chercher d'autres possibilités à partir de B
-                dejaVisite->supprimerTrajetRecherche(dejaVisite->getTaille() - 1);
+                dejaVisite->supprimerTrajetRecherche(dejaVisite->getTaille()-1);
             }
         }
     }
     return nbTrajets;
-}*/
+}
 
 void Catalogue::supprimerTrajet(int i)
 {

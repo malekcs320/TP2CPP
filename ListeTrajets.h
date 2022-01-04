@@ -80,7 +80,7 @@ public:
   // i d'une case en arrière pour qu'il n'y ait pas de case vide.
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
-
+  void supprimerTrajetRecherche (uint j);
   //-------------------------------------------- Constructeurs - destructeur
 
   ListeTrajets();
