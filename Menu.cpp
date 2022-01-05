@@ -282,10 +282,30 @@ void Menu::sauvegarderCatalogue() {
         switch(choix) {
             case 1:
                 for(int i = 0; i < c->getTaille(); i++) 
-                    fichier << c->getListe()->getElement(i)->writeFile();
+                    {fichier << c->getListe()->getElement(i)->writeFile();
+                    fichier << endl;
+                    }
+
                 fin = true;
             break;
             case 2:
+                // char type;
+                // cout<<"Veuillez choisir le type S/C";
+                // cin>>type;
+                // while(type !='S' || type !='C')
+                //     {
+                //         cout<<"mauvais type"<<endl;
+                //         cout<<"Veuillez choisir le type S/C";
+                //         cin>>type;
+                //     }
+                
+                // for(int i = 0; i < c->getTaille(); i++) 
+                //     {string TypeTrajet = c->getListe()->getElement(i)->getType();
+                //     if(typeTrajet[strlen("Trajet")]==type)
+                //     fichier << c->getListe()->getElement(i)->writeFile();
+                //     fichier << endl;
+                //     }
+                // fin = true;
             break;
             case 3:
             break;
