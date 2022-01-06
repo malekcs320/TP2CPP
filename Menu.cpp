@@ -16,6 +16,8 @@ using namespace std;
 #include <fstream>
 #include <cstring>
 #include <string>
+#include <limits>
+
 //------------------------------------------------------ Include personnel
 #include "Menu.h"
 
@@ -84,7 +86,7 @@ void Menu::afficherMenu()
 
 TrajetSimple *Menu::saisirTS(std::string ville_depart)
 {
-    std::string depart ="", arrivee="", moyenTransport="";
+    std::string depart = "", arrivee = "", moyenTransport = "";
     cout << ">> SAISIE D'UN TRAJET SIMPLE" << endl;
     cout << "Ville de départ : ";
     if (ville_depart.compare("") == 0)
@@ -220,15 +222,14 @@ bool Menu::fichierExiste(std::string nomFichier) {
 
 std::string Menu::gestionNomSauvegarde() {
     std::string nomFichier;
-    int choix;
+    char choix;
 
     cout << ">> NOM DU FICHIER DE SAUVEGARDE " << endl;
     cout << "Quel nom souhaitez-vous donner à votre sauvegarde (sans l'extension) ?" << endl;
     cin >> nomFichier;
 
     while(fichierExiste(nomFichier)) {
-        cout << "Le fichier existe déjà." << endl;
-        cout << "Que souhaitez-vous faire ?" << endl;
+        cout << "Le fichier existe déjà. Que souhaitez-vous faire ?" << endl;
         cout << "1 - Ecraser le fichier existant et sauvegarder sous ce nom." << endl;
         cout << "2 - Choisir un autre nom de fichier." << endl;
         cout << "3 - Annuler l'opération de sauvegarde." << endl;
@@ -236,23 +237,28 @@ std::string Menu::gestionNomSauvegarde() {
         cout << endl;
 
         switch(choix) {
-            case 1:
+            case '1':
                 return nomFichier + ".txt";
             break;
-            case 2:
+            case '2':
                 cout << "Veuillez choisir un nouveau nom de fichier (sans l'extension)" << endl;
                 cin >> nomFichier;
             break;
-            case 3:
+            case '3':
                 cout << "ANNULATION. RETOUR AU MENU PRINCIPAL." << endl;
                 return "";
             break;
             default:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Veuillez faire un choix valide." << endl;
+                cin >> choix;
             break;
         }
     }
+
     cout << "Pas de conflit avec le nom du fichier. \n" << endl;
+
     return nomFichier + ".txt";
 }
 
@@ -262,14 +268,31 @@ void Menu::sauvegarderCatalogue() {
 
     cout << "----------------- MENU SAUVEGARDE -----------------\n" << endl;
 
+    if(c->getTaille() < 1) // S'il n'y a pas de trajet dans le catalogue
+    {
+        cout << "Il n'y a pas de contenu dans le catalogue. Sauvegarde impossible." << endl << endl;
+        cout << "Fin de l'opération de sauvegarde." << endl;
+        cout << "<< RETOUR AU MENU PRINCIPAL" << endl;
+
+        return;
+    }
+
     nomFichier = gestionNomSauvegarde();
 
-    if(nomFichier.compare("") == 0) // Si le nom du fichier est vide, l'utilisateur veut annuler
+    if(nomFichier == "") // Si le nom du fichier est vide, l'utilisateur veut annuler
         return;
 
+    fichier.open(nomFichier); // Ouverture du fichier
     int choix;
     bool fin = false;
-    fichier.open(nomFichier); // Ouverture du fichier
+
+    // Variables pour les cases
+
+    char type;
+    std::string villeDepart = "";
+    std::string villeArrivee = "";
+    int borneMin = 0;
+    int borneMax = 0;
 
     cout << ">> CONTENU DE LA SAUVEGARDE" << endl;
 
@@ -282,12 +305,7 @@ void Menu::sauvegarderCatalogue() {
         cout << "4 - Une sélection de trajets selon leur index." << endl;
         cout << "5 - Annuler [x]" << endl;
         cin >> choix;
-
-        char type;
-        std::string villeDepart = "";
-        std::string villeArrivee = "";
-        // int borneMin = 0;
-        // int borneMax = 0;
+        cout << endl;
 
         switch(choix) {
             case 1: // enregistrement de tout le catalogue
@@ -296,13 +314,12 @@ void Menu::sauvegarderCatalogue() {
             break;
 
             case 2: // choix entre sauvegarder les trajets simples OU les trajets composés
-
-                cout << "Veuillez choisir le type de trajet : simple (s) ou composé (c)" << endl;
+                cout << "Veuillez choisir le type de trajet, simple (s) ou composé (c) : " ;
                 cin >> type;
 
-                while(type != 's' && type != 'c')
+                while(type != 's' && type != 'c') // vérification choix
                 {
-                    cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c)." << endl;
+                    cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c) : ";
                     cin >> type;
                 }
                 
@@ -314,7 +331,7 @@ void Menu::sauvegarderCatalogue() {
 
                 cout << "Souhaitez-vous enregistrer les trajets depuis ";
                 cout << "une ville de départ (d), une ville d'arrivée (a) ou les deux (m) ?" << endl;
-                cin >> type; // On récupère le choix de l'utilisateur
+                cin >> type; 
 
                 switch(type) 
                 {
@@ -350,6 +367,29 @@ void Menu::sauvegarderCatalogue() {
             break;
 
             case 4:
+                cout << "Veuillez choisir la borne minimum : ";
+                cin >> borneMin;
+
+                while(borneMin < 1 || borneMin > c->getTaille())
+                {
+                    cout << "La borne doit être comprise entre 1 et " << c->getTaille() << ". ";
+                    cout << "Veuillez choisir une borne minimum valide : ";
+                    cin >> borneMin;
+                }
+
+                cout << "Veuillez choisir la borne maximum : ";
+                cin >> borneMax;
+
+                while(borneMax < 1 || borneMax > c->getTaille() || borneMax < borneMin)
+                {
+                    cout << "La borne doit être comprise entre 1 et " << c->getTaille();
+                    cout << " et être supérieure ou égale à la borne minimum. ";
+                    cout << "Veuillez choisir une borne maximum valide : ";
+                    cin >> borneMax;
+                }
+
+                fichier << c->writeFileByInterval(borneMin, borneMax);
+                fin = true;
             break;
 
             default:
