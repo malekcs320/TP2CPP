@@ -91,6 +91,10 @@ public:
     // Aucun. 
 
     std::string gestionNomSauvegarde();
+    // Mode d'emploi :
+    //  Permet de demander le nom du fichier de sauvegarde et faire toutes les opérations nécessaires (vérification de l'existence, demande du choix en cas de conflit).
+    // Contrat :
+    //  Aucun. 
 
     void sauvegarderCatalogue();
     // Mode d'emploi :
@@ -103,6 +107,11 @@ public:
     // Aucun. 
 
     void chargerCatalogue();
+    // Mode d'emploi :
+    //  Permet de charger un fichier en tant que sauvegarde pour importer un catalogue.
+    //  Demande le nom du fichier, vérifie son existence.
+    // Contrat :
+    //  Aucun. 
     
     //-------------------------------------------- Constructeurs - destructeur
 
