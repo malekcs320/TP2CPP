@@ -268,7 +268,7 @@ std::string Menu::gestionNomSauvegarde() {
 }
 
 void Menu::sauvegarderCatalogue() {
-    ofstream fichier;
+    
     std::string nomFichier; 
 
     cout << "----------------- MENU SAUVEGARDE -----------------\n" << endl;
@@ -287,7 +287,6 @@ void Menu::sauvegarderCatalogue() {
     if(nomFichier == "") // Si le nom du fichier est vide, l'utilisateur veut annuler
         return;
 
-    fichier.open(nomFichier); // Ouverture du fichier
     int choix;
     bool fin = false;
 
@@ -319,7 +318,7 @@ void Menu::sauvegarderCatalogue() {
 
         switch(choix) {
             case 1: // enregistrement de tout le catalogue
-                fichier << c->writeAllFile();
+                c->writeAllFile(nomFichier);
                 fin = true;
             break;
 
@@ -333,7 +332,7 @@ void Menu::sauvegarderCatalogue() {
                     cin >> type;
                 }
                 
-                fichier << c->writeFileByType(type);
+                c->writeFileByType(nomFichier, type);
                 fin = true;
             break;
 
@@ -357,14 +356,14 @@ void Menu::sauvegarderCatalogue() {
                         cout << "Ville de départ : ";
                         cin >> villeDepart;
 
-                        fichier << c->writeFileByCity(1, villeDepart);
+                        c->writeFileByCity(nomFichier, 1, villeDepart);
                     break;
 
                     case 'a':
                         cout << "Ville d'arrivée : ";
                         cin >> villeArrivee;
 
-                        fichier << c->writeFileByCity(2, "", villeArrivee);
+                        c->writeFileByCity(nomFichier, 2, "", villeArrivee);
                     break;
 
                     case 'm':
@@ -373,7 +372,7 @@ void Menu::sauvegarderCatalogue() {
                         cout << "Ville d'arrivée : ";
                         cin >> villeArrivee;    
                         
-                        fichier << c->writeFileByCity(3, villeDepart, villeArrivee);
+                        c->writeFileByCity(nomFichier, 3, villeDepart, villeArrivee);
                     break;
 
                     default:
@@ -404,7 +403,7 @@ void Menu::sauvegarderCatalogue() {
                     cin >> borneMax;
                 }
 
-                fichier << c->writeFileByInterval(borneMin, borneMax);
+                c->writeFileByInterval(nomFichier, borneMin, borneMax);
                 fin = true;
             break;
 
@@ -571,11 +570,7 @@ void Menu::chargerCatalogue() {
                 cout << "Veuillez entrer un choix valide." << endl;
             break;
         }
-    }while(choix != 5 && !fin);
-
-
-
-    
+    }while(choix != 5 && !fin);    
 }
 
 //-------------------------------------------- Constructeurs - destructeur

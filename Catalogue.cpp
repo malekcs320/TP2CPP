@@ -134,30 +134,30 @@ ListeTrajets *Catalogue::getListe() const
     return liste;
 }
 
-std::string Catalogue::writeAllFile() 
+void Catalogue::writeAllFile(std::string nomFichier) 
 {
-    std::string retour;
+    ofstream fichier;
+    fichier.open(nomFichier);
 
     for(int i = 0; i < this->getTaille(); i++) 
         {
-            retour += this->getListe()->getElement(i)->writeFile();
-            retour += "\n";
+            fichier << this->getListe()->getElement(i)->writeFile() + "\n";
         }
     
-    return retour;
+    fichier.close();
 }
 
-std::string Catalogue::writeFileByType(char type)
+void Catalogue::writeFileByType(std::string nomFichier, char type)
 {
-    std::string retour = "";
+    ofstream fichier;
+    fichier.open(nomFichier);
 
     if(type == 's') // Si on veut sauvegarder les trajets simples
     {
         for(int i = 0; i < this->getTaille(); i++)
         {
             if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple")) {
-                retour += this->getListe()->getElement(i)->writeFile();
-                retour += "\n";
+                fichier << this->getListe()->getElement(i)->writeFile() +"\n";
             }
         }
     }
@@ -167,17 +167,18 @@ std::string Catalogue::writeFileByType(char type)
         {
             if(!this->getListe()->getElement(i)->getType().compare("TrajetCompose"))
             {
-                retour += this->getListe()->getElement(i)->writeFile();
-                retour += "\n";
+                fichier << this->getListe()->getElement(i)->writeFile() + "\n";
             }
         }
     }
-    return retour;
+
+    fichier.close();
 }
 
-std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std::string villeArrivee)
-{
-    std::string retour = "";
+void Catalogue::writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee)
+{ 
+    ofstream fichier;
+    fichier.open(nomFichier);
 
     switch(option) 
     {
@@ -186,8 +187,7 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
             {
                 if(!(this->getListe()->getElement(i)->getDepart().compare(villeDepart)))
                 {
-                    retour += this->getListe()->getElement(i)->writeFile();
-                    retour += "\n";
+                    fichier << this->getListe()->getElement(i)->writeFile() + "\n";
                 }
             }
         break;
@@ -197,8 +197,7 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
             {
                 if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee))
                 {
-                    retour += this->getListe()->getElement(i)->writeFile();
-                    retour += "\n";
+                    fichier << this->getListe()->getElement(i)->writeFile() + "\n";
                 }
             }
         break;
@@ -209,27 +208,26 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
                 if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee)
                     && !this->getListe()->getElement(i)->getDepart().compare(villeDepart))
                 {
-                    retour += this->getListe()->getElement(i)->writeFile();
-                    retour += "\n";
+                    fichier << this->getListe()->getElement(i)->writeFile() + "\n";
                 }
             }
         break;
     }
 
-    return retour;
+    fichier.close();
 }
 
-std::string Catalogue::writeFileByInterval(int borneMin, int borneMax)
+void Catalogue::writeFileByInterval(std::string nomFichier, int borneMin, int borneMax)
 {
-    std::string retour = "";
+    ofstream fichier;
+    fichier.open(nomFichier);
 
     for(int i = borneMin - 1; i < borneMax; i++)
     {
-        retour += this->getListe()->getElement(i)->writeFile();
-        retour += "\n";
+        fichier << this->getListe()->getElement(i)->writeFile() + "\n";
     }
 
-    return retour;
+    fichier.close();
 }
 
 int Catalogue::readFile(std::string fileName, char type) 

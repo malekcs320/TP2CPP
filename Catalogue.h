@@ -101,29 +101,29 @@ public:
     // Contrat :
     //  Aucun.
 
-    std::string writeAllFile();
+    void writeAllFile(std::string nomFichier);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères contenant tous les trajets du Catalogue.
+    //  Ecrit tout le catalogue dans le fichier de nom nomFichier.
     // Contrat :
     //  Aucun.
 
-    std::string writeFileByType(char type);
+    void writeFileByType(std::string nomFichier, char type);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères contenant les bons trajets (soit simples, soit composés).
+    //  Ecrit dans le fichier de nom nomFichier les trajets dont le type correspond à celui choisi.
     // Contrat :
     //  La validité du paramètre type a été vérifiée dans Menu. 
 
-    std::string writeFileByCity(int option, std::string villeDepart, std::string villeArrivee = "");
+    void writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee = "");
     // Mode d'emploi :
-    // Renvoie une chaîne de caractères contenant les bons trajets (soit selon la ville de départ,
-    // la ville d'arrivée ou les deux).
-    // villeArrivee a un paramètre par défaut dans le cas où on ne souhaite que la ville de départ.
+    // Ecrit dans le fichier de nom "nomFichier" les trajets selon l'option choisie 
+    // dans le Menu par l'utilisateur. Les paramètres villeDepart et villeArrivee dépendent du choix. 
+    // Le paramètre ville Arrivee n'est pas employé dans l'option 1 (depuis une villeDepart uniquement)
     // Contrat :
     //  La validité du paramètre type a été vérifiée dans Menu. 
 
-    std::string writeFileByInterval(int borneMin, int borneMax);
+    void writeFileByInterval(std::string nomFichier, int borneMin, int borneMax);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères contenant les trajets contenus dans l'intervalle.
+    //  Ecrit dans le fichier de nom "nomFichier" les trajets dans l'intervalle [borneMin, borneMax].
     // Contrat :
     // La cohérence des bornes a été vérifiée dans Menu.
 
