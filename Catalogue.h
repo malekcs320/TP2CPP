@@ -97,7 +97,7 @@ public:
 
     ListeTrajets *getListe() const;
     // Mode d'emploi :
-    //  Renvoie la liste de trajets du catalogue.
+    //  Renvoie la ListeTrajets du catalogue.
     // Contrat :
     //  Aucun.
 
@@ -127,7 +127,7 @@ public:
     // Contrat :
     // La cohérence des bornes a été vérifiée dans Menu.
 
-    int readFile(std::string fileName, char type='a');
+    int readFile(std::string fileName, char type = 'a');
     // Mode d'emploi :
     //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
     //  En cas de succès, le nombre de trajets chargés est retourné ; en cas d'échec, on retourne -1.

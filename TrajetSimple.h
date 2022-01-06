@@ -51,14 +51,12 @@ public:
     //  Teste si le trajet passé en paramètre est exactement le même que celui-ci. 
     // Contrat :
     //  `t` ne devrait pas pointer le même Trajet que this.
-
     
     const std::string writeFile(int fromTC = 0) const;
     // Mode d'emploi :
     //  Retourne une chaine de caractère décrivant le trajet composé au format défini pour la sauvegarde.
     // Contrat :
     //  Aucun.
-
 
     //------------------------------------------------- Surcharge d'opérateurs
 

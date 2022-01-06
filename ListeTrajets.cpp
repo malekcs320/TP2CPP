@@ -133,7 +133,7 @@ ListeTrajets::ListeTrajets() : tailleMax(TAILLEMAX), taille(0)
 	// Initialisation des pointeurs à NULL 
 
 	for (uint i = 0; i < tailleMax; i++) {
-		tab[i] = NULL;
+		tab[i] = nullptr;
 	}
 } //----- Fin de ListeTrajets
 
@@ -157,7 +157,7 @@ ListeTrajets::ListeTrajets(const ListeTrajets &uneListeTrajets)
   }
 
   for(uint i = taille; i < tailleMax; i++) {
-    tab[i] = NULL;
+    tab[i] = nullptr;
   }
 } //----- Fin du constructeur de copie de ListeTrajets
 
