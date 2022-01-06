@@ -38,6 +38,7 @@ void Menu::afficherMenu()
         cout << "Veuillez entrer votre choix (q pour quitter) : ";
         cin >> choix;
         cout << endl;
+
         while (choix.compare("1") != 0 && choix.compare("2") != 0 && choix.compare("3") != 0
              && choix.compare("4") != 0 && choix.compare("5") != 0 && choix.compare("6") != 0 && choix.compare("q") != 0)
         {
@@ -45,6 +46,7 @@ void Menu::afficherMenu()
             cin >> choix;
             cout << endl;
         }
+
         if (choix.compare("1") == 0)
         {
             ajouterTrajet();
@@ -203,14 +205,14 @@ void Menu::supprimerTrajet()
 
 bool Menu::fichierExiste(std::string nomFichier) {
     ifstream test;
+    test.open(nomFichier + ".txt");
 
     cout << endl;
-
-    test.open(nomFichier + ".txt");
 
     if(test) {
         return true;
     }
+
     return false;
 }
 
@@ -279,33 +281,27 @@ void Menu::sauvegarderCatalogue() {
         cout << "5 - Annuler [x]" << endl;
         cin >> choix;
 
+        std::string type = "";
+        std::string villeDepart = "";
+        std::string villeArrivee = "";
+
+
         switch(choix) {
             case 1:
-                for(int i = 0; i < c->getTaille(); i++) 
-                    {fichier << c->getListe()->getElement(i)->writeFile();
-                    fichier << endl;
-                    }
-
+                fichier << c->writeAllFile();
                 fin = true;
             break;
-            case 2:
-                // char type;
-                // cout<<"Veuillez choisir le type S/C";
-                // cin>>type;
-                // while(type !='S' || type !='C')
-                //     {
-                //         cout<<"mauvais type"<<endl;
-                //         cout<<"Veuillez choisir le type S/C";
-                //         cin>>type;
-                //     }
+            case 2: // choix entre sauvegarder les trajets simples OU les trajets composés
+                cout << "Veuillez choisir le type de trajet : simple (s) ou composé (c)" << endl;
+                cin >> type;
+                while(type.compare("s") && type.compare("c"))
+                     {
+                         cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c)." << endl;
+                         cin >> type;
+                     }
                 
-                // for(int i = 0; i < c->getTaille(); i++) 
-                //     {string TypeTrajet = c->getListe()->getElement(i)->getType();
-                //     if(typeTrajet[strlen("Trajet")]==type)
-                //     fichier << c->getListe()->getElement(i)->writeFile();
-                //     fichier << endl;
-                //     }
-                // fin = true;
+                fichier << c->writeFileByType(type);
+                fin = true;
             break;
             case 3:
             break;

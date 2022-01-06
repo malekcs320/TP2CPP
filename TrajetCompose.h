@@ -61,7 +61,7 @@ public:
 
     ListeTrajets getLT() const;
     
-    const std::string writeFile() const;
+    const std::string writeFile(int fromTC = 0) const;
 
 
     //------------------------------------------------- Surcharge d'opérateurs

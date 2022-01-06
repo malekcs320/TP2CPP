@@ -49,7 +49,7 @@ public:
     //  `t` ne devrait pas pointer le même Trajet que this.
 
     
-    const std::string writeFile() const;
+    const std::string writeFile(int fromTC = 0) const;
 
 
     //------------------------------------------------- Surcharge d'opérateurs

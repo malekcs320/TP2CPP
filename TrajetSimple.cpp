@@ -37,7 +37,7 @@ std::string TrajetSimple::getType() {
     return "TrajetSimple";
 }
 
-bool TrajetSimple::estEgal( Trajet* t ){
+bool TrajetSimple::estEgal(Trajet* t){
     if(t->getType().compare("TrajetSimple") != 0) {
         return false;
     }
@@ -48,8 +48,10 @@ bool TrajetSimple::estEgal( Trajet* t ){
 }
 
 
-const std::string TrajetSimple::writeFile() const {
-    return Trajet::writeFile() + "," + transport;
+const std::string TrajetSimple::writeFile(int fromTC) const {
+    if(fromTC > 0)
+        return Trajet::writeFile() + "," + transport;
+    return "S," + Trajet::writeFile() + "," + transport;
 }
 
 

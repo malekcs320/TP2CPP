@@ -55,8 +55,8 @@ void ListeTrajets::reallouer() {
 
 bool ListeTrajets::ajouter(Trajet *unTrajet)
 {
-  	if(!(taille < tailleMax)) {
-			reallouer();
+  	if(!(taille < tailleMax)) { 
+			reallouer(); 
 		}
 
 		tab[taille] = unTrajet;
@@ -74,88 +74,32 @@ void ListeTrajets::afficher() {
 		}
 	} // fin afficher
 
-void ListeTrajets::supprimerTrajet(int j)
+void ListeTrajets::supprimerTrajet(int i)
 // Algorithme
-// On supprime le trajet à l'emplacement i - 1 (si l'utilisateur veut
-// supprimer le premier trajet, ce sera le trajet à l'emplacement tab[0])
-// et on déplace les trajets de i à taille - 1 de une case vers la gauche
+// On supprime le trajet à l'emplacement i et on déplace les trajets de i 
+// à taille - 1 de une case vers la gauche
 {
-  delete tab[j - 1]; // tab[0]
+  delete tab[i]; // tab[0]
 
-  for(uint i = j - 1; i < taille - 1; i++) 
-    tab[i] = tab[i + 1];
+  for(uint j = i; j < taille - 1; j++) 
+    tab[j] = tab[j + 1];
 
   tab[taille - 1] = nullptr;
   taille--;
 } // fin supprimerTrajet
 
-void ListeTrajets::supprimerTrajetRecherche (uint j)
+void ListeTrajets::supprimerTrajetRecherche(uint j)
 // Algorithme
 {
-  if( j < 0 || j >= taille )
 	{
 		return;
 	}
-	for( uint i = j ; i < taille-1 ; i++ )
+	for(uint i = j; i < taille - 1; i++)
 	{
-		tab[ i ] = tab[ i+1 ];
+		tab[i] = tab[i + 1];
 	}
 	taille--;
 }
-
-/*void ListeTrajets::supprimerTrajetRecherche(uint index) 
-{
-  ListeTrajets *head = this;
-  ListeTrajets *temp = head;
-  ListeTrajets *prev = nullptr;
-  if (head != nullptr && index == 0)
-  {
-    if (head->trajetSuivant == nullptr)
-    {
-      head->trajet = nullptr;
-      taille--;
-      return;
-    }
-    temp = head->trajetSuivant;
-    head->trajet = temp->trajet;
-    head->trajetSuivant = temp->trajetSuivant;
-    temp->trajet = nullptr;
-    temp->trajetSuivant = nullptr;
-    delete temp;
-  }
-  else
-  {
-    while (temp != nullptr && index--)
-    {
-      prev = temp;
-      temp = temp->trajetSuivant;
-    }
-    if (temp == nullptr)
-      return;
-
-    prev->trajetSuivant = temp->trajetSuivant;
-    delete temp;
-  }
-
-  while (head != nullptr)
-  {
-    head->taille--;
-    head = head->trajetSuivant;
-  }
-}
-
-void ListeTrajets::vider()
-{
-  // on souhaite casser les pointeurs sans supprimer les trajets...
-  if (trajet != nullptr)
-  {
-    trajet = nullptr;
-  }
-  if (trajetSuivant != nullptr)
-  {
-    trajetSuivant->vider();
-  }
-}*/
 
 //------------------------------------------------------ Getters - setters
 

@@ -67,11 +67,12 @@ ListeTrajets TrajetCompose::getLT() const
 }
 
 
-const std::string TrajetCompose::writeFile() const {
+const std::string TrajetCompose::writeFile(int fromTC) const {
     std::string retour;
+    retour+= "C,";
     retour += Trajet::writeFile() +",";
     for(uint i=0; i<liste->getTaille(); i++) {
-        retour += liste->getElement(i)->writeFile();
+        retour += liste->getElement(i)->writeFile(1);
         if(i < liste->getTaille()-1) retour += ",";
     }
     return retour;

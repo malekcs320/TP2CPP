@@ -124,7 +124,7 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     //testSuppressionTeteTaille2();
     //testSuppressionPasTeteTaille3(); 
 
-    //testMenu(); // exécution du programme
+    testMenu(); // exécution du programme
 
     // ofstream fileW("fichier.txt");
     // streambuf *oldCoutBuffer = cout.rdbuf ( fileW.rdbuf ( ) );
@@ -162,21 +162,21 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     // t->ajouterTrajet(test3);
     // cout << t->writeFile() << endl;
 
-    Catalogue * c = new Catalogue();
-    c->readFile("fichier.txt");
-    c->afficher();
-    delete c;
-    TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
-    t->getArrivee();
-    t->getDepart();
-    TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
-    TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
-    TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
-    t->ajouterTrajet(test);
-    t->ajouterTrajet(test2);
-    t->ajouterTrajet(test3);
-    cout << t->writeFile() << endl; 
-    delete t;
+    //Catalogue * c = new Catalogue();
+    //c->readFile("fichier.txt");
+    //c->afficher();
+    //delete c;
+    //TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
+    //t->getArrivee();
+    //t->getDepart();
+    //TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
+    //TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
+    //TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
+    //t->ajouterTrajet(test);
+    //t->ajouterTrajet(test2);
+    //t->ajouterTrajet(test3);
+    //cout << t->writeFile() << endl; 
+    //delete t;
     
     return 0;
 }

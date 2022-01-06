@@ -95,6 +95,30 @@ public:
 
     ListeTrajets *getListe() const;
 
+    std::string writeAllFile();
+    // Mode d'emploi :
+    //  Renvoie une chaîne de caractères. 
+    // Contrat :
+    //  Aucun.
+
+    std::string writeFileByType(std::string type);
+    // Mode d'emploi :
+    //  Renvoie une chaîne de caractères. 
+    // Contrat :
+    //  Aucun.
+
+    std::string writeFileByCity(std::string option, std::string villeDepart, std::string villeArrivee = "");
+    // Mode d'emploi :
+    //  Renvoie une chaîne de caractères. 
+    // Contrat :
+    //  Aucun.
+
+    std::string writeFileByInterval(int borneMin, int borneMax);
+    // Mode d'emploi :
+    //  Renvoie une chaîne de caractères. 
+    // Contrat :
+    //  Aucun.
+
     int readFile(std::string fileName);
     // Mode d'emploi :
     //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.

@@ -129,6 +129,49 @@ ListeTrajets *Catalogue::getListe() const
     return liste;
 }
 
+std::string Catalogue::writeAllFile() 
+{
+    std::string retour;
+    for(int i = 0; i < this->getTaille(); i++) 
+        {
+            retour += this->getListe()->getElement(i)->writeFile();
+            retour += "\n";
+        }
+    
+    return retour;
+}
+
+std::string Catalogue::writeFileByType(std::string type)
+{
+    std::string retour = "";
+    if(!type.compare("s")) {
+        for(int i = 0; i < this->getTaille(); i++)
+        {
+            if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple"))
+                retour += this->getListe()->getElement(i)->writeFile() + "\n";
+        }
+    }
+    else
+    {
+        for(int i = 0; i < this->getTaille(); i++)
+            {
+                if(!this->getListe()->getElement(i)->getType().compare("TrajetCompose"))
+                    retour += this->getListe()->getElement(i)->writeFile() + "\n";
+            }
+    }
+    return retour;
+}
+
+std::string writeFileByCity(std::string option, std::string villeDepart, std::string villeArrivee = "")
+{
+    return "";
+}
+
+std::string writeFileByInterval(int borneMin, int borneMax)
+{
+    return "";
+}
+
 int Catalogue::readFile(std::string fileName) 
 // Algorithme :
 /*
