@@ -232,7 +232,7 @@ std::string Catalogue::writeFileByInterval(int borneMin, int borneMax)
     return retour;
 }
 
-int Catalogue::readFile(std::string fileName) 
+int Catalogue::readFile(std::string fileName, char type) 
 // Algorithme :
 /*
     Lecture ligne à ligne du fichier dont le nom est passé en paramètre.
@@ -256,7 +256,7 @@ int Catalogue::readFile(std::string fileName)
     while(getline(file,ligne)) { // lecture ligne à ligne
         compteurLigne++;
         c = ligne.front();
-        if(c == 'S') {
+        if(c == 'S' && (type == 's' || type == 'a')) {
             compteurTrajet++;
             std::string infos[3];
             pointeurChar = 1;
@@ -272,7 +272,7 @@ int Catalogue::readFile(std::string fileName)
             }
             ajouterTrajet(new TrajetSimple(infos[0], infos[1], infos[2]));
         }
-        else if(c == 'C') {
+        else if(c == 'C' && (type == 'c' || type == 'a')) {
             compteurTrajet++;
             std::string infosCompose[2], infosSimple[3];
             pointeurChar = 1;
@@ -307,7 +307,7 @@ int Catalogue::readFile(std::string fileName)
             }
             ajouterTrajet(t);
         }
-        else {
+        else if (c != 'C' && c != 'S') {
             cout << "Ligne " << compteurLigne << " : format invalide" << endl;
         }
     }
@@ -315,6 +315,7 @@ int Catalogue::readFile(std::string fileName)
     file.close();
     return compteurTrajet;
 }
+
 
 //-------------------------------------------- Constructeurs - destructeur
 

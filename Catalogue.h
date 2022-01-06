@@ -125,7 +125,7 @@ public:
     // Contrat :
     // La cohérence des bornes a été vérifiée dans Menu.
 
-    int readFile(std::string fileName);
+    int readFile(std::string fileName, char type='a');
     // Mode d'emploi :
     //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
     //  En cas de succès, le nombre de trajets chargés est retourné ; en cas d'échec, on retourne -1.
@@ -135,6 +135,7 @@ public:
     //  Les trajets composés sont décrits de cette façon : C,villeDepartGlobale,villeArriveeGlobale,villeDepart1,villeArrivee1,moyen1,villeDepart2,villeArrivee2,moyen2 
     //  Les trajets sont séparés par des retours à la ligne.
     //  Les trajets composés contiennent au moins 1 sous-trajet simple.
+    //  Le type de trajet doit être précisé par 's' (simple) ou 'c' (composé) ou 'a' (all, par défaut).
 
     //------------------------------------------------------------------ PRIVE
 
