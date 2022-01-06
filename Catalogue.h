@@ -103,9 +103,9 @@ public:
 
     std::string writeFileByType(std::string type);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères. 
+    //  Renvoie une chaîne de caractères qui contient ce qu'il y a à écrire dans le fichier.
     // Contrat :
-    //  Aucun.
+    //  La validité de type a été vérifiée dans Menu. 
 
     std::string writeFileByCity(std::string option, std::string villeDepart, std::string villeArrivee = "");
     // Mode d'emploi :
