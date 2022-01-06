@@ -78,13 +78,16 @@ int Catalogue::rechercheAux(const std::string depart, const std::string arrivee,
     // Choix d'affichage au fur et à mesure de la recherche nous facilite la manipulation de la fonction récursivie
 
     int nbTrajets = 0;
+
     if (depart == arrivee)
     {
         cout << "-----------------------" << endl;
         dejaVisite->afficher();
         return 1;
     }
+
     bool existe = false;
+
     for (uint i = 0; i < liste->getTaille(); i++)
     {
         Trajet *trajet = liste->getElement(i);
@@ -92,6 +95,7 @@ int Catalogue::rechercheAux(const std::string depart, const std::string arrivee,
         if (trajet->getDepart()==depart) //
         {
             existe = false;
+
             for (uint j = 0; j < dejaVisite->getTaille(); j++)
             {
                 if (trajet->estEgal(dejaVisite->getElement(j)))
@@ -133,6 +137,7 @@ ListeTrajets *Catalogue::getListe() const
 std::string Catalogue::writeAllFile() 
 {
     std::string retour;
+
     for(int i = 0; i < this->getTaille(); i++) 
         {
             retour += this->getListe()->getElement(i)->writeFile();
@@ -145,17 +150,18 @@ std::string Catalogue::writeAllFile()
 std::string Catalogue::writeFileByType(char type)
 {
     std::string retour = "";
-    if(type == 's') {
+
+    if(type == 's') // Si on veut sauvegarder les trajets simples
+    {
         for(int i = 0; i < this->getTaille(); i++)
         {
             if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple")) {
                 retour += this->getListe()->getElement(i)->writeFile();
                 retour += "\n";
             }
-               
         }
     }
-    else
+    else // sinon cela veut dire qu'on veut sauvegarder les trajets composés
     {
         for(int i = 0; i < this->getTaille(); i++)
         {
@@ -175,7 +181,7 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
 
     switch(option) 
     {
-        case 1: // sauvegarde selon la ville de départ
+        case 1: // sauvegarde selon la ville de départ UNIQUEMENT
             for(int i = 0; i < this->getTaille(); i++)
             {
                 if(!(this->getListe()->getElement(i)->getDepart().compare(villeDepart)))
@@ -186,7 +192,7 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
             }
         break;
 
-        case 2: // sauvegarde selon la ville d'arrivée
+        case 2: // sauvegarde selon la ville d'arrivée UNIQUEMENT
             for(int i = 0; i < this->getTaille(); i++)
             {
                 if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee))
@@ -215,7 +221,15 @@ std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std:
 
 std::string Catalogue::writeFileByInterval(int borneMin, int borneMax)
 {
-    return "";
+    std::string retour = "";
+
+    for(int i = borneMin - 1; i < borneMax; i++)
+    {
+        retour += this->getListe()->getElement(i)->writeFile();
+        retour += "\n";
+    }
+
+    return retour;
 }
 
 int Catalogue::readFile(std::string fileName) 
