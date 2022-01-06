@@ -70,9 +70,11 @@ public:
 
     int rechercheAux(const std::string depart, const std::string arrivee, ListeTrajets *dejaVisite);
     // Mode d'emploi :
-    //  
+    //  Implemente l'algorithme de la recherche en profondeur en partant de depart
+    //  et en s'appelant récursivement sur les trajets ayant pour point de départ l'arrivée du trajet
+    //  La liste dejaVisite assure qu'on affiche pas plus qu'une fois chaque chemin trouvé.
     // Contrat :
-    //
+    // Aucun.
 
     void rechercheAvancee(const std::string depart, const std::string arrivee);
     // Mode d'emploi :
