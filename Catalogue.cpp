@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <string>
 
 //------------------------------------------------------ Include personnel
@@ -141,33 +142,78 @@ std::string Catalogue::writeAllFile()
     return retour;
 }
 
-std::string Catalogue::writeFileByType(std::string type)
+std::string Catalogue::writeFileByType(char type)
 {
     std::string retour = "";
-    if(!type.compare("s")) {
+    if(type == 's') {
         for(int i = 0; i < this->getTaille(); i++)
         {
-            if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple"))
-                retour += this->getListe()->getElement(i)->writeFile() + "\n";
+            if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple")) {
+                retour += this->getListe()->getElement(i)->writeFile();
+                retour += "\n";
+            }
+               
         }
     }
     else
     {
         for(int i = 0; i < this->getTaille(); i++)
+        {
+            if(!this->getListe()->getElement(i)->getType().compare("TrajetCompose"))
             {
-                if(!this->getListe()->getElement(i)->getType().compare("TrajetCompose"))
-                    retour += this->getListe()->getElement(i)->writeFile() + "\n";
+                retour += this->getListe()->getElement(i)->writeFile();
+                retour += "\n";
             }
+        }
     }
     return retour;
 }
 
-std::string writeFileByCity(std::string option, std::string villeDepart, std::string villeArrivee = "")
+std::string Catalogue::writeFileByCity(int option, std::string villeDepart, std::string villeArrivee)
 {
-    return "";
+    std::string retour = "";
+
+    switch(option) 
+    {
+        case 1: // sauvegarde selon la ville de départ
+            for(int i = 0; i < this->getTaille(); i++)
+            {
+                if(!(this->getListe()->getElement(i)->getDepart().compare(villeDepart)))
+                {
+                    retour += this->getListe()->getElement(i)->writeFile();
+                    retour += "\n";
+                }
+            }
+        break;
+
+        case 2: // sauvegarde selon la ville d'arrivée
+            for(int i = 0; i < this->getTaille(); i++)
+            {
+                if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee))
+                {
+                    retour += this->getListe()->getElement(i)->writeFile();
+                    retour += "\n";
+                }
+            }
+        break;
+
+        default: // sauvegarde selon une ville de départ ET d'arrivée
+            for(int i = 0; i < this->getTaille(); i++)
+            {
+                if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee)
+                    && !this->getListe()->getElement(i)->getDepart().compare(villeDepart))
+                {
+                    retour += this->getListe()->getElement(i)->writeFile();
+                    retour += "\n";
+                }
+            }
+        break;
+    }
+
+    return retour;
 }
 
-std::string writeFileByInterval(int borneMin, int borneMax)
+std::string Catalogue::writeFileByInterval(int borneMin, int borneMax)
 {
     return "";
 }

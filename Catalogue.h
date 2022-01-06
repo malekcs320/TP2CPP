@@ -52,7 +52,7 @@ public:
     // Mode d'emploi :
     //  Ajoute un trajet au catalogue.
     // Contrat :
-    //  Pour de la cohérence, le trajet ne doit pas avoir été déjà inséré dans le catalogue.
+    //  Pour la cohérence, le trajet ne doit pas avoir été déjà inséré dans le catalogue.
 
     void afficher();
     // Mode d'emploi :
@@ -63,7 +63,7 @@ public:
     void rechercheSimple(std::string depart, std::string arrivee);
     // Mode d'emploi :
     //  Effectue une recherche simple sur le catalogue, en fonction des paramètres.
-    //  `depart` est le lieu de départ, `arrivee` est le lieu d'arrivée. On recherche les
+    //  depart est le lieu de départ, arrivee est le lieu d'arrivée. On recherche les
     //  trajets ayant exactement ces lieux de départ et d'arrivée (on ne recherche pas dans les sous-trajets).
     // Contrat :
     //  Aucun.
@@ -94,30 +94,36 @@ public:
     //  Aucun.
 
     ListeTrajets *getListe() const;
+    // Mode d'emploi :
+    //  Renvoie la liste de trajets du catalogue.
+    // Contrat :
+    //  Aucun.
 
     std::string writeAllFile();
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères. 
+    //  Renvoie une chaîne de caractères contenant tous les trajets du Catalogue.
     // Contrat :
     //  Aucun.
 
-    std::string writeFileByType(std::string type);
+    std::string writeFileByType(char type);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères qui contient ce qu'il y a à écrire dans le fichier.
+    //  Renvoie une chaîne de caractères contenant les bons trajets (soit simples, soit composés).
     // Contrat :
-    //  La validité de type a été vérifiée dans Menu. 
+    //  La validité du paramètre type a été vérifiée dans Menu. 
 
-    std::string writeFileByCity(std::string option, std::string villeDepart, std::string villeArrivee = "");
+    std::string writeFileByCity(int option, std::string villeDepart, std::string villeArrivee = "");
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères. 
+    // Renvoie une chaîne de caractères contenant les bons trajets (soit selon la ville de départ,
+    // la ville d'arrivée ou les deux).
+    // villeArrivee a un paramètre par défaut dans le cas où on ne souhaite que la ville de départ.
     // Contrat :
-    //  Aucun.
+    //  La validité du paramètre type a été vérifiée dans Menu. 
 
     std::string writeFileByInterval(int borneMin, int borneMax);
     // Mode d'emploi :
-    //  Renvoie une chaîne de caractères. 
+    //  Renvoie une chaîne de caractères contenant les trajets contenus dans l'intervalle.
     // Contrat :
-    //  Aucun.
+    // La cohérence des bornes a été vérifiée dans Menu.
 
     int readFile(std::string fileName);
     // Mode d'emploi :

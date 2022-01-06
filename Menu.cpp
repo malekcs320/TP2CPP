@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <string>
 //------------------------------------------------------ Include personnel
 #include "Menu.h"
@@ -26,6 +27,7 @@ using namespace std;
 void Menu::afficherMenu()
 {
     std::string choix;
+
     do
     {
         cout << "-------------- MENU PRINCIPAL --------------" << endl;
@@ -281,32 +283,75 @@ void Menu::sauvegarderCatalogue() {
         cout << "5 - Annuler [x]" << endl;
         cin >> choix;
 
-        std::string type = "";
+        char type;
         std::string villeDepart = "";
         std::string villeArrivee = "";
-
+        // int borneMin = 0;
+        // int borneMax = 0;
 
         switch(choix) {
-            case 1:
+            case 1: // enregistrement de tout le catalogue
                 fichier << c->writeAllFile();
                 fin = true;
             break;
+
             case 2: // choix entre sauvegarder les trajets simples OU les trajets composés
+
                 cout << "Veuillez choisir le type de trajet : simple (s) ou composé (c)" << endl;
                 cin >> type;
-                while(type.compare("s") && type.compare("c"))
-                     {
-                         cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c)." << endl;
-                         cin >> type;
-                     }
+
+                while(type != 's' && type != 'c')
+                {
+                    cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c)." << endl;
+                    cin >> type;
+                }
                 
                 fichier << c->writeFileByType(type);
                 fin = true;
             break;
-            case 3:
+
+            case 3: // Choix entre ville d'arrivée, de départ ou les deux
+
+                cout << "Souhaitez-vous enregistrer les trajets depuis ";
+                cout << "une ville de départ (d), une ville d'arrivée (a) ou les deux (m) ?" << endl;
+                cin >> type; // On récupère le choix de l'utilisateur
+
+                switch(type) 
+                {
+                    case 'd':
+                        cout << "Ville de départ : ";
+                        cin >> villeDepart;
+
+                        fichier << c->writeFileByCity(1, villeDepart);
+                    break;
+
+                    case 'a':
+                        cout << "Ville d'arrivée : ";
+                        cin >> villeArrivee;
+
+                        fichier << c->writeFileByCity(2, "", villeArrivee);
+                    break;
+
+                    case 'm':
+                        cout << "Ville de départ : ";
+                        cin >> villeDepart;
+                        cout << "Ville d'arrivée : ";
+                        cin >> villeArrivee;    
+                        
+                        fichier << c->writeFileByCity(3, villeDepart, villeArrivee);
+                    break;
+
+                    default:
+                        cout << "Choix incorrect. Veuillez choisir entre départ (d), arrivée (a) ou mixte (m)." << endl;
+                        cin >> type;
+                    break;
+                }
+                fin = true;
             break;
+
             case 4:
             break;
+
             default:
                 cout << "Veuillez entrer un choix valide." << endl;
             break;
