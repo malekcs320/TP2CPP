@@ -222,7 +222,7 @@ bool Menu::fichierExiste(std::string nomFichier) {
 
 std::string Menu::gestionNomSauvegarde() {
     std::string nomFichier;
-    char choix;
+    int choix;
 
     cout << ">> NOM DU FICHIER DE SAUVEGARDE " << endl;
     cout << "Quel nom souhaitez-vous donner à votre sauvegarde (sans l'extension) ?" << endl;
@@ -232,27 +232,32 @@ std::string Menu::gestionNomSauvegarde() {
         cout << "Le fichier existe déjà. Que souhaitez-vous faire ?" << endl;
         cout << "1 - Ecraser le fichier existant et sauvegarder sous ce nom." << endl;
         cout << "2 - Choisir un autre nom de fichier." << endl;
-        cout << "3 - Annuler l'opération de sauvegarde." << endl;
-        cin >> choix;
-        cout << endl;
+        cout << "3 - Annuler l'opération de sauvegarde." << endl << endl;
+        cout << "Veuillez faire un choix entre 1 et 3 : ";
+
+        while(!(cin >> choix) || choix > 3 || choix < 1) 
+        { // Vérifie qu'un chiffre dans les bornes est entré
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Veuillez faire un choix entre 1 et 3 : ";
+        }
 
         switch(choix) {
-            case '1':
+            case 1:
                 return nomFichier + ".txt";
             break;
-            case '2':
+
+            case 2:
                 cout << "Veuillez choisir un nouveau nom de fichier (sans l'extension)" << endl;
                 cin >> nomFichier;
             break;
-            case '3':
+
+            case 3:
                 cout << "ANNULATION. RETOUR AU MENU PRINCIPAL." << endl;
                 return "";
             break;
+
             default:
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Veuillez faire un choix valide." << endl;
-                cin >> choix;
             break;
         }
     }
@@ -268,7 +273,7 @@ void Menu::sauvegarderCatalogue() {
 
     cout << "----------------- MENU SAUVEGARDE -----------------\n" << endl;
 
-    if(c->getTaille() < 1) // S'il n'y a pas de trajet dans le catalogue
+    if(c->getTaille() < 1) // S'il n'y a pas de trajet dans le catalogue, annulation
     {
         cout << "Il n'y a pas de contenu dans le catalogue. Sauvegarde impossible." << endl << endl;
         cout << "Fin de l'opération de sauvegarde." << endl;
@@ -286,7 +291,7 @@ void Menu::sauvegarderCatalogue() {
     int choix;
     bool fin = false;
 
-    // Variables pour les cases
+    // Variables pour les cases du switch
 
     char type;
     std::string villeDepart = "";
@@ -294,7 +299,7 @@ void Menu::sauvegarderCatalogue() {
     int borneMin = 0;
     int borneMax = 0;
 
-    cout << ">> CONTENU DE LA SAUVEGARDE" << endl;
+    cout << endl << ">> CONTENU DE LA SAUVEGARDE" << endl;
 
     do 
     {
@@ -304,8 +309,13 @@ void Menu::sauvegarderCatalogue() {
         cout << "3 - Seulement certains trajets, selon une ville de départ et/ou d'arrivée." << endl;
         cout << "4 - Une sélection de trajets selon leur index." << endl;
         cout << "5 - Annuler [x]" << endl;
-        cin >> choix;
-        cout << endl;
+        
+        while(!(cin >> choix) || choix > 5 || choix < 1) 
+        { // Vérifie qu'un chiffre est entré
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Veuillez faire un choix entre 1 et 5 : ";
+        }
 
         switch(choix) {
             case 1: // enregistrement de tout le catalogue
@@ -330,8 +340,16 @@ void Menu::sauvegarderCatalogue() {
             case 3: // Choix entre ville d'arrivée, de départ ou les deux
 
                 cout << "Souhaitez-vous enregistrer les trajets depuis ";
-                cout << "une ville de départ (d), une ville d'arrivée (a) ou les deux (m) ?" << endl;
+                cout << "une ville de départ (d), une ville d'arrivée (a) ou les deux (m) ? ";
                 cin >> type; 
+
+                while(type != 'd' && type != 'a' && type != 'm') 
+                { // Vérifie l'entrée avant d'entrer dans le switch
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Veuillez faire un choix entre départ (d), arrivée (a) ou mixte (m) : ";
+                    cin >> type;
+                }
 
                 switch(type) 
                 {
@@ -359,8 +377,6 @@ void Menu::sauvegarderCatalogue() {
                     break;
 
                     default:
-                        cout << "Choix incorrect. Veuillez choisir entre départ (d), arrivée (a) ou mixte (m)." << endl;
-                        cin >> type;
                     break;
                 }
                 fin = true;
