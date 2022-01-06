@@ -58,13 +58,13 @@ public:
 
     virtual std::string getType() ;
     // Mode d'emploi :
-    //  
+    //  Donne le type de l'objet appellé : Trajet.
     // Contrat :
     //  Aucun.
 
     virtual const std::string writeFile(int fromTC = 0) const;
     // Mode d'emploi :
-    // 
+    //  Retourne une chaine de caractère décrivant le trajet au format défini pour la sauvegarde.
     // Contrat :
     //  Aucun.
 
@@ -80,9 +80,9 @@ public:
 
     Trajet(const Trajet &unTrajet);
     // Mode d'emploi :
-    //  Crée un trajet à partir des paramètre : depart (ville de départ), arrivee (ville d'arrivée).
+    //  Crée un trajet à partir d'un autre trajet.
     // Contrat :
-    //  La ville de départ et d'arrivée ne devraient pas être les mêmes.
+    //  Aucun.
 
     virtual ~Trajet();
     // Mode d'emploi :

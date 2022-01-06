@@ -46,7 +46,7 @@ public:
 
     std::string getType();
     // Mode d'emploi :
-    //  Retourne "TrajetCompose".
+    //  Donne le type de l'objet appellé : TrajetCompose.
     // Contrat :
     //  Aucun.
 
@@ -60,8 +60,16 @@ public:
     //  Le paramètre `t` ne doit pas pointer le même trajet que `this`.
 
     ListeTrajets getLT() const;
+    // Mode d'emploi :
+    //  Permet d'obtenir la liste de trajets qui composent le trajet composé.
+    // Contrat :
+    //  Aucun.
     
     const std::string writeFile(int fromTC = 0) const;
+    // Mode d'emploi :
+    //  Retourne une chaine de caractère décrivant le trajet composé au format défini pour la sauvegarde.
+    // Contrat :
+    //  Aucun.
 
 
     //------------------------------------------------- Surcharge d'opérateurs
@@ -76,7 +84,7 @@ public:
 
     TrajetCompose(const TrajetCompose &unTrajetCompose);
     // Mode d'emploi :
-    //  Crée un trajet composé à partir des paramètres : depart (ville de départ), arrivee (ville d'arrivée).
+    //  Crée un trajet composé à partir d'un autre trajet composé.
     // Contrat :
     //  Aucun.
 

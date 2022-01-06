@@ -82,6 +82,11 @@ public:
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
 
   void supprimerTrajetRecherche (uint j);
+  // Mode d'emploi :
+  //  Supprime le trajet situé à la position i du tableau aprés avoir parcouru tous les trajets
+  //  ayant pour départ l'arrivée du trajet à supprimer. 
+  // Contrat :
+  //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
 
   //-------------------------------------------- Constructeurs - destructeur
 
