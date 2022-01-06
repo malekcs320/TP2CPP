@@ -124,7 +124,7 @@ d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
     //testSuppressionTeteTaille2();
     //testSuppressionPasTeteTaille3(); 
 
-    testMenu(); // exécution du programme
+    testMenu(); // exécution du programme en mode utilisateur
 
     // ofstream fileW("fichier.txt");
     // streambuf *oldCoutBuffer = cout.rdbuf ( fileW.rdbuf ( ) );
