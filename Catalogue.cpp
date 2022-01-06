@@ -284,13 +284,16 @@ int Catalogue::readFileByCity(std::string fileName, std::string depart, std::str
         compteurLigne++;
         c = ligne.front();
         if  (c == 'S' || c == 'C') {
-            compteurTrajet++;
             t = readLigne(ligne);
             if((!depart.empty() && !arrivee.empty() && t->getDepart().compare(depart) == 0 && t->getArrivee().compare(arrivee) == 0)
              || (depart.empty() && !arrivee.empty() && t->getArrivee().compare(arrivee) == 0)
              || (!depart.empty() && arrivee.empty() && t->getDepart().compare(depart) == 0)) 
             {
+                compteurTrajet++;
                 ajouterTrajet(t);
+            }
+            else {
+                delete t; 
             }
         }
         else {

@@ -436,6 +436,10 @@ void Menu::chargerCatalogue() {
     int choix, retour;
     char type;
     bool fin = false;
+    std::string villeDepart = "";
+    std::string villeArrivee = "";
+    int borneMin = 0;
+    int borneMax = 0;
     do 
     {
         cout << "Que souhaitez-vous charger ?" << endl;
@@ -481,7 +485,50 @@ void Menu::chargerCatalogue() {
             break;
 
             case 3: // Choix entre ville d'arrivée, de départ ou les deux
+                cout << "Souhaitez-vous enregistrer les trajets depuis ";
+                cout << "une ville de départ (d), une ville d'arrivée (a) ou les deux (m) ? ";
+                cin >> type; 
 
+                while(type != 'd' && type != 'a' && type != 'm') 
+                { // Vérifie l'entrée avant d'entrer dans le switch
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Veuillez faire un choix entre départ (d), arrivée (a) ou mixte (m) : ";
+                    cin >> type;
+                }
+                switch(type) 
+                {
+                    case 'd':
+                        cout << "Ville de départ : ";
+                        cin >> villeDepart;
+                        villeArrivee = "";
+                    break;
+
+                    case 'a':
+                        cout << "Ville d'arrivée : ";
+                        cin >> villeArrivee;
+                        villeDepart = "";
+                    break;
+
+                    case 'm':
+                        cout << "Ville de départ : ";
+                        cin >> villeDepart;
+                        cout << "Ville d'arrivée : ";
+                        cin >> villeArrivee;    
+                    break;
+
+                    default:
+                    break;
+                }
+                cout << "Chargement du fichier..." << endl;
+                retour = c->readFileByCity(nomFichier+".txt", villeDepart, villeArrivee);
+                if(retour >= 0) {
+                    cout << retour << " trajets ont été chargés";
+                }
+                else {
+                    cout << "Fichier non chargé";
+                }
+                fin = true;
                 
             break;
 
