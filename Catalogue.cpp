@@ -252,69 +252,55 @@ int Catalogue::readFile(std::string fileName, char type)
     }
     std::string ligne("");
     char c;
-    uint pointeurChar=0, compteurLigne=0, compteurTrajet=0;
+    uint compteurLigne=0, compteurTrajet=0;
     while(getline(file,ligne)) { // lecture ligne à ligne
         compteurLigne++;
         c = ligne.front();
-        if(c == 'S' && (type == 's' || type == 'a')) {
+        if  ((c == 'S' && (type == 's' || type == 'a'))
+          || (c == 'C' && (type == 'c' || type == 'a'))) {
             compteurTrajet++;
-            std::string infos[3];
-            pointeurChar = 1;
-            for(int i=0; i<3; i++) {
-                pointeurChar++;
-                c = ligne.at(pointeurChar);
-                while(c != ',' && pointeurChar < ligne.size()) {
-                    //cout << i << " : " <<  c << " pointeurChar : " << pointeurChar << "<" << ligne.size() << endl;
-                    infos[i].append(1, c);
-                    pointeurChar++;
-                    if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
-                }
-            }
-            ajouterTrajet(new TrajetSimple(infos[0], infos[1], infos[2]));
-        }
-        else if(c == 'C' && (type == 'c' || type == 'a')) {
-            compteurTrajet++;
-            std::string infosCompose[2], infosSimple[3];
-            pointeurChar = 1;
-
-            /* lecture des informations du trajet composé (départ, arrivée) */
-            for(int i=0; i<2; i++) {
-                pointeurChar++;
-                c = ligne.at(pointeurChar);
-                while(c != ',' && pointeurChar < ligne.size()) {
-                    infosCompose[i].append(1, c);
-                    pointeurChar++;
-                    if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
-                }
-            }
-
-            TrajetCompose *t = new TrajetCompose(infosCompose[0], infosCompose[1]);
-
-            /* lecture des sous-trajets */
-            while(pointeurChar < ligne.size()) {
-                for(int i=0; i<3; i++) {
-                    pointeurChar++;
-                    c = ligne.at(pointeurChar);
-                    while(c != ',' && pointeurChar < ligne.size()) {
-                        infosSimple[i].append(1, c);
-                        pointeurChar++;
-                        if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
-                    }
-                }
-                t->ajouterTrajet(new TrajetSimple(infosSimple[0], infosSimple[1], infosSimple[2]));
-                for(int i=0; i<3; i++) infosSimple[i] = "";
-
-            }
-            ajouterTrajet(t);
+            ajouterTrajet(readLigne(ligne));
         }
         else if (c != 'C' && c != 'S') {
             cout << "Ligne " << compteurLigne << " : format invalide" << endl;
         }
     }
-
     file.close();
     return compteurTrajet;
 }
+
+int Catalogue::readFileByCity(std::string fileName, std::string depart, std::string arrivee) {
+    std::ifstream file(fileName);
+
+    if(!file) {
+        cout << "Une erreur est survenue lors de l'ouverture du fichier " << fileName << endl;
+        return -1;
+    }
+    std::string ligne("");
+    char c;
+    uint compteurLigne=0, compteurTrajet=0;
+    Trajet * t;
+    while(getline(file,ligne)) { // lecture ligne à ligne
+        compteurLigne++;
+        c = ligne.front();
+        if  (c == 'S' || c == 'C') {
+            compteurTrajet++;
+            t = readLigne(ligne);
+            if((!depart.empty() && !arrivee.empty() && t->getDepart().compare(depart) == 0 && t->getArrivee().compare(arrivee) == 0)
+             || (depart.empty() && !arrivee.empty() && t->getArrivee().compare(arrivee) == 0)
+             || (!depart.empty() && arrivee.empty() && t->getDepart().compare(depart) == 0)) 
+            {
+                ajouterTrajet(t);
+            }
+        }
+        else {
+            cout << "Ligne " << compteurLigne << " : format invalide" << endl;
+        }
+    }
+    file.close();
+    return compteurTrajet;
+}
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -343,3 +329,58 @@ Catalogue::~Catalogue()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
+Trajet * Catalogue::readLigne(const std::string ligne) const {
+    char c;
+    uint pointeurChar=1;
+    c = ligne.front();
+    if(c == 'S') {
+        std::string infos[3];
+        pointeurChar = 1;
+        for(int i=0; i<3; i++) {
+            pointeurChar++;
+            c = ligne.at(pointeurChar);
+            while(c != ',' && pointeurChar < ligne.size()) {
+                infos[i].append(1, c);
+                pointeurChar++;
+                if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+            }
+        }
+        return (new TrajetSimple(infos[0], infos[1], infos[2]));
+    }
+    else if(c == 'C') {
+        std::string infosCompose[2], infosSimple[3];
+        pointeurChar = 1;
+
+        /* lecture des informations du trajet composé (départ, arrivée) */
+        for(int i=0; i<2; i++) {
+            pointeurChar++;
+            c = ligne.at(pointeurChar);
+            while(c != ',' && pointeurChar < ligne.size()) {
+                infosCompose[i].append(1, c);
+                pointeurChar++;
+                if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+            }
+        }
+
+        TrajetCompose *t = new TrajetCompose(infosCompose[0], infosCompose[1]);
+
+        /* lecture des sous-trajets */
+        while(pointeurChar < ligne.size()) {
+            for(int i=0; i<3; i++) {
+                pointeurChar++;
+                c = ligne.at(pointeurChar);
+                while(c != ',' && pointeurChar < ligne.size()) {
+                    infosSimple[i].append(1, c);
+                    pointeurChar++;
+                    if(pointeurChar < ligne.size()) c = ligne.at(pointeurChar);
+                }
+            }
+            t->ajouterTrajet(new TrajetSimple(infosSimple[0], infosSimple[1], infosSimple[2]));
+            for(int i=0; i<3; i++) infosSimple[i] = "";
+
+        }
+        return (t);
+    }
+    else return nullptr;
+}

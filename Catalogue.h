@@ -139,13 +139,35 @@ public:
     //  Les trajets composés contiennent au moins 1 sous-trajet simple.
     //  Le type de trajet doit être précisé par 's' (simple) ou 'c' (composé) ou 'a' (all, par défaut).
 
+    int readFileByCity(std::string fileName, std::string depart, std::string arrivee);
+    // Mode d'emploi :
+    //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
+    //  N'importe que les trajets dont la ville de départ correspond à `depart` si ce champ n'est pas vide, 
+    //  et dont la ville d'arrivée correspond à `arrivee` si ce champ n'est pas vide.
+    //  En cas de succès, le nombre de trajets chargés est retourné ; en cas d'échec, on retourne -1.
+    // Contrat :
+    //  Le fichier doit correspondre au format imposé par le logiciel, à savoir :
+    //  Les trajets simples sont décrits de cette façon : S,villeDepart,villeArrivee,moyenTransport 
+    //  Les trajets composés sont décrits de cette façon : C,villeDepartGlobale,villeArriveeGlobale,villeDepart1,villeArrivee1,moyen1,villeDepart2,villeArrivee2,moyen2 
+    //  Les trajets sont séparés par des retours à la ligne.
+    //  Les trajets composés contiennent au moins 1 sous-trajet simple.
+    //  Si l'un des deux champs (depart et arrivee) est vide, l'autre doit être renseigné.
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
 
+    /*Les méthodes suivantes sont protégées car elles ne sont utilisées qu'au sein de la classe*/
+    Trajet * readLigne(const std::string ligne) const;
+    // Mode d'emploi :
+    //  Renvoie un trajet en lisant une chaine de caractères (correspondant au format de sauvegarde).
+    // Contrat :
+    //  La ligne doit commencer par 'S' ou 'C'. Dans le cas contraite, un nullptr est retourné.
+
     //----------------------------------------------------- Attributs protégés
     ListeTrajets *liste;
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
