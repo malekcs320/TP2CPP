@@ -41,6 +41,10 @@ public:
     //  Aucun.
 
     std::string getType();
+    // Mode d'emploi :
+    //  Donne le type de l'objet appellé : TrajetSimple.
+    // Contrat :
+    //  Aucun.
 
     bool estEgal ( Trajet *t );
     // Mode d'emploi :
@@ -50,6 +54,10 @@ public:
 
     
     const std::string writeFile(int fromTC = 0) const;
+    // Mode d'emploi :
+    //  Retourne une chaine de caractère décrivant le trajet composé au format défini pour la sauvegarde.
+    // Contrat :
+    //  Aucun.
 
 
     //------------------------------------------------- Surcharge d'opérateurs
@@ -64,9 +72,9 @@ public:
 
     TrajetSimple(TrajetSimple &unTrajetSimple);
     // Mode d'emploi :
-    //  Crée un trajet à partir des paramètres : ville départ, ville arrivée, moyen de transport.
+    //  Crée un trajet simple à partir d'un autre trajet simple.
     // Contrat :
-    //  Les villes de départ et d'arrivée ne devraient pas être les mêmes.
+    //  Aucun.
 
     virtual ~TrajetSimple();
     // Mode d'emploi :
