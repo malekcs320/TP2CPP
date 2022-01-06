@@ -153,6 +153,20 @@ public:
     //  Les trajets composés contiennent au moins 1 sous-trajet simple.
     //  Si l'un des deux champs (depart et arrivee) est vide, l'autre doit être renseigné.
 
+    int readFileByIndex(std::string fileName, int depart, int arrivee);
+    // Mode d'emploi :
+    //  Lit le fichier dont le nom est passé en paramètre pour remplir le catalogue.
+    //  Les index indiquent le premier et le dernier trajet à considérer (en numéro de ligne).
+    //  En cas de succès, le nombre de trajets chargés est retourné ; en cas d'échec, on retourne -1.
+    // Contrat :
+    //  Le fichier doit correspondre au format imposé par le logiciel, à savoir :
+    //  Les trajets simples sont décrits de cette façon : S,villeDepart,villeArrivee,moyenTransport 
+    //  Les trajets composés sont décrits de cette façon : C,villeDepartGlobale,villeArriveeGlobale,villeDepart1,villeArrivee1,moyen1,villeDepart2,villeArrivee2,moyen2 
+    //  Les trajets sont séparés par des retours à la ligne.
+    //  Les trajets composés contiennent au moins 1 sous-trajet simple.
+    //  L'index d'arrivée doit être supérieur ou égal à l'index de départ.
+    //  Les deux index doivent être inférieurs ou égaux au nombre de lignes du fichier.
+
     //------------------------------------------------------------------ PRIVE
 
 protected:

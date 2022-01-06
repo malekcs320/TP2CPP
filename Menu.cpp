@@ -433,6 +433,8 @@ void Menu::chargerCatalogue() {
         }
     }
 
+    nomFichier += ".txt";
+
     int choix, retour;
     char type;
     bool fin = false;
@@ -454,7 +456,7 @@ void Menu::chargerCatalogue() {
         switch(choix) {
             case 1: // enregistrement de tout le catalogue
                 cout << "Chargement du fichier..." << endl;
-                retour = c->readFile(nomFichier+".txt");
+                retour = c->readFile(nomFichier);
                 if(retour >= 0) {
                     cout << retour << " trajets ont été chargés";
                 }
@@ -474,7 +476,7 @@ void Menu::chargerCatalogue() {
                     cin >> type;
                 }
                 cout << "Chargement du fichier..." << endl;
-                retour = c->readFile(nomFichier+".txt", type);
+                retour = c->readFile(nomFichier, type);
                 if(retour >= 0) {
                     cout << retour << " trajets ont été chargés";
                 }
@@ -521,7 +523,7 @@ void Menu::chargerCatalogue() {
                     break;
                 }
                 cout << "Chargement du fichier..." << endl;
-                retour = c->readFileByCity(nomFichier+".txt", villeDepart, villeArrivee);
+                retour = c->readFileByCity(nomFichier, villeDepart, villeArrivee);
                 if(retour >= 0) {
                     cout << retour << " trajets ont été chargés";
                 }
@@ -533,7 +535,36 @@ void Menu::chargerCatalogue() {
             break;
 
             case 4: // indices
+                cout << "Veuillez choisir la borne minimum : ";
+                cin >> borneMin;
+
+                while(borneMin < 1)
+                {
+                    cout << "La borne doit être supérieure à 0. ";
+                    cout << "Veuillez choisir une borne minimum valide : ";
+                    cin >> borneMin;
+                }
+
+                cout << "Veuillez choisir la borne maximum : ";
+                cin >> borneMax;
+
+                while(borneMax < 1 || borneMax < borneMin)
+                {
+                    cout << "La borne doit être supérieure ou égale à " << borneMin << ".";
+                    cout << "Veuillez choisir une borne maximum valide : ";
+                    cin >> borneMax;
+                }
+
                 
+                cout << "Chargement du fichier..." << endl;
+                retour = c->readFileByIndex(nomFichier, borneMin, borneMax);
+                if(retour >= 0) {
+                    cout << retour << " trajets ont été chargés";
+                }
+                else {
+                    cout << "Fichier non chargé";
+                }
+                fin = true;
             break;
 
             default:

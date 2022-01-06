@@ -304,7 +304,33 @@ int Catalogue::readFileByCity(std::string fileName, std::string depart, std::str
     return compteurTrajet;
 }
 
+int Catalogue::readFileByIndex(std::string fileName, int min, int max) {
+    std::ifstream file(fileName);
 
+    if(!file) {
+        cout << "Une erreur est survenue lors de l'ouverture du fichier " << fileName << endl;
+        return -1;
+    }
+    std::string ligne("");
+    char c;
+    int compteurLigne=0, compteurTrajet=0;
+    while(getline(file,ligne)) { // lecture ligne à ligne
+        compteurLigne++;
+        c = ligne.front();
+        if(compteurLigne >= min && compteurLigne <= max) {
+            if  (c == 'S' || c == 'C') {
+                compteurTrajet++;
+                ajouterTrajet(readLigne(ligne));
+            }
+            else {
+                cout << "Ligne " << compteurLigne << " : format invalide" << endl;
+            }
+        }
+        
+    }
+    file.close();
+    return compteurTrajet;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 
