@@ -366,7 +366,7 @@ void Menu::sauvegarderCatalogue() {
                 fin = true;
             break;
 
-            case 4:
+            case 4: // indices
                 cout << "Veuillez choisir la borne minimum : ";
                 cin >> borneMin;
 
@@ -416,14 +416,72 @@ void Menu::chargerCatalogue() {
             return;
         }
     }
-    cout << "Chargement du fichier..." << endl;
-    int retour = c->readFile(nomFichier+".txt");
-    if(retour >= 0) {
-        cout << retour << " trajets ont été chargés";
-    }
-    else {
-        cout << "Fichier non chargé";
-    }
+
+    int choix, retour;
+    char type;
+    bool fin = false;
+    do 
+    {
+        cout << "Que souhaitez-vous charger ?" << endl;
+        cout << "1 - Tout le fichier." << endl;
+        cout << "2 - Seulement certains trajets, selon leur type (simple ou composé)." << endl;
+        cout << "3 - Seulement certains trajets, selon une ville de départ et/ou d'arrivée." << endl;
+        cout << "4 - Une sélection de trajets selon leur index." << endl;
+        cout << "5 - Annuler [x]" << endl;
+        cin >> choix;
+        cout << endl;
+
+        switch(choix) {
+            case 1: // enregistrement de tout le catalogue
+                cout << "Chargement du fichier..." << endl;
+                retour = c->readFile(nomFichier+".txt");
+                if(retour >= 0) {
+                    cout << retour << " trajets ont été chargés";
+                }
+                else {
+                    cout << "Fichier non chargé";
+                }
+                fin = true;
+            break;
+
+            case 2: // choix entre sauvegarder les trajets simples OU les trajets composés
+                cout << "Veuillez choisir le type de trajet, simple (s) ou composé (c) : " ;
+                cin >> type;
+
+                while(type != 's' && type != 'c') // vérification choix
+                {
+                    cout << "Choix incorrect. Veuillez choisir entre simple (s) et composé (c) : ";
+                    cin >> type;
+                }
+                cout << "Chargement du fichier..." << endl;
+                retour = c->readFile(nomFichier+".txt", type);
+                if(retour >= 0) {
+                    cout << retour << " trajets ont été chargés";
+                }
+                else {
+                    cout << "Fichier non chargé";
+                }
+                fin = true;
+            break;
+
+            case 3: // Choix entre ville d'arrivée, de départ ou les deux
+
+                
+            break;
+
+            case 4: // indices
+                
+            break;
+
+            default:
+                cout << "Veuillez entrer un choix valide." << endl;
+            break;
+        }
+    }while(choix != 5 && !fin);
+
+
+
+    
 }
 
 //-------------------------------------------- Constructeurs - destructeur
