@@ -63,6 +63,10 @@ public:
     //  Aucun.
 
     virtual const std::string writeFile(int fromTC = 0) const;
+    // Mode d'emploi :
+    // 
+    // Contrat :
+    //  Aucun.
 
     //------------------------------------------------- Surcharge d'opérateurs
 

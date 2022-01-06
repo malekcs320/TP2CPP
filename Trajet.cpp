@@ -48,7 +48,7 @@ std::string const Trajet::getArrivee() const
     return arrivee;
 }
 const std::string Trajet::writeFile(int fromTC) const {
-    return std::string(depart) +","+std::string(arrivee);
+    return std::string(depart) + "," + std::string(arrivee);
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
