@@ -13,93 +13,183 @@
 
 using namespace std;
 
-void testTrajetSimple()
-{
-    TrajetSimple *t1 = new TrajetSimple("Paris", "Lyon", "Train");
-    t1->afficherTrajet();
-    t1->getArrivee();
-    t1->getDepart();
-    t1->getTransport();
-    t1->estEgal(t1);
-    delete t1;
-}
-void testTrajetCompose()
-{
-    TrajetCompose *t = new TrajetCompose("Paris", "Lyon");
-    t->afficherTrajet();
-    t->getArrivee();
-    t->getDepart();
-    Trajet *test = new TrajetCompose("Paris", "Nantes");
-    TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
-    TrajetSimple *test3 = new TrajetSimple("Nantes", "Toulouse", "Train");
-    t->ajouterTrajet(test);
-    t->ajouterTrajet(test2);
-    t->ajouterTrajet(test3);
-    t->afficherTrajet();
-    delete t;
-}
-void testListeTrajets()
-{
-    Trajet *t1 = new TrajetSimple("Paris", "Lyon", "fusee");
-    Trajet *t2 = new TrajetCompose("Paris", "Marseille");
-    Trajet *t3 = new TrajetCompose("Paris", "Nantes");
-    ListeTrajets *liste = new ListeTrajets;
+void testSauvegardeComplete() {
+    Catalogue *c = new Catalogue();
 
-    liste->ajouter(t1);
-    liste->ajouter(t2);
-    liste->ajouter(t3);
-    liste->supprimerTrajet(2);
-    liste->afficher();
-    liste->getElement(0)->afficherTrajet();
-    delete liste;
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeAllFile("testSauvegardeComplete.txt");
+    delete c;
 }
-void testCatalogue()
+void testSauvegardeTS()
 {
     Catalogue *c = new Catalogue();
-    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
-    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
-    TrajetCompose *t = new TrajetCompose("Paris", "Lyon");
-    t->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
-    t->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
-    c->ajouterTrajet(t);
-    Trajet *t1 = new TrajetSimple("Clermont-Ferrand", "Lyon", "Train");
-    c->ajouterTrajet(t1);
-    c->afficher();
-    c->getTaille();
-    c->rechercheSimple("Paris", "Lyon");
-  //  c->rechercheAvancee("Paris", "Lyon");
-    c->afficher();
-    c->supprimerTrajet(3);
-    c->afficher();
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByType("testSauvegardeTS.txt", 's');
     delete c;
 }
-void testSuppressionTeteTaille1() {
-    // suppression de l'élément en tête pour une liste de taille 1
-    cout << "suppression de l'élément en tête pour une liste de taille 1"<< endl;
+
+void testSauvegardeTC()
+{
     Catalogue *c = new Catalogue();
-    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
-    c->supprimerTrajet(1);
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByType("testSauvegardeTC.txt", 'c');
     delete c;
 }
-void testSuppressionTeteTaille2() {
-    // suppression de l'élément en tête pour une liste de taille > 1
-    cout << "suppression de l'élément en tête pour une liste de taille > 1"<< endl;
+
+void testSauvegardeVilleDepart()
+{
     Catalogue *c = new Catalogue();
-    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
-    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Bus"));
-    c->supprimerTrajet(1);
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByCity("testSauvegardeVilleDepart.txt", 1, "Paris");
     delete c;
 }
-void testSuppressionPasTeteTaille3() {
-    // suppression d'un élément pas en tête pour une liste de taille > 1
-    cout << "suppression d'un élément pas en tête pour une liste de taille > 1"<< endl;
+
+void testSauvegardeVilleArrivee()
+{
     Catalogue *c = new Catalogue();
-    c->ajouterTrajet(new TrajetSimple("Paris", "Lyon", "Train"));
-    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Bus"));
-    c->ajouterTrajet(new TrajetSimple("Paris", "Marseille", "Train"));
-    c->supprimerTrajet(2);
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByCity("testSauvegardeVilleArrivee.txt", 2, "", "Lyon");
     delete c;
 }
+
+void testSauvegardeIntervalle() {
+    Catalogue *c = new Catalogue();
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByInterval("testSauvegardeIntervalle.txt", 3, 4);
+    delete c;
+}
+
+void testChargementComplet() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFile("testSauvegardeComplete.txt");
+    c->afficher();
+    delete c;
+}
+
+void testChargementTS() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFile("testSauvegardeComplete.txt", 's');
+    c->afficher();
+    delete c;
+}
+
+void testChargementTC() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFile("testSauvegardeComplete.txt", 'c');
+    c->afficher();
+    delete c;
+}
+
+void testChargementVilleDepart() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFileByCity("testSauvegardeComplete.txt", "Paris", "");
+    c->afficher();
+    delete c;
+}
+
+void testChargementVilleArrivee() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFileByCity("testSauvegardeComplete.txt", "", "Marseille");
+    c->afficher();
+    delete c;
+}
+
+void testChargementIntervalle() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFileByIndex("testSauvegardeComplete.txt", 2, 4);
+    c->afficher();
+    delete c;
+}
+
 void testMenu() {
     Menu * m = new Menu();
     m->afficherMenu();
@@ -112,71 +202,26 @@ int main()
 Cette classe a été notre bac à sable pour tester nos programmes.
 Les tests unitaires permettent d'appeler toutes (ou presque) les méthodes, afin
 d'éviter les erreurs d'exécution et de visualiser les fuites de mémoires.
+
+ATTENTION : Comme Menu vérifie les saisies, les saisies doivent être correctes
+dans les tests unitaires
 */
 
-    /* test unitaires */
-    // testListeTrajets();
-    //testTrajetSimple();
-    //testTrajetCompose();
-    //testCatalogue();
-    //testMenu(); 
-    //testSuppressionTeteTaille1();
-    //testSuppressionTeteTaille2();
-    //testSuppressionPasTeteTaille3(); 
+    testSauvegardeComplete();
+    testSauvegardeTS();
+    testSauvegardeTC();
+    testSauvegardeVilleDepart();
+    testSauvegardeVilleArrivee();
+    testSauvegardeIntervalle();
 
-    testMenu(); // exécution du programme en mode utilisateur
+    testChargementComplet();
+    testChargementTS();
+    testChargementTC();
+    testChargementVilleDepart();
+    testChargementVilleArrivee();
+    testChargementIntervalle();
 
-    // ofstream fileW("fichier.txt");
-    // streambuf *oldCoutBuffer = cout.rdbuf ( fileW.rdbuf ( ) );
-    // cout << "écrire dans un fichier c'est cool" << endl;
-
-    // cout.rdbuf ( oldCoutBuffer );
-
-    // fileW.close();
-
-    // ifstream fileR("fichier.txt");
-    // // if(!fileR) {
-    // //     cout << "erreur ouverture du fichier" << endl;
-    // // }
-    // // char carLu;
-    // // while (fileR.get(carLu)) { // NE FONCTIONNE PAS 
-    // //     cout << carLu << endl;
-    // // }
-    // // fileR.close();
-
-    // string str;
-    // while(getline(fileR,str)) {
-    //     cout << str << endl;
-    // }
-
-    // fileR.close();
-
-    // TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
-    // t->getArrivee();
-    // t->getDepart();
-    // TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
-    // TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
-    // TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
-    // t->ajouterTrajet(test);
-    // t->ajouterTrajet(test2);
-    // t->ajouterTrajet(test3);
-    // cout << t->writeFile() << endl;
-
-    //Catalogue * c = new Catalogue();
-    //c->readFile("fichier.txt");
-    //c->afficher();
-    //delete c;
-    //TrajetCompose *t = new TrajetCompose("Paris", "Toulouse");
-    //t->getArrivee();
-    //t->getDepart();
-    //TrajetSimple *test = new TrajetSimple("Paris", "Nantes","Bus");
-    //TrajetSimple *test2 = new TrajetSimple("Nantes", "Lyon", "Train");
-    //TrajetSimple *test3 = new TrajetSimple("Lyon", "Toulouse", "Train");
-    //t->ajouterTrajet(test);
-    //t->ajouterTrajet(test2);
-    //t->ajouterTrajet(test3);
-    //cout << t->writeFile() << endl; 
-    //delete t;
+    // testMenu(); // exécution du programme en mode utilisateur
     
     return 0;
 }
