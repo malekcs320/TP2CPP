@@ -237,7 +237,7 @@ ATTENTION : Comme Menu vérifie les saisies, les saisies doivent être correctes
 dans les tests unitaires
 */
 
-    testSauvegardeComplete();
+    testSauvegardeComplete(); // ATTENTION : nécessaire pour les tests de chargements
     testSauvegardeTS();
     testSauvegardeTC();
     testSauvegardeVilleDepart();
