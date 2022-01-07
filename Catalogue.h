@@ -101,29 +101,33 @@ public:
     // Contrat :
     //  Aucun.
 
-    void writeAllFile(std::string nomFichier);
+    int writeAllFile(std::string nomFichier);
     // Mode d'emploi :
     //  Ecrit tout le catalogue dans le fichier de nom nomFichier.
+    // Renvoie le nombre de trajets sauvegardés, -1 en cas d'erreur.
     // Contrat :
     //  Aucun.
 
-    void writeFileByType(std::string nomFichier, char type);
+    int writeFileByType(std::string nomFichier, char type);
     // Mode d'emploi :
     //  Ecrit dans le fichier de nom nomFichier les trajets dont le type correspond à celui choisi.
+    // Renvoie le nombre de trajets sauvegardés, -1 en cas d'erreur.
     // Contrat :
     //  La validité du paramètre type a été vérifiée dans Menu. 
 
-    void writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee = "");
+    int writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee = "");
     // Mode d'emploi :
     // Ecrit dans le fichier de nom "nomFichier" les trajets selon l'option choisie 
     // dans le Menu par l'utilisateur. Les paramètres villeDepart et villeArrivee dépendent du choix. 
     // Le paramètre ville Arrivee n'est pas employé dans l'option 1 (depuis une villeDepart uniquement)
+    // Renvoie le nombre de trajets sauvegardés, -1 en cas d'erreur.
     // Contrat :
     //  La validité du paramètre type a été vérifiée dans Menu. 
 
-    void writeFileByInterval(std::string nomFichier, int borneMin, int borneMax);
+    int writeFileByInterval(std::string nomFichier, int borneMin, int borneMax);
     // Mode d'emploi :
     //  Ecrit dans le fichier de nom "nomFichier" les trajets dans l'intervalle [borneMin, borneMax].
+    // Renvoie le nombre de trajets sauvegardés, -1 en cas d'erreur.
     // Contrat :
     // La cohérence des bornes a été vérifiée dans Menu.
 

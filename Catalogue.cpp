@@ -134,23 +134,37 @@ ListeTrajets *Catalogue::getListe() const
     return liste;
 }
 
-void Catalogue::writeAllFile(std::string nomFichier) 
+int Catalogue::writeAllFile(std::string nomFichier) 
 {
     ofstream fichier;
     fichier.open(nomFichier);
+    int cpt = 0;
+
+    if(fichier.fail()) // Vérification de la bonne ouverture du fichier
+    {
+        return -1;
+    }
 
     for(int i = 0; i < this->getTaille(); i++) 
         {
             fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+            cpt++;
         }
     
     fichier.close();
+    return cpt;
 }
 
-void Catalogue::writeFileByType(std::string nomFichier, char type)
+int Catalogue::writeFileByType(std::string nomFichier, char type)
 {
     ofstream fichier;
     fichier.open(nomFichier);
+    int cpt = 0;
+
+    if(fichier.fail()) // Vérification de la bonne ouverture du fichier
+    {
+        return -1;
+    }
 
     if(type == 's') // Si on veut sauvegarder les trajets simples
     {
@@ -158,6 +172,7 @@ void Catalogue::writeFileByType(std::string nomFichier, char type)
         {
             if(!this->getListe()->getElement(i)->getType().compare("TrajetSimple")) {
                 fichier << this->getListe()->getElement(i)->writeFile() +"\n";
+                cpt++;
             }
         }
     }
@@ -168,18 +183,25 @@ void Catalogue::writeFileByType(std::string nomFichier, char type)
             if(!this->getListe()->getElement(i)->getType().compare("TrajetCompose"))
             {
                 fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+                cpt++;
             }
         }
     }
 
     fichier.close();
+    return cpt;
 }
 
-void Catalogue::writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee)
+int Catalogue::writeFileByCity(std::string nomFichier, int option, std::string villeDepart, std::string villeArrivee)
 { 
     ofstream fichier;
     fichier.open(nomFichier);
+    int cpt = 0;
 
+    if(fichier.fail()) // Vérification de la bonne ouverture du fichier
+    {
+        return -1;
+    }
     switch(option) 
     {
         case 1: // sauvegarde selon la ville de départ UNIQUEMENT
@@ -188,6 +210,7 @@ void Catalogue::writeFileByCity(std::string nomFichier, int option, std::string 
                 if(!(this->getListe()->getElement(i)->getDepart().compare(villeDepart)))
                 {
                     fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+                    cpt++;
                 }
             }
         break;
@@ -198,6 +221,7 @@ void Catalogue::writeFileByCity(std::string nomFichier, int option, std::string 
                 if(!this->getListe()->getElement(i)->getArrivee().compare(villeArrivee))
                 {
                     fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+                    cpt++;
                 }
             }
         break;
@@ -209,25 +233,35 @@ void Catalogue::writeFileByCity(std::string nomFichier, int option, std::string 
                     && !this->getListe()->getElement(i)->getDepart().compare(villeDepart))
                 {
                     fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+                    cpt++;
                 }
             }
         break;
     }
 
     fichier.close();
+    return cpt;
 }
 
-void Catalogue::writeFileByInterval(std::string nomFichier, int borneMin, int borneMax)
+int Catalogue::writeFileByInterval(std::string nomFichier, int borneMin, int borneMax)
 {
     ofstream fichier;
     fichier.open(nomFichier);
+    int cpt = 0;
+
+    if(fichier.fail()) // Vérification de la bonne ouverture du fichier
+    {
+        return -1;
+    }
 
     for(int i = borneMin - 1; i < borneMax; i++)
     {
         fichier << this->getListe()->getElement(i)->writeFile() + "\n";
+        cpt++;
     }
 
     fichier.close();
+    return cpt;
 }
 
 int Catalogue::readFile(std::string fileName, char type) 

@@ -101,8 +101,8 @@ public:
     // On vérifie d'abord que le nom de la sauvegarde soit valide. Si le nom existe déjà,
     // on propose à l'utilisateur de réécrire dessus, de changer le nom qu'il veut donner
     // au fichier ou d'annuler l'opération. 
-    // Quand on a le bon nom de fichier, on lance la sauvegarde si l'utilisateur n'a pas
-    // annulé. 
+    // Quand on a le bon nom de fichier, on propose à l'utilisateur différents modes de sauvegarde.
+    // On vérifie toutes les entrées, afin que les appels aux fonctions de Catalogue soient corrects.
     // Contrat :
     // Aucun. 
 

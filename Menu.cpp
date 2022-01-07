@@ -268,7 +268,7 @@ std::string Menu::gestionNomSauvegarde() {
 }
 
 void Menu::sauvegarderCatalogue() {
-    
+    ofstream fichier;
     std::string nomFichier; 
 
     cout << "----------------- MENU SAUVEGARDE -----------------\n" << endl;
@@ -289,6 +289,7 @@ void Menu::sauvegarderCatalogue() {
 
     int choix;
     bool fin = false;
+    int nbTrajets = 0;
 
     // Variables pour les cases du switch
 
@@ -318,7 +319,13 @@ void Menu::sauvegarderCatalogue() {
 
         switch(choix) {
             case 1: // enregistrement de tout le catalogue
-                c->writeAllFile(nomFichier);
+                nbTrajets = c->writeAllFile(nomFichier);
+
+                if(nbTrajets == -1)
+                    cout << "\n Une erreur s'est produite. Veuillez recommencer. \n" << endl;
+                else
+                    cout << "\n" << nbTrajets << " trajet(s) ont été sauvegardés.\n" << endl;
+
                 fin = true;
             break;
 
@@ -332,7 +339,13 @@ void Menu::sauvegarderCatalogue() {
                     cin >> type;
                 }
                 
-                c->writeFileByType(nomFichier, type);
+                nbTrajets = c->writeFileByType(nomFichier, type);
+
+                if(nbTrajets == -1)
+                    cout << "\nUne erreur s'est produite. Veuillez recommencer.\n" << endl;
+                else
+                    cout << "\n" << nbTrajets << " trajet(s) de type " << type << " ont été sauvegardés.\n" << endl;
+
                 fin = true;
             break;
 
@@ -356,14 +369,24 @@ void Menu::sauvegarderCatalogue() {
                         cout << "Ville de départ : ";
                         cin >> villeDepart;
 
-                        c->writeFileByCity(nomFichier, 1, villeDepart);
+                        nbTrajets = c->writeFileByCity(nomFichier, 1, villeDepart);
+
+                        if(nbTrajets == -1)
+                            cout << "\n Une erreur s'est produite. Veuillez recommencer. \n" << endl;
+                        else
+                            cout << "\n" << nbTrajets << " trajet(s) depuis " << villeDepart << " ont été sauvegardés. \n" << endl;
                     break;
 
                     case 'a':
                         cout << "Ville d'arrivée : ";
                         cin >> villeArrivee;
 
-                        c->writeFileByCity(nomFichier, 2, "", villeArrivee);
+                        nbTrajets = c->writeFileByCity(nomFichier, 2, "", villeArrivee);
+
+                        if(nbTrajets == -1)
+                            cout << "\n Une erreur s'est produite. Veuillez recommencer.\n" << endl;
+                        else
+                            cout << "\n" << nbTrajets << " trajet(s) allant à " << villeArrivee << " ont été sauvegardés. \n" << endl;
                     break;
 
                     case 'm':
@@ -372,12 +395,18 @@ void Menu::sauvegarderCatalogue() {
                         cout << "Ville d'arrivée : ";
                         cin >> villeArrivee;    
                         
-                        c->writeFileByCity(nomFichier, 3, villeDepart, villeArrivee);
+                        nbTrajets = c->writeFileByCity(nomFichier, 3, villeDepart, villeArrivee);
+
+                        if(nbTrajets == -1)
+                            cout << "\n Une erreur s'est produite. Veuillez recommencer. \n" << endl;
+                        else
+                            cout << "\n" << nbTrajets << " trajet(s) de " << villeDepart << " à " << villeArrivee << " ont été sauvegardés. \n" << endl;
                     break;
 
                     default:
                     break;
                 }
+
                 fin = true;
             break;
 
@@ -403,7 +432,13 @@ void Menu::sauvegarderCatalogue() {
                     cin >> borneMax;
                 }
 
-                c->writeFileByInterval(nomFichier, borneMin, borneMax);
+                nbTrajets = c->writeFileByInterval(nomFichier, borneMin, borneMax);
+
+                if(nbTrajets == -1)
+                        cout << "\n Une erreur s'est produite. Veuillez recommencer. \n" << endl;
+                    else
+                        cout << "\n" << nbTrajets << " trajet(s) ont été sauvegardés dans l'intervalle [" << borneMin << "," << borneMax << "]. \n" << endl;
+
                 fin = true;
             break;
 
@@ -412,8 +447,6 @@ void Menu::sauvegarderCatalogue() {
             break;
         }
     }while(choix != 5 && !fin);
-    
-    fichier.close(); // Fermeture du fichier
 
     cout << "Fin de l'opération de sauvegarde." << endl;
     cout << "<< RETOUR AU MENU PRINCIPAL" << endl;
