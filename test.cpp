@@ -116,6 +116,27 @@ void testSauvegardeVilleArrivee()
     delete c;
 }
 
+void testSauvegardeVilleDepartEtArrivee()
+{
+    Catalogue *c = new Catalogue();
+
+    TrajetSimple *ts1 = new TrajetSimple("Paris", "Lyon", "Train");
+    c->ajouterTrajet(ts1);
+    TrajetSimple *ts2 = new TrajetSimple("Nantes", "Lille", "Bus");
+    c->ajouterTrajet(ts2);
+    TrajetCompose *tc1 = new TrajetCompose("Paris", "Lyon");
+    tc1->ajouterTrajet(new TrajetSimple("Paris", "Clermont-Ferrand", "Train"));
+    tc1->ajouterTrajet(new TrajetSimple("Clermont-Ferrand", "Lyon", "Bus"));
+    c->ajouterTrajet(tc1);
+    TrajetCompose *tc2 = new TrajetCompose("Nice", "Marseille");
+    tc2->ajouterTrajet(new TrajetSimple("Nice", "Cannes", "Avion"));
+    tc2->ajouterTrajet(new TrajetSimple("Cannes", "Marseille", "Bus"));
+    c->ajouterTrajet(tc2);
+
+    c->writeFileByCity("testSauvegardeVilleDepart.txt", 3, "Nice", "Marseille");
+    delete c;
+}
+
 void testSauvegardeIntervalle() {
     Catalogue *c = new Catalogue();
 
@@ -181,6 +202,15 @@ void testChargementVilleArrivee() {
     delete c;
 }
 
+void testChargementVilleDepartEtArrivee() {
+    // On se base sur le fichier testSauvegardeComplete.txt
+
+    Catalogue *c = new Catalogue();
+    c->readFileByCity("testSauvegardeComplete.txt", "Paris", "Lyon");
+    c->afficher();
+    delete c;
+}
+
 void testChargementIntervalle() {
     // On se base sur le fichier testSauvegardeComplete.txt
 
@@ -212,6 +242,7 @@ dans les tests unitaires
     testSauvegardeTC();
     testSauvegardeVilleDepart();
     testSauvegardeVilleArrivee();
+    testSauvegardeVilleDepartEtArrivee();
     testSauvegardeIntervalle();
 
     testChargementComplet();
@@ -219,6 +250,7 @@ dans les tests unitaires
     testChargementTC();
     testChargementVilleDepart();
     testChargementVilleArrivee();
+    testChargementVilleDepartEtArrivee();
     testChargementIntervalle();
 
     // testMenu(); // exécution du programme en mode utilisateur
